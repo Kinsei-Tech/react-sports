@@ -5,14 +5,15 @@ import InputStyle from "./style";
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   label?: string;
+  type?: string;
 }
 
-const Input = ({ placeholder, label, ...rest }: IInputProps) => {
+const Input = ({ type, placeholder, label, ...rest }: IInputProps) => {
   return (
     <>
       <Label>
         {label && <span> {label}</span>}
-        <InputStyle placeholder={placeholder} {...rest} />
+        <InputStyle placeholder={placeholder} type={type} {...rest} />
       </Label>
     </>
   );
