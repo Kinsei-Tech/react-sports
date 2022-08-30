@@ -17,6 +17,16 @@
 - axios
 - styled-components
 - adicionar todas que forem utilizadas
+- react-toastify
+- react-router-dom
+- react-hook-form
+- framer-motion
+- react-icons
+- react-typical
+
+## Figma
+
+    https://www.figma.com/file/vIscysfrdgNUh161LwblFj/Untitled?node-id=172%3A173
 
 ## Modelo de Organização das Pastas
 
