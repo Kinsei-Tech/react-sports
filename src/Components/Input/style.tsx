@@ -6,21 +6,21 @@ const InputStyle = styled.input`
 
   padding-left: 10px;
 
-  border: 2px solid #6e9423;
+  border: 2px solid var(--color-green-primary);
   border-radius: 8px;
 
-  background-color: #d9d9d9;
+  background-color: var(--gray-0);
 
   &:focus {
-    border-color: #85b329;
+    border-color: var(--color-green-primary-hover);
   }
 
   &:hover {
-    border: 2px solid #85b329;
+    border: 2px solid var(--color-green-primary-hover);
   }
 
   &::placeholder {
-    color: #6e9423;
+    color: var(--color-green-primary-hover);
   }
 `;
 export default InputStyle;
