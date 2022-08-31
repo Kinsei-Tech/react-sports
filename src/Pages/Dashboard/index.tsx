@@ -1,5 +1,5 @@
 import "./style"
-import { Main, CardsContainer} from "./style"
+import { Main } from "./style"
 import Button from "../../Components/Button"
 import Input from "../../Components/Input";
 import Card from "../../Components/TeamCard";
@@ -26,11 +26,11 @@ export const Dashboard = () =>{
                 </div>
 
                 <div className="teamsCards">
-                    <CardsContainer>
+                    <ul>
                         
                         <Card></Card>
                         
-                    </CardsContainer>
+                    </ul>
                 </div>
             </Main>
 

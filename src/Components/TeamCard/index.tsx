@@ -1,5 +1,5 @@
 import "../../Pages/Dashboard/style"
-import { TeamCard } from "../../Pages/Dashboard/style"
+import { TeamCard } from "./style"
 import Button from "../../Components/Button"
 
 function Card(){
