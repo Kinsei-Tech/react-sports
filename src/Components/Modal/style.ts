@@ -15,11 +15,12 @@ const ModalStyle = styled.div`
     max-width: 400px;
     min-height: auto;
     margin: 20% auto;
-    header {
+    .headerModal {
       height: 50px;
       border-radius: 16px 16px 0px 0px;
       background-color: var(--color-green-primary);
       position: relative;
+      width: auto;
 
       button {
         padding: 0px;
