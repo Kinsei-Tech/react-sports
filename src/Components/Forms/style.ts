@@ -8,7 +8,12 @@ const FormStyle = styled.form`
   text-align: center;
   gap: 1rem;
   padding: 10px;
-  background-color: #d9d9d9;
+  background-color: var(--gray-0);
+
+  h1 {
+    color: green;
+    font-size: 1rem;
+  }
 `;
 
 export default FormStyle;

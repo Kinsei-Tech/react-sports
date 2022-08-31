@@ -1,9 +1,7 @@
 import styled from "styled-components";
-
-const InputStyle = styled.input`
+const SelectStyle = styled.select`
   height: 30px;
   width: auto;
-
   padding-left: 10px;
   border: 2px solid var(--color-green-primary-hover);
   border-radius: 8px;
@@ -22,4 +20,4 @@ const InputStyle = styled.input`
     color: var(--color-green-primary-hover);
   }
 `;
-export default InputStyle;
+export default SelectStyle;
