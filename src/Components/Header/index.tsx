@@ -3,7 +3,7 @@ import Logo from "../../Images/LogoWithBall.svg";
 import ProfilePicture from "../../Images/example-profile-picture.svg";
 import { AiFillCaretDown } from "react-icons/ai";
 import { SearchInput } from "../SearchInput";
-import { ModalHeader } from "../ModalHeader";
+import { DropMenuProfile } from "../DropMenu";
 import { useEffect, useRef, useState } from "react";
 
 export const Header = () => {
@@ -36,7 +36,7 @@ export const Header = () => {
               <AiFillCaretDown />
             </div>
           </button>
-          {isVisible && <ModalHeader />}
+          {isVisible && <DropMenuProfile />}
         </section>
       </div>
       <InputContainer>

@@ -24,6 +24,7 @@ const Modal = ({ children, setIsOpenModal }: IModalProps) => {
       document.removeEventListener("mousedown", handleCloseModal);
     };
   }, [setIsOpenModal]);
+
   return (
     <ModalStyle>
       <div ref={modalRef}>
