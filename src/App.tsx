@@ -1,7 +1,4 @@
-import "./App.css";
-import FormLogin from "./Components/Forms/FormLogin";
-import Modal from "./Components/Modal";
-import LoginPage from "./Pages/LoginPage";
+import { RoutesMain } from "./Routes";
 import Global from "./style/global";
 
 //Pagina de teste dos componentes
@@ -10,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Global />
-      <LoginPage></LoginPage>
+      <RoutesMain />
     </div>
   );
 }
