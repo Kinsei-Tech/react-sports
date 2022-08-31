@@ -35,6 +35,10 @@ body {
         font-family: 'Inter', sans-serif;
     }
 
+    button {
+        cursor: pointer;
+    }
+
 * {
     margin:0;
     padding: 0;
