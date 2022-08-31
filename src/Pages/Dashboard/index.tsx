@@ -1,47 +1,40 @@
-import "./style"
-import { Main } from "./style"
-import Button from "../../Components/Button"
-import Input from "../../Components/Input";
+import "./style";
+import { Main } from "./style";
+import Button from "../../Components/Button";
 import Card from "../../Components/TeamCard";
-export const Dashboard = () =>{
+import { Header } from "../../Components/Header";
+import { SearchInput } from "../../Components/SearchInput";
 
-    return(
+export const Dashboard = () => {
+  return (
+    <>
+      <Header />
+      <Main>
+        <div className="buttonsFilter">
+          <div>
+            <Button className="createTeam" color="#000000" backGround="#93C335">
+              +
+            </Button>
+            <Button className="filter" color="#000000" backGround="#93C335">
+              Filtrar por...
+            </Button>
+          </div>
 
-        <>
+          <div className="searchArea">
+            <SearchInput />
+          </div>
+        </div>
 
-            <Main>
-                
-                <div className="buttonsFilter">
-                    <div>
-                        <Button className="createTeam" color="#000000" backGround="#93C335">+</Button>
-                        <Button className="filter" color="#000000" backGround="#93C335">Filtrar por...</Button>
-                    </div>
-                    
+        <div className="teamsCards">
+          <ul>
+            <Card></Card>
+          </ul>
+        </div>
+      </Main>
 
-                    <div className="searchArea">
-                        <Input placeholder="Pesquisar..." />
-                        <Button color="#000000" backGround="#93C335">Buscar</Button>
-                    </div>
+      <footer></footer>
+    </>
+  );
+};
 
-                </div>
-
-                <div className="teamsCards">
-                    <ul>
-                        
-                        <Card></Card>
-                        
-                    </ul>
-                </div>
-            </Main>
-
-            <footer>
-
-            </footer>
-
-        </>
- 
-    )
-
-}
-
-export default Dashboard
+export default Dashboard;
