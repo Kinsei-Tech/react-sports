@@ -1,15 +1,35 @@
 import Button from "../../Button";
 import Input from "../../Input";
-
 import FormStyle from "../style";
 
+import { FieldValues, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../../Pages/Registration/validation";
+
 const FormLogin = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  // Roberto, coloquei esse schema apenas para rodar o yarn, não é o correto
   return (
     <>
       <FormStyle>
         <h1>Login</h1>
-        <Input placeholder="Digite seu email" label="Email" autoFocus={true} />
-        <Input placeholder="Digite sua senha" label="Senha" />
+        <Input
+          register={register}
+          name="email"
+          placeholder="Digite seu email"
+          label="Email"
+          autoFocus={true}
+        />
+        <Input
+          placeholder="Digite sua senha"
+          label="Senha"
+          register={register}
+          name="password"
+        />
         <Button backGround={"#93C335"} colorHover={"#6E9423"} color={"#D9D9D9"}>
           Entrar
         </Button>
