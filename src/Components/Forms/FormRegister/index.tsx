@@ -3,25 +3,12 @@ import Input from "../../Input";
 import FormStyle from "../style";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../../Pages/Registration/validation";
 import { FieldValues, useForm } from "react-hook-form";
 import Select from "../../Select";
 import SelectCheckBoxStyled from "../../SelectCheckBox/style";
 import Container from "./style";
+import { schema } from "../../../Validations/validationRegister";
 
-// interface IDataRegister {
-//   name: string;
-//   email: string;
-//   password: string;
-//   confirmPassword?: string;
-//   height: string;
-//   weight: string;
-//   age: number;
-//   cep: string;
-//   city: string;
-//   telephone: string;
-//   isDoingSports: string;
-// }
 
 export const FormRegister = () => {
   const onSubmitFunction = (data: FieldValues) => {};
@@ -34,16 +21,6 @@ export const FormRegister = () => {
 
   return (
     <Container>
-        <div className="Header_BtnBack">
-          <h3>Voltar</h3>
-          <img src="./HeaderRegister.png" alt="Exit" />
-        </div>
-      <header className="header_Register">
-        <img src="./LogoHeaderRegister.png" alt="Logo" />
-      </header>
-
-      <div className="div_White"></div>
-
       <div className="form_Relative">
         <div className="form_Imagem">
           <img src="./ImagemCadastroFinal.png" alt="" />
