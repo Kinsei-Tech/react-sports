@@ -5,7 +5,9 @@ const InputStyle = styled.input`
   width: auto;
 
   padding-left: 10px;
+
   border: 2px solid var(--color-green-primary-hover);
+
   border-radius: 8px;
 
   background-color: var(--gray-0);

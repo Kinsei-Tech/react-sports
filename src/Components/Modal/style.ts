@@ -6,7 +6,7 @@ const ModalStyle = styled.div`
 
   padding: 15px;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--gray-2-blur);
 
   position: absolute;
   z-index: 9999;
@@ -15,11 +15,12 @@ const ModalStyle = styled.div`
     max-width: 400px;
     min-height: auto;
     margin: 20% auto;
-    header {
+    .headerModal {
       height: 50px;
       border-radius: 16px 16px 0px 0px;
-      background-color: #93c335;
+      background-color: var(--color-green-primary);
       position: relative;
+      width: auto;
 
       button {
         padding: 0px;
@@ -31,15 +32,15 @@ const ModalStyle = styled.div`
         right: 10px;
         top: 10px;
         svg {
-          fill: #f2cc50;
+          fill: var(--color-yellow-primary);
           position: absolute;
           top: -3px;
           left: -3px;
           &:hover {
-            fill: #f0c126;
+            fill: var(--color-yellow-primary-hover);
           }
           path {
-            color: #f2cc50;
+            color: var(--color-yellow-primary);
           }
         }
       }
@@ -54,7 +55,7 @@ const ModalStyle = styled.div`
       padding: 10px;
       gap: 10px;
       border-radius: 0px 0px 16px 16px;
-      background-color: #d9d9d9;
+      background-color: var(--gray-0);
     }
   }
 `;
