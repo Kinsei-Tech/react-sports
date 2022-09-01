@@ -5,7 +5,7 @@ export const schema = yup.object().shape({
     .string()
     .min(2, "Nome deve conter no mínimo 2 caracteres")
     .required("Nome obrigatório!"),
-  email: yup.string().email("Email inválido").required("Campo obrigatório"),
+  email: yup.string().email("Email inválido").required("Email obrigatório"),
   password: yup
     .string()
     .required("Senha obrigatória")
@@ -24,5 +24,5 @@ export const schema = yup.object().shape({
   city: yup.string().required("Cidade obrigatória"),
   telephone: yup.string().required("Telefone obrigatório"),
   isDoingSports: yup.string().required("Informação obrigatória"),
-  positions: yup.string().required("Posição obrigatória")
+  positions: yup.string().required("Posição obrigatória"),
 });
