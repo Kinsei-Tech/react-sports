@@ -1,36 +1,56 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "../../Button";
 import Input from "../../Input";
 import FormStyle from "../style";
 
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../../Pages/Registration/validation";
+import { schemaLogin } from "../../../Validations/validationLogin";
 
 const FormLogin = () => {
+  const navigate = useNavigate();
+  const onSubmitFunctionLogin = (data: FieldValues) => {
+    console.log("oi");
+    console.log(data);
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
-  // Roberto, coloquei esse schema apenas para rodar o yarn, não é o correto
+  } = useForm({ resolver: yupResolver(schemaLogin) });
+
   return (
     <>
-      <FormStyle>
+      <FormStyle onSubmit={handleSubmit(onSubmitFunctionLogin)}>
         <h1>Login</h1>
         <Input
+          type="text"
+          placeholder="Digite seu email"
           register={register}
           name="email"
-          placeholder="Digite seu email"
           label="Email"
-          autoFocus={true}
         />
+        <span>
+          {typeof errors.email?.message === "string" && errors.email?.message}
+        </span>
         <Input
+          type="password"
           placeholder="Digite sua senha"
-          label="Senha"
           register={register}
           name="password"
+          label="Senha"
         />
-        <Button backGround={"#93C335"} colorHover={"#6E9423"} color={"#D9D9D9"}>
+        <span>
+          {typeof errors.password?.message === "string" &&
+            errors.password?.message}
+        </span>
+        <Button
+          backGround={"#93C335"}
+          colorHover={"#6E9423"}
+          color={"#D9D9D9"}
+          onClick={() => onSubmitFunctionLogin}
+        >
           Entrar
         </Button>
       </FormStyle>
@@ -40,7 +60,7 @@ const FormLogin = () => {
           backGround={"#F2CC50"}
           color={"#202020"}
           colorHover={"#F0C126"}
-          onClick={() => console.log("teste")}
+          onClick={() => navigate("/register", { replace: false })}
         >
           Cadastrar
         </Button>
