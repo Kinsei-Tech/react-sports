@@ -4,22 +4,22 @@ const Container = styled.div`
 position: relative;
 @media (min-width: 1200px) {
   background-color: var(--color-green-primary);
-  overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   
   div.form_Imagem{
     display: block;
     position: absolute;
-    top: 50px;
+    top: 40px;
+    left: 10px;
     z-index: 15; 
+    height: 90vh;
     img{
-      height: 903px;
+      height: 100%;
     }
   }
 
   .form_Relative {
     position: relative;
-  
     width: 100%;
     height: 100vh;
   }
@@ -30,13 +30,21 @@ position: relative;
 
   div.div_White{
     background-color: var(--gray-1);
-    height: inherit;
-    width: 200px;
+    height: 100vh;
+    width: 100px;
     position: fixed;
     z-index: 10;
   }
-  header.header_Register {
-   display: none;
+ 
+  header.header_Register{
+    display: flex;
+    width: 0px;
+    height: 0px;
+    margin-bottom: 0px;
+  }
+
+  header.header_Register > img {
+    display: none;
   }
 
 
@@ -45,38 +53,32 @@ position: relative;
     width: 650px;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
-  .Header_BtnBack {
-    margin-right: 2rem
+  .header_BtnBack {
+    z-index: 30;
   }
 
   .div_Header_Container_FormStyle {
     position: absolute;
     z-index: 20;
-    top: 55px;
-    right: 20px;
-    height: 100vh;
-  
+    top: 30px;
+    right: 200px;
   }
-
-
-  .divBtnRegister{
-   
-  }
-
 
   input, select, fieldset,label {
-    max-width: 300px;
-  }
-
-  .div_Container {
     max-width: 300px;
   }
 
   .div_Header_Form{
     max-height: 40px;
   }
+
+  .div_Container{
+    padding: 16px;
+  }
+  
 }
 
   background-color: var(--gray-0);
@@ -94,21 +96,19 @@ position: relative;
 
   }
 
-  
   .header_Register > h3 {
     color: var(--color-green-primary-hover);
     margin-right: 1rem;
   }
 
-
-  .Header_BtnBack{
+  .header_BtnBack{
     display: flex;
     color: var(--color-green-primary-hover);
     position: absolute;
     top: 30px;
     right: 15px;
+    margin-right: 1rem;
   }
-  
   
   .form_Imagem{
     display: none;
@@ -143,29 +143,12 @@ position: relative;
   .div_FormStyle {
     border: 2px solid #93c335;
 
-  
-
   .div_Container {
-    padding: 1rem;
-  }
-
-  .div_ContainerFieldset {
-    display: flex;
-    flex-direction: column;
+    padding: 0rem 1rem 0.2rem 1rem;
   }
 
   .div_White{
     display: none;
-  }
-
-  .div_InfoFieldset {
-    display: flex;
-    padding-left: 1rem;
-    min-width: 50%;
-    max-width: 50%;
-    height: 30px;
-    align-items: center;
-    gap: 1rem;
   }
 
   .fieldPlayer {
@@ -173,7 +156,7 @@ position: relative;
     flex-direction: column;
     flex-wrap: wrap;
 
-    border: 2px solid var(--color-green-primary);
+    border: 2px solid var(--color-green-primary-hover);
     border-radius: 8px;
 
     background-color: var(--gray-0);
@@ -190,14 +173,21 @@ position: relative;
       color: var(--color-green-primary-hover);
     }
   }
+  .div_InfoFieldset {
+    display: flex;
+    padding-left: 1rem;
+    min-width: 50%;
+    max-width: 50%;
+    height: 30px;
+    align-items: center;
+    gap: 1rem;
+  }
 
   legend {
     font-size: 12px;
   }
 
-  .divBtnRegister {
-    padding-top: 1rem;
-  }
+  
 
   .body_ContainerFieldSet {
     display: flex;
@@ -208,8 +198,5 @@ position: relative;
     font-size: 12px;
     gap: 5px;
   }
-
-
-
 `;
 export default Container;
