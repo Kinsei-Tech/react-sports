@@ -8,7 +8,6 @@ const ButtonStyle = styled.button<IButtonStyleProps>`
   width: ${(props) => props.width || "100%"};
 
   color: ${({ color }) => color};
-  cursor: pointer;
 
   font-size: 20px;
   font-weight: 600;
