@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledSearchInput = styled.div`
   display: flex;
   flex-direction: row;
   width: fit-content;
+
+  input {
+    margin: 0;
+  }
 `;

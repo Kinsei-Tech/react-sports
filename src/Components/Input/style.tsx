@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const InputStyle = styled.input`
   height: 30px;
   width: auto;
 
-  padding-left: 10px;
+  padding: 18px 0px 18px 28px;
+
+  margin-top: 5px;
 
   border: 2px solid var(--color-green-primary-hover);
 
