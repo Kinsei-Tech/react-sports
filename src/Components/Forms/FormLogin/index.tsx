@@ -1,10 +1,10 @@
-import Button from "../../Button";
-import Input from "../../Input";
-import FormStyle from "../style";
+import Button from '../../Button';
+import Input from '../../Input';
+import FormStyle from '../style';
 
-import { FieldValues, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../../Pages/Registration/validation";
+import { FieldValues, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schema } from '../../../Pages/Registration/validation';
 
 const FormLogin = () => {
   const {
@@ -19,29 +19,22 @@ const FormLogin = () => {
         <h1>Login</h1>
         <Input
           register={register}
-          name="email"
-          placeholder="Digite seu email"
-          label="Email"
+          name='email'
+          placeholder='Digite seu email'
+          label='Email'
           autoFocus={true}
         />
         <Input
-          placeholder="Digite sua senha"
-          label="Senha"
+          placeholder='Digite sua senha'
+          label='Senha'
           register={register}
-          name="password"
+          name='password'
         />
-        <Button backGround={"#93C335"} colorHover={"#6E9423"} color={"#D9D9D9"}>
-          Entrar
-        </Button>
+        <Button color='green_white'>Entrar</Button>
       </FormStyle>
-      <div className="footerModal">
+      <div className='footerModal'>
         <h5>Ainda não possui cadastro?</h5>
-        <Button
-          backGround={"#F2CC50"}
-          color={"#202020"}
-          colorHover={"#F0C126"}
-          onClick={() => console.log("teste")}
-        >
+        <Button color='yellow' onClick={() => console.log('teste')}>
           Cadastrar
         </Button>
       </div>
