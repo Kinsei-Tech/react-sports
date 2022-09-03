@@ -7,22 +7,23 @@ import FormStyle from '../style';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../../../Validations/validationLogin';
-import FooterModal from '../../Modal/FooterModal';
+
+import { useContext } from 'react';
+import { AuthContext } from '../../../Contexts/AuthContext';
 
 const FormLogin = () => {
-  const onSubmitFunctionLogin = (data: FieldValues) => {
-    console.log('oi');
-    console.log(data);
-  };
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const onSubmitFunctionLogin = (data: FieldValues) => {};
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaLogin) });
-
   return (
     <>
-      <FormStyle onSubmit={handleSubmit(onSubmitFunctionLogin)}>
+      <FormStyle onSubmit={handleSubmit(userLogin)}>
         <h1>Login</h1>
         <Input
           type='text'
