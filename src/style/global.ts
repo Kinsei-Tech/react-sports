@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 :root{
@@ -17,12 +17,15 @@ export default createGlobalStyle`
  --gray-1: #DAE3C8;
  --gray-2: #202020;
  --gray-2-blur: rgba(30, 30, 30, 0.71);
+
+ --success: #26ff03;
+ --error: #ff0303;
 }
 
 
 body {
     font-family: 'Inter', sans-serif;
-
+    background-color: var(--gray-0);
     }
 
     h1,h2,h3{
