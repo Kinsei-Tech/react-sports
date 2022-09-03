@@ -1,7 +1,6 @@
-import { FaUser } from 'react-icons/fa';
-import { AiOutlineDoubleRight } from 'react-icons/ai';
-import { Container, FloatMenu } from './styles';
-import Button from '../Button';
+import { FaUser } from "react-icons/fa";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { Container, FloatMenu } from "./styles";
 
 export const DropMenuProfile = () => (
   <FloatMenu>
@@ -14,6 +13,5 @@ export const DropMenuProfile = () => (
         Perfil <FaUser />
       </button>
     </Container>
-    <Button color='green_white'> Teste</Button>
   </FloatMenu>
 );
