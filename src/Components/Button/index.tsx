@@ -1,26 +1,33 @@
-import { ButtonHTMLAttributes } from 'react';
-import ButtonStyle from './style';
+import { ButtonHTMLAttributes, ReactNode } from "react";
+import ButtonStyle from "./style";
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color:
-    | 'green_white'
-    | 'green_black'
-    | 'yellow'
-    | 'none'
-    | 'transparent_green';
-  height?: '40px' | string;
-  width?: '100%' | string;
+  color: string;
+  backGround: string;
+  colorHover?: string;
+  height?: string | number;
+  width?: string | number;
+  children: ReactNode;
 }
 
-const Button: React.FC<IButtonProps> = ({
+const Button = ({
   color,
+  backGround,
+  colorHover,
   height,
   width,
   children,
   ...rest
-}) => {
+}: IButtonProps) => {
   return (
-    <ButtonStyle color={color} height={height} width={width} {...rest}>
+    <ButtonStyle
+      color={color}
+      backGround={backGround}
+      colorHover={colorHover}
+      height={height}
+      width={width}
+      {...rest}
+    >
       {children}
     </ButtonStyle>
   );

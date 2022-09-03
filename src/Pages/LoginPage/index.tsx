@@ -17,16 +17,16 @@ const LoginPage = () => {
   const [changecard, setchangecard] = useState(true);
   const arrayCorrosel = [
     {
-      title: 'Encontre seu time !!',
-      description: 'Busque por grupos em sua região.',
+      title: "Encontre seu time !!",
+      description: "Busque por grupos em sua região.",
       img: imgCarrosel,
-      id: 'EnBusEl',
+      id: "EnBusEl",
     },
     {
-      title: 'Forme seu Time!!',
-      description: 'Encontre jogadores pare completar seu grupo na sua região.',
+      title: "Forme seu Time!!",
+      description: "Encontre jogadores pare completar seu grupo na sua região.",
       img: imgCarrosel2,
-      id: 'FoEncEll2',
+      id: "FoEncEll2",
     },
   ];
   const cardRef = useRef<HTMLUListElement>(null);
@@ -52,14 +52,15 @@ const LoginPage = () => {
           <FormLogin></FormLogin>
         </Modal>
       )}
-      <header className='headerPageLogin'>
+      <header className="headerPageLogin">
         <div>
           <img src={Logo} alt="" className="logoMobile" />
         </div>
-        <div className='divLogin'>
+        <div className="divLogin">
           <BsFillPersonFill size={24} />
           <Button
-            color='transparent_green'
+            backGround="transparent"
+            color="var(--color-green-primary-hover)"
             onClick={() => setIsOpenModal(true)}
           >
             Login
@@ -82,13 +83,13 @@ const LoginPage = () => {
         </ul>
       </div>
       <footer>
-        <Button color='green_white'>
+        <Button backGround="var(--color-green-primary)" color="transparent">
           <FaFacebookF size={24} />
         </Button>
-        <Button color='green_white'>
+        <Button backGround="var(--color-green-primary)" color="transparent">
           <BsTwitter size={24} />
         </Button>
-        <Button color='green_white'>
+        <Button backGround="var(--color-green-primary)" color="transparent">
           <BsInstagram size={24} />
         </Button>
       </footer>

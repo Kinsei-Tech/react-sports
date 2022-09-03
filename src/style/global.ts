@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 :root{
@@ -6,7 +6,6 @@ export default createGlobalStyle`
  --color-green-primary-hover:#6e9423;
  --color-green-primary-blur: rgba(110,148,35,0.77);
  --color-green-second: #4A6416;
- --color-green-primary-negative: rgba(110, 148, 35, 0.3);
 
  --color-yellow-primary: #f2cc50; 
  --color-yellow-primary-hover:#f0c126; 
