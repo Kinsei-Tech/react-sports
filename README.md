@@ -20,11 +20,13 @@
 - styled-components
 - adicionar todas que forem utilizadas
 - react-toastify
+- react-hot-toast
 - react-router-dom
 - react-hook-form
 - framer-motion
 - react-icons
 - react-typical
+- uuid
 
 ## Conventional Branchs/Commits
 
