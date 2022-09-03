@@ -1,3 +1,4 @@
+import EditProfile from './Components/EditProfile';
 import Provider from './Contexts';
 import { RoutesMain } from './Routes';
 import Global from './style/global';
@@ -8,7 +9,6 @@ function App() {
   return (
     <Provider>
       <Global />
-      <RoutesMain />
     </Provider>
   );
 }

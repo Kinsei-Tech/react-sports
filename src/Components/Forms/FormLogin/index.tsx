@@ -1,17 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import Button from "../../Button";
-import Input from "../../Input";
-import FormStyle from "../style";
+import Button from '../../Button';
+import Input from '../../Input';
+import FormStyle from '../style';
 
-import { FieldValues, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaLogin } from "../../../Validations/validationLogin";
+import { FieldValues, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaLogin } from '../../../Validations/validationLogin';
+import FooterModal from '../../Modal/FooterModal';
 
 const FormLogin = () => {
-  const navigate = useNavigate();
   const onSubmitFunctionLogin = (data: FieldValues) => {
-    console.log("oi");
+    console.log('oi');
     console.log(data);
   };
   const {
@@ -25,46 +25,35 @@ const FormLogin = () => {
       <FormStyle onSubmit={handleSubmit(onSubmitFunctionLogin)}>
         <h1>Login</h1>
         <Input
-          type="text"
-          placeholder="Digite seu email"
+          type='text'
+          placeholder='Digite seu email'
           register={register}
-          name="email"
-          label="Email"
+          name='email'
+          label='Email'
         />
         <span>
-          {typeof errors.email?.message === "string" && errors.email?.message}
+          {typeof errors.email?.message === 'string' && errors.email?.message}
         </span>
         <Input
-          type="password"
-          placeholder="Digite sua senha"
+          type='password'
+          placeholder='Digite sua senha'
           register={register}
-          name="password"
-          label="Senha"
+          name='password'
+          label='Senha'
         />
         <span>
-          {typeof errors.password?.message === "string" &&
+          {typeof errors.password?.message === 'string' &&
             errors.password?.message}
         </span>
         <Button
-          backGround={"#93C335"}
-          colorHover={"#6E9423"}
-          color={"#D9D9D9"}
+          backGround={'#93C335'}
+          colorHover={'#6E9423'}
+          color={'#D9D9D9'}
           onClick={() => onSubmitFunctionLogin}
         >
           Entrar
         </Button>
       </FormStyle>
-      <div className="footerModal">
-        <h5>Ainda não possui cadastro?</h5>
-        <Button
-          backGround={"#F2CC50"}
-          color={"#202020"}
-          colorHover={"#F0C126"}
-          onClick={() => navigate("/register", { replace: false })}
-        >
-          Cadastrar
-        </Button>
-      </div>
     </>
   );
 };

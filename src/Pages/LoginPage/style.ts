@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ContainerLoginPage = styled.div`
   background-color: var(--gray-0);
@@ -42,7 +42,7 @@ const ContainerLoginPage = styled.div`
         }
       }
       ::after {
-        content: "";
+        content: '';
         width: 60px;
         height: 5px;
         background-color: var(--color-yellow-second);
@@ -124,7 +124,7 @@ const ContainerLoginPage = styled.div`
     }
   }
 
-  footer {
+  .footerLoginPage {
     height: 20%;
     width: 100vw;
     background-color: var(--color-green-primary);
@@ -221,7 +221,7 @@ const ContainerLoginPage = styled.div`
         }
       }
     }
-    footer {
+    .footerLoginPage {
       background-color: white;
       height: 100vh;
       width: 15vw;
@@ -263,7 +263,7 @@ const ContainerLoginPage = styled.div`
         top: 10%;
       }
     }
-    footer {
+    .footerLoginPage {
     }
   }
   @media (min-width: 1366px) {
