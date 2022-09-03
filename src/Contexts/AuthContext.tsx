@@ -5,6 +5,7 @@ import { IProvider } from '../Interfaces/Global';
 import api from '../services/api';
 import { FieldValues } from 'react-hook-form';
 
+
 export const AuthContext = createContext<userContextData>(
   {} as userContextData
 );

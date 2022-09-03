@@ -34,6 +34,16 @@ const FormLogin = () => {
           {typeof errors.email?.message === 'string' && errors.email?.message}
         </span>
         <Input
+          placeholder='Digite sua senha'
+          label='Senha'
+          register={register}
+          name='password'
+        />
+        <Button color='green_white'>Entrar</Button>
+      </FormStyle>
+      <div className='footerModal'>
+        <h5>Ainda não possui cadastro?</h5>
+        <Button color='yellow' onClick={() => console.log('teste')}>
           type='password'
           placeholder='Digite sua senha'
           register={register}

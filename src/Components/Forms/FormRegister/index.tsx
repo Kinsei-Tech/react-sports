@@ -8,6 +8,7 @@ import Select from '../../Select';
 import SelectCheckBoxStyled from '../../SelectCheckBox/style';
 import Container from './style';
 import { schema } from '../../../Validations/validationRegister';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 
@@ -259,7 +260,6 @@ export const FormRegister = () => {
                         />
                         <label htmlFor='goleiro'>Goleiro</label>
                       </div>
-
                       <div className='div_InfoFieldset'>
                         <input
                           type='checkbox'
