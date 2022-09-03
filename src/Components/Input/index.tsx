@@ -1,7 +1,7 @@
-import { InputHTMLAttributes } from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
-import Label from "../Label";
-import InputStyle from "./style";
+import { InputHTMLAttributes } from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
+import Label from '../Label';
+import InputStyle from './style';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
