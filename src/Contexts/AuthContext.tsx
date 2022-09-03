@@ -1,10 +1,25 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { IProvider } from '../Interfaces/Global';
 
-export const AuthContext = createContext({});
+interface IAuthContext {
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpenModal: boolean;
+}
+export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: IProvider) => {
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        setIsOpenModal,
+        isOpenModal,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
