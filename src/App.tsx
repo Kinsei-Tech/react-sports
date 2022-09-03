@@ -1,4 +1,3 @@
-
 import { Toaster } from 'react-hot-toast';
 import Provider from './Contexts';
 import { RoutesMain } from './Routes';
