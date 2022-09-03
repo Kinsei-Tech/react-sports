@@ -4,14 +4,19 @@ import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
 import { Header } from '../../Components/Header';
 import { SearchInput } from '../../Components/SearchInput';
+
 import ModalAddNetwork from '../../Components/Modals/ModalAddNetwork';
 import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalCreateYourTeam from '../../Components/Modals/ModalCreateYourTeam';
+import { useContext } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
+
 
 export const Dashboard = () => {
-  const { isOpenModal, setIsOpenModal } = useContext(AuthContext);
-  return (
+  const { isOpenModal, setIsOpenModal, user  } = useContext(AuthContext);
+  return user ? (
     <>
       {isOpenModal && <ModalCreateYourTeam />}
       <Header />
@@ -26,6 +31,7 @@ export const Dashboard = () => {
               +
             </Button>
             <Button className='filter' color='green_black'>
+
               Filtrar por...
             </Button>
           </div>
@@ -43,6 +49,8 @@ export const Dashboard = () => {
       </Main>
       <footer></footer>
     </>
+  ) : (
+    <Navigate to='/login' replace />
   );
 };
 

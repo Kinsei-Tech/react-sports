@@ -1,17 +1,17 @@
-import Button from '../../Components/Button';
-import ContainerLoginPage from './style';
-import { FaFacebookF } from 'react-icons/fa';
-import { BsTwitter } from 'react-icons/bs';
-import { BsInstagram } from 'react-icons/bs';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { useEffect, useRef, useState } from "react";
+import { FaFacebookF } from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 
-import Logo from '../../Images/LOGO.svg';
-import player from '../../Images/Jogador.png';
-import imgCarrosel from '../../Images/imgCarrosel.svg';
-import imgCarrosel2 from '../../Images/imgCarrosel2.svg';
-import { useEffect, useRef, useState } from 'react';
-import Modal from '../../Components/Modals';
-import FormLogin from '../../Components/Forms/FormLogin';
+import Button from "../../Components/Button";
+import ContainerLoginPage from "./style";
+import Logo from "../../Images/LogoWithBall.svg";
+import player from "../../Images/Jogador.svg";
+import imgCarrosel from "../../Images/imgCarrosel.svg";
+import imgCarrosel2 from "../../Images/imgCarrosel2.svg";
+import Modal from "../../Components/Modal";
+import FormLogin from "../../Components/Forms/FormLogin";
 
 const LoginPage = () => {
   const [changecard, setchangecard] = useState(true);
@@ -54,7 +54,7 @@ const LoginPage = () => {
       )}
       <header className='headerPageLogin'>
         <div>
-          <img src={Logo} alt='' className='logo' />
+          <img src={Logo} alt="" className="logoMobile" />
         </div>
         <div className='divLogin'>
           <BsFillPersonFill size={24} />
@@ -66,18 +66,21 @@ const LoginPage = () => {
           </Button>
         </div>
       </header>
-      <img src={player} alt={'Jogador'} className='Player' />
-      <ul ref={cardRef}>
-        {arrayCorrosel.map(({ title, description, img, id }) => (
-          <li key={id}>
-            <div>
-              <h3>{title}</h3>
-              <h4>{description}</h4>
-            </div>
-            <img src={img} alt='' className='ImgCarrosel' />
-          </li>
-        ))}
-      </ul>
+      <div className="mainPage">
+        <img src={Logo} alt="" className="logoDesktop" />
+        <img src={player} alt={"Jogador"} className="Player" />
+        <ul ref={cardRef}>
+          {arrayCorrosel.map(({ title, description, img, id }) => (
+            <li key={id}>
+              <div>
+                <h3>{title}</h3>
+                <h4>{description}</h4>
+              </div>
+              <img src={img} alt="" className="ImgCarrosel" />
+            </li>
+          ))}
+        </ul>
+      </div>
       <footer>
         <Button color='green_white'>
           <FaFacebookF size={24} />

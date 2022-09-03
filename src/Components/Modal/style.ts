@@ -14,7 +14,7 @@ const ModalStyle = styled.div`
   div {
     max-width: 400px;
     min-height: auto;
-    margin: 20% auto;
+    margin: 18vh auto;
     .headerModal {
       height: 50px;
       border-radius: 16px 16px 0px 0px;
