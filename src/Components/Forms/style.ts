@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const FormStyle = styled.form`
   width: auto;
@@ -6,9 +6,12 @@ const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
   gap: 1rem;
   padding: 10px;
   background-color: var(--gray-0);
+  max-height: 60vh;
+  /*   position: relative; */
 
   h1 {
     color: green;

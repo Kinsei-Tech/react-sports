@@ -7,6 +7,7 @@ import FormStyle from '../style';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../../../Validations/validationLogin';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 
@@ -14,6 +15,7 @@ const FormLogin = () => {
   const { userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const onSubmitFunctionLogin = (data: FieldValues) => {};
+
   const {
     register,
     handleSubmit,
@@ -53,17 +55,6 @@ const FormLogin = () => {
           Entrar
         </Button>
       </FormStyle>
-      <div className='footerModal'>
-        <h5>Ainda não possui cadastro?</h5>
-        <Button
-          backGround={'#F2CC50'}
-          color={'#202020'}
-          colorHover={'#F0C126'}
-          onClick={() => navigate('/register', { replace: false })}
-        >
-          Cadastrar
-        </Button>
-      </div>
     </>
   );
 };

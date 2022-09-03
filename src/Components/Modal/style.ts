@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ModalStyle = styled.div`
   width: 100vw;
@@ -47,10 +47,12 @@ const ModalStyle = styled.div`
     }
 
     .footerModal {
-      height: 120px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 16px;
+      max-height: 100px;
+      width: 100%;
       margin: 0;
       padding: 10px;
       gap: 10px;
