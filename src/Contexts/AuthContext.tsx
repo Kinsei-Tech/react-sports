@@ -1,9 +1,9 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
 import { IProvider } from '../Interfaces/Global';
 import api from '../services/api';
 import { FieldValues } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export const AuthContext = createContext<userContextData>(
   {} as userContextData
@@ -73,7 +73,7 @@ const AuthProvider = ({ children }: IProvider) => {
         setUser(response.data.user.id);
         localStorage.setItem('userObject', JSON.stringify(response));
 
-        navigate('/dashboard', {replace: true});
+        navigate('/dashboard', { replace: true });
       });
       return response;
     };
