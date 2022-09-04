@@ -4,13 +4,14 @@ import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
 import { Header } from '../../Components/Header';
 import { SearchInput } from '../../Components/SearchInput';
-import { useContext } from 'react';
-import { AuthContext } from '../../Contexts/AuthContext';
-import { Navigate } from 'react-router-dom';
+// import { useContext } from 'react';
+// import { AuthContext } from '../../Contexts/AuthContext';
+// import { Navigate } from 'react-router-dom';
 
 export const Dashboard = () => {
-  const { user } = useContext(AuthContext);
-  return user ? (
+  // const { user } = useContext(AuthContext);
+  // return user ? (
+  return (
     <>
       <Header />
       <Main>
@@ -38,9 +39,10 @@ export const Dashboard = () => {
 
       <footer></footer>
     </>
-  ) : (
+  ); /*: (
     <Navigate to='/login' replace />
   );
+  */
 };
 
 export default Dashboard;
