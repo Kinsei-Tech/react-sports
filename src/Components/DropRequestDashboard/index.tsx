@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { BsChevronDoubleRight } from 'react-icons/bs';
 import api from '../../services/api';
-import { Container, FloatMenu } from './style';
+import { Container } from './style';
 
 interface IProps {
   isVisible: boolean;
@@ -28,26 +29,26 @@ const DropRequestDashboard = ({ isVisible, setIsVisible }: IProps) => {
     };
   }, [setIsVisible]);
 
-  const myArray = ['Ala Esquerda', 'Pivô'];
+  const myArray = ['Ala Esquerda', 'Pivô', 'Ala Direita'];
 
   return (
-    <FloatMenu>
-      <Container ref={modalRef}>
-        {myArray?.map((elem, index) => {
-          return (
+    <Container ref={modalRef}>
+      {myArray?.map((elem, index) => {
+        return (
+          <div key={index}>
             <button
               onClick={() => {
                 console.log('oi');
                 setIsVisible(false);
               }}
-              key={index}
             >
               {elem}
             </button>
-          );
-        })}
-      </Container>
-    </FloatMenu>
+            <BsChevronDoubleRight />
+          </div>
+        );
+      })}
+    </Container>
   );
 };
 export default DropRequestDashboard;
