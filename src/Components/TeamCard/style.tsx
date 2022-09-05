@@ -7,7 +7,6 @@ export const TeamCard = styled.li`
     flex-wrap: wrap;
     justify-content: flex-start;
     border-bottom: 2px solid var(--color-yellow-primary);
-    margin-top: 15px;
     margin: 0 auto;
 
     img{

@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 const SelectCheckBoxStyled = styled.div`
   fieldset {
     height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border: 2px solid #6e9423;
+    border: 2px solid var(--color-green-primary-hover);
     border-radius: 8px;
 
-    background-color: #d9d9d9;
+    background-color: var(--gray-0);
 
     &:focus {
       border-color: #85b329;

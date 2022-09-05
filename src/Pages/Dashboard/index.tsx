@@ -7,16 +7,23 @@ import { SearchInput } from '../../Components/SearchInput';
 import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
+import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 
 export const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setIsOpenModal, isOpenModal } = useContext(AuthContext);
   return user ? (
     <>
       <Header />
+      {isOpenModal && <ModalCreateYourTeam />}
       <Main>
         <div className='buttonsFilter'>
           <div>
-            <Button className='createTeam' color='#000000' backGround='#93C335'>
+            <Button
+              className='createTeam'
+              color='#000000'
+              backGround='#93C335'
+              onClick={() => setIsOpenModal(true)}
+            >
               +
             </Button>
             <Button className='filter' color='#000000' backGround='#93C335'>
