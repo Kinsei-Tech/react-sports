@@ -8,6 +8,7 @@ export const TeamCard = styled.li`
     justify-content: flex-start;
     border-bottom: 2px solid var(--color-yellow-primary);
     margin-top: 15px;
+    margin: 0 auto;
 
     img{
         height: 20vw;
@@ -28,12 +29,14 @@ export const TeamCard = styled.li`
     h2{
         margin: 8px 0 0 15px;
         align-self: start;
+        font-size: 18px;
     }
 
     p{
         margin: 8px 0 8px 10px;
-        font-weight: 600;
+        font-weight: 400;
         text-align: start;
+        font-size: 10px;
     }
 
     .infos{
