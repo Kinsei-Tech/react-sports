@@ -54,7 +54,7 @@ export const Dashboard = () => {
         <div className='teamsCards'>
           <ul>
             {teams?.map((elem) => (
-              <Card elem={elem}></Card>
+              <Card  elem={elem}></Card>
             ))}
           </ul>
         </div>
