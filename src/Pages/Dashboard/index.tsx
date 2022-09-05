@@ -45,7 +45,7 @@ export const Dashboard = () => {
 
       <footer></footer>
     </>
-  ) : (
+  ); : (
     <Navigate to='/login' replace />
   );
 };

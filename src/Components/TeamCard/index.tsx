@@ -1,11 +1,16 @@
 import '../../Pages/Dashboard/style';
 import { TeamCard } from './style';
 import Button from '../../Components/Button';
+import { useState } from 'react';
+import DropRequestDashboard from '../DropRequestDashboard';
+
 
 interface ICard {
   openModalTeamDetails?: () => void;
 }
 function Card({ openModalTeamDetails }: ICard) {
+const [isVisible, setIsVisible] = useState(false);
+
   return (
     <TeamCard>
       <img
@@ -35,9 +40,20 @@ function Card({ openModalTeamDetails }: ICard) {
         >
           Detalhes
         </Button>
-        <Button color='#000000' backGround='#93C335'>
-          Solicitar
-        </Button>
+        <Button
+            onClick={() => setIsVisible(true)}
+            color='#000000'
+            backGround='#93C335'
+          >
+            Solicitar
+          </Button>
+        </div>
+        {isVisible && (
+          <DropRequestDashboard
+            isVisible={isVisible}
+            setIsVisible={setIsVisible}
+          />
+        )}
       </div>
     </TeamCard>
   );
