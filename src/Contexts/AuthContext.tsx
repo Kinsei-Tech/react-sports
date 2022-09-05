@@ -43,12 +43,16 @@ interface userContextData {
   userRegister: (IDataRegister: FieldValues) => void;
   userLogin: (IDataLogin: FieldValues) => void;
   user: IUserData;
+  isOpenModal: boolean;
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
   const localUser = localStorage.getItem('userObject');
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localUser!));
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const userRegister = (data: FieldValues) => {
     const postAPI = () => {
@@ -86,7 +90,9 @@ const AuthProvider = ({ children }: IProvider) => {
   };
 
   return (
-    <AuthContext.Provider value={{ userRegister, userLogin, user }}>
+    <AuthContext.Provider
+      value={{ userRegister, userLogin, user, isOpenModal, setIsOpenModal }}
+    >
       {children}
     </AuthContext.Provider>
   );
