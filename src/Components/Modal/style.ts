@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const ModalStyle = styled.div`
+interface IModal {
+  expandedModal?: boolean;
+}
+
+const ModalStyle = styled.div<IModal>`
   width: 100vw;
   height: 100vh;
 
@@ -15,6 +19,24 @@ const ModalStyle = styled.div`
     max-width: 400px;
     min-height: auto;
     margin: 18vh auto;
+
+    ${(props) => {
+      if (props.expandedModal) {
+        return css`
+          @media (min-width: 930px) {
+            width: 60vw;
+            margin: auto;
+            margin-bottom: 20px;
+            max-height: 98vh;
+          }
+        `;
+      } else {
+        return css`
+          max-width: 400px;
+        `;
+      }
+    }}
+
     .headerModal {
       height: 50px;
       border-radius: 16px 16px 0px 0px;
@@ -63,3 +85,23 @@ const ModalStyle = styled.div`
 `;
 
 export default ModalStyle;
+
+export const Container = styled.section`
+  background-color: var(--gray-0);
+  border-radius: 0 0 16px 16px;
+
+  padding: 15px;
+
+  h2 {
+    text-align: center;
+
+    color: var(--color-green-primary-hover);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 31px;
+  }
+
+  section {
+    align-items: center;
+  }
+`;
