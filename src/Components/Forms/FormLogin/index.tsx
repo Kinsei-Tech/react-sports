@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-
 import Button from '../../Button';
 import Input from '../../Input';
 import FormStyle from '../style';
 
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../../../Validations/validationLogin';
 
@@ -13,8 +11,6 @@ import { AuthContext } from '../../../Contexts/AuthContext';
 
 const FormLogin = () => {
   const { userLogin } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const onSubmitFunctionLogin = (data: FieldValues) => {};
 
   const {
     register,
@@ -46,12 +42,7 @@ const FormLogin = () => {
           {typeof errors.password?.message === 'string' &&
             errors.password?.message}
         </span>
-        <Button
-          backGround={'#93C335'}
-          colorHover={'#6E9423'}
-          color={'#D9D9D9'}
-          onClick={() => onSubmitFunctionLogin}
-        >
+        <Button backGround={'#93C335'} colorHover={'#6E9423'} color={'#D9D9D9'}>
           Entrar
         </Button>
       </FormStyle>
