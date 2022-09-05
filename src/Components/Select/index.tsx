@@ -1,6 +1,6 @@
-import { SelectHTMLAttributes } from "react";
-import Label from "../Label";
-import SelectStyle from "./style";
+import { SelectHTMLAttributes } from 'react';
+import Label from '../Label';
+import SelectStyle from './style';
 
 interface IFieldsetProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
