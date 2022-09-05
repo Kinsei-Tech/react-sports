@@ -160,8 +160,8 @@ const ProfilePage = () => {
         <SectionGroupList>
           <span className='section-title'>Grupos:</span>
           <UlTeamCard>
-            <Card openModalTeamDetails={openModalTeamDetails} />
-            <Card openModalTeamDetails={openModalTeamDetails} />
+            {/* <Card openModalTeamDetails={openModalTeamDetails} />
+            <Card openModalTeamDetails={openModalTeamDetails} /> */}
           </UlTeamCard>
         </SectionGroupList>
       </MainStyled>
