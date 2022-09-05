@@ -4,12 +4,11 @@ import Button from '../../Components/Button';
 import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
 
-
 interface ICard {
   openModalTeamDetails?: () => void;
 }
 function Card({ openModalTeamDetails }: ICard) {
-const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <TeamCard>
@@ -41,13 +40,12 @@ const [isVisible, setIsVisible] = useState(false);
           Detalhes
         </Button>
         <Button
-            onClick={() => setIsVisible(true)}
-            color='#000000'
-            backGround='#93C335'
-          >
-            Solicitar
-          </Button>
-        </div>
+          onClick={() => setIsVisible(true)}
+          color='#000000'
+          backGround='#93C335'
+        >
+          Solicitar
+        </Button>
         {isVisible && (
           <DropRequestDashboard
             isVisible={isVisible}

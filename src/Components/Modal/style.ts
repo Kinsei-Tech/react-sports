@@ -25,7 +25,6 @@ const ModalStyle = styled.div<IModal>`
         return css`
           @media (min-width: 930px) {
             width: 60vw;
-            margin: auto;
             margin-bottom: 20px;
             max-height: 98vh;
           }
