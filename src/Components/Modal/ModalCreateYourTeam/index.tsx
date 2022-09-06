@@ -136,9 +136,15 @@ const ModalCreateYourTeam = () => {
               <ErrorMessage error={errors.positionsSeachedfor?.message} />
             </section>
           </article>
-          <Button color='yellow' width='75%' disabled={!isValid}>
-            Criar
-          </Button>
+          {isValid ? (
+            <Button type='submit' color='yellow' width='75%'>
+              Criar
+            </Button>
+          ) : (
+            <Button type='submit' color='yellow-disabled' width='75%'>
+              Criar
+            </Button>
+          )}
         </FormStyle>
       </Container>
     </Modal>

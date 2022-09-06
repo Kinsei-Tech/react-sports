@@ -51,9 +51,10 @@ const ButtonStyle = styled.button<IButtonStyleProps>`
           &:hover {
             background-color: var(--color-yellow-primary-hover);
           }
-          &:disabled {
-            background-color: var(--color-yellow-primary-negative);
-          }
+        `;
+      case 'yellow-disabled':
+        return css`
+          background-color: var(--color-yellow-primary-negative);
         `;
       case 'none':
         return css`
