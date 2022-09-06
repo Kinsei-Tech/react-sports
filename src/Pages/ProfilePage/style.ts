@@ -381,6 +381,7 @@ export const SectionUserAddress = styled.section`
 `;
 export const SectionGroupList = styled.section`
   margin-top: 10px;
+  width: 100%;
   @media (min-width: 600px) {
     margin-top: 30px;
   }
@@ -403,53 +404,5 @@ export const UlTeamCard = styled.ul`
   margin-top: 10px;
   li {
     width: inherit;
-    margin-left: 8px;
-    img {
-      width: 40px;
-      height: 40px;
-      @media (min-width: 600px) {
-        width: 90px;
-        height: 90px;
-      }
-    }
-    div {
-      h2 {
-        font-weight: 600;
-        font-size: 13px;
-        line-height: 15px;
-        color: var(--gray-2);
-        @media (min-width: 600px) {
-          font-weight: 600;
-          font-size: 20px;
-          line-height: 24px;
-        }
-      }
-      p,
-      span {
-        font-weight: 400;
-        font-size: 10px;
-        line-height: 10px;
-        color: var(--gray-2);
-        @media (min-width: 600px) {
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 17px;
-        }
-      }
-      button {
-        width: 70px;
-        height: 26px;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 12px;
-        color: var(--gray-2);
-        @media (min-width: 600px) {
-          height: 39px;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 19px;
-        }
-      }
-    }
   }
 `;
