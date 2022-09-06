@@ -15,7 +15,7 @@ const ModalStyle = styled.div<IModal>`
   position: absolute;
   z-index: 9999;
 
-  div {
+  div.global-modal-style {
     max-width: 400px;
     min-height: auto;
     margin: 18vh auto;
@@ -57,6 +57,7 @@ const ModalStyle = styled.div<IModal>`
           position: absolute;
           top: -3px;
           left: -3px;
+
           &:hover {
             fill: var(--color-yellow-primary-hover);
           }

@@ -18,20 +18,23 @@ export interface IDataRegister {
   age: number;
   state: string;
   telephone: number;
-  isExercising: boolean;
-  positions: [];
+  isDoingSports: string;
+  positions: string[];
 }
 
 export interface IUserData {
   id: number;
   name: string;
+  email: string;
   height?: number;
   weight?: number;
   age: number;
   state: string;
   telephone: number;
-  isExercising: boolean;
-  positions: [];
+  isDoingSports: string;
+  cep: string;
+  city: string;
+  positions: string[];
 }
 
 export interface IDataLogin {
@@ -53,8 +56,8 @@ const AuthProvider = ({ children }: IProvider) => {
   const [user, setUser] = useState(JSON.parse(localUser!));
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const userRegister = (data: FieldValues) => {
+    delete data.confirmPassword;
     const postAPI = () => {
       const response = api.post('/users', data).then((response) => {
         response.status === 201 && navigate('/');
@@ -75,8 +78,9 @@ const AuthProvider = ({ children }: IProvider) => {
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
         /*   console.log(response.data.accessToken); */
         localStorage.setItem('@id', response.data.user.id);
-        setUser(response.data.user.id);
-        localStorage.setItem('userObject', JSON.stringify(response));
+
+        setUser(response.data.user);
+        localStorage.setItem('userObject', JSON.stringify(response.data.user));
 
         navigate('/dashboard', { replace: true });
       });

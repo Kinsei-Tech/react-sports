@@ -22,16 +22,33 @@ import ModalAddNetwork from '../../Components/Modal/ModalAddNetwork';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
+import ModalRequestList from '../../Components/Modal/ModalRequestList';
 
 const ProfilePage = () => {
-  const { isOpenModal, setIsOpenModal } = useContext(AuthContext);
+  const { isOpenModal, setIsOpenModal, user } = useContext(AuthContext);
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
+  const [isModalRequestList, setIsModalRequestList] = useState(false);
+
+  const {
+    name,
+    telephone,
+    email,
+    height,
+    weight,
+    age,
+    isDoingSports,
+    positions,
+    state,
+    cep,
+    city,
+  } = user;
 
   const openModalAddNetwork = () => {
     setIsModalEditProfile(false);
     setIsModalTeamDetails(false);
+    setIsModalRequestList(false);
 
     setIsOpenModal(true);
     setIsModalAddNetwork(true);
@@ -40,9 +57,19 @@ const ProfilePage = () => {
   const openModalTeamDetails = () => {
     setIsModalEditProfile(false);
     setIsModalAddNetwork(false);
+    setIsModalRequestList(false);
 
     setIsOpenModal(true);
     setIsModalTeamDetails(true);
+  };
+
+  const openModalRequestList = () => {
+    setIsModalRequestList(false);
+    setIsModalEditProfile(false);
+    setIsModalAddNetwork(false);
+
+    setIsOpenModal(true);
+    setIsModalRequestList(true);
   };
 
   return (
@@ -51,6 +78,7 @@ const ProfilePage = () => {
       {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
       {isModalEditProfile && isOpenModal /*ModalEditProfile*/}
       {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
+      {isModalRequestList && isOpenModal && <ModalRequestList />}
       <MainStyled>
         <SectionContactNetworks>
           <ContactsBox>
@@ -60,14 +88,17 @@ const ProfilePage = () => {
                   <img src={ImgProfile} alt='Usuario' />
                 </figure>
                 <div className='box-notification'>
-                  <FaEnvelope className='svg-envelope-style' />
+                  <FaEnvelope
+                    className='svg-envelope-style'
+                    onClick={openModalRequestList}
+                  />
                   <span>2</span>
                 </div>
               </div>
               <div className='user-contacts'>
-                <span className='user-name'>Kenzinho</span>
-                <span>kenzinho@email.com</span>
-                <span>(ddd)99999-9999</span>
+                <span className='user-name'>{name}</span>
+                <span>{email}</span>
+                <span>{telephone}</span>
               </div>
             </Contacts>
           </ContactsBox>
@@ -119,37 +150,62 @@ const ProfilePage = () => {
             <PhysicalDescriptions>
               <p>
                 Altura:
-                <span>1,72</span>
+                {height ? <span>{height}</span> : <span>__</span>}
               </p>
               <Pipe>|</Pipe>
               <p>
                 Peso:
-                <span>_</span>
+                {weight ? <span>{weight}</span> : <span>__</span>}
               </p>
               <Pipe>|</Pipe>
               <p>
                 Idade:
-                <span>21</span>
+                {age ? <span>{age}</span> : <span>__</span>}
               </p>
             </PhysicalDescriptions>
-            <p>Não pratica exercícios regularmente</p>
-            <p>
-              Posições:
-              <span>Goleiro</span>
-            </p>
+            {isDoingSports ? (
+              isDoingSports === 'yes' ? (
+                <p>Pratica esportes regularmente</p>
+              ) : (
+                <p>Não pratica esportes regularmente</p>
+              )
+            ) : (
+              <p>___</p>
+            )}
+
+            {positions.length > 0 ? (
+              positions.length === 1 ? (
+                <p>
+                  Posição:
+                  <span>{positions[0]}</span>
+                </p>
+              ) : (
+                <p>
+                  Posições:
+                  {positions.map((position) => (
+                    <span> {position} /</span>
+                  ))}
+                </p>
+              )
+            ) : (
+              <p>
+                Posições:
+                <span>___</span>
+              </p>
+            )}
           </SectionUserDescription>
           <SectionUserAddress>
             <p>
               Estado:
-              <span>Alagoas</span>
+              <span>{state}</span>
             </p>
             <p>
               CEP:
-              <span>29999999</span>
+              <span>{cep}</span>
             </p>
             <p>
               Cidade:
-              <span>Maceió</span>
+              <span>{city}</span>
             </p>
             <p>
               Bairro:
