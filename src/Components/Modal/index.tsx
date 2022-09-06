@@ -28,7 +28,7 @@ const Modal = ({ children, setIsOpenModal }: IModalProps) => {
 
   return (
     <ModalStyle expandedModal>
-      <div ref={modalRef}>
+      <div className='global-modal-style' ref={modalRef}>
         <header className='headerModal'>
           <Button
             backGround='transparent'
