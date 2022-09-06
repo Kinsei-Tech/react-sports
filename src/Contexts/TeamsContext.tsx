@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
   city: string;
   maxWeight: number;
   maxAge: number;
-    userId: number; 
+  userId: number; 
   description: string;
   positionsSearchedFor: string[];
   requests: string[];
@@ -29,6 +29,8 @@ const TeamsProvider = ({ children }: IProvider) => {
   const createTeam = (data: FieldValues) => {
     console.log(data);
     data.userId = localStorage.getItem('@id');
+    data.requests = [];
+    data.participantsId = [];
     const postApi = () => {
       const response = api.post('/teams', data).then((response) => {
         console.log(response);
