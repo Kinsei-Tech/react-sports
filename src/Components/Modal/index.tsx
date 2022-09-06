@@ -11,7 +11,7 @@ interface IModalProps {
 
 //Fazer Desmontagem do Modal com useEffect
 
-const Modal = ({ children, setIsOpenModal }: IModalProps) => {
+const Modal = ({ children, setIsOpenModal, expandedModal }: IModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleCloseModal(event: { target: any }) {
@@ -27,8 +27,7 @@ const Modal = ({ children, setIsOpenModal }: IModalProps) => {
   }, [setIsOpenModal]);
 
   return (
-
-    <ModalStyle>
+    <ModalStyle expandedModal={expandedModal}>
       <div ref={modalRef} className='Modal global-modal-style'>
         <header className='headerModal'>
           <Button
