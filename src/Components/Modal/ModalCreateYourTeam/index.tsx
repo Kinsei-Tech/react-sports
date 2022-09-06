@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -14,10 +14,16 @@ import FieldSet from '../../Fieldset';
 import { TeamsContext } from '../../../Contexts/TeamsContext';
 import { schemaCreateYourTeam } from '../../../Validations/validationCreateYourTeam';
 import ErrorMessage from '../../InputErrorMessage';
+import { AddressContext } from '../../../Contexts/AddressContext';
 
 const ModalCreateYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
   const { createTeam } = useContext(TeamsContext);
+  const { getAddress, city, state, cep, setCep } = useContext(AddressContext);
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    setCep(event.target.value);
+  };
 
   const {
     register,
@@ -38,6 +44,11 @@ const ModalCreateYourTeam = () => {
   const newTeam = (data: FieldValues) => {
     createTeam(data);
   };
+
+  useEffect(() => {
+    cep.length === 8 && getAddress(cep);
+  }, [cep]);
+
   return (
     <Modal expandedModal setIsOpenModal={setIsOpenModal}>
       <Container>
@@ -65,7 +76,7 @@ const ModalCreateYourTeam = () => {
                 placeholder='Digite o peso máximo'
                 type='number'
                 register={register}
-                label='Peso'
+                label='Peso(kg)'
               />
               <ErrorMessage error={errors.maxWeight?.message} />
               <Input
@@ -96,6 +107,7 @@ const ModalCreateYourTeam = () => {
                   placeholder='Digite o CEP'
                   register={register}
                   label='CEP'
+                  onChange={handleChange}
                 />
                 <ErrorMessage error={errors.cep?.message} />
                 <Input
@@ -103,6 +115,7 @@ const ModalCreateYourTeam = () => {
                   placeholder='Digite o estado'
                   register={register}
                   label='Estado'
+                  value={state}
                 />
                 <ErrorMessage error={errors.state?.message} />
                 <Input
@@ -110,6 +123,7 @@ const ModalCreateYourTeam = () => {
                   placeholder='Digite a cidade'
                   register={register}
                   label='Cidade'
+                  value={city}
                 />
                 <ErrorMessage error={errors.city?.message} />
               </FieldSet>

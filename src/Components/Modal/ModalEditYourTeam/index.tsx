@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,10 +12,17 @@ import { Container } from '../style';
 import FieldSet from '../../Fieldset';
 import { TeamsContext } from '../../../Contexts/TeamsContext';
 import { schemaEditYourTeam } from '../../../Validations/validationEditYourTeam';
+import { AddressContext } from '../../../Contexts/AddressContext';
+import ErrorMessage from '../../InputErrorMessage';
 
 const ModalEditYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
   const {} = useContext(TeamsContext);
+  const { getAddress, city, state, cep, setCep } = useContext(AddressContext);
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    setCep(event.target.value);
+  };
 
   const {
     register,
@@ -33,10 +40,15 @@ const ModalEditYourTeam = () => {
   const editTeam = (data: FieldValues) => {
     console.log(data);
   };
+
+  useEffect(() => {
+    cep.length === 8 && getAddress(cep);
+  }, [cep]);
+
   return (
     <Modal expandedModal setIsOpenModal={setIsOpenModal}>
       <Container>
-        <h2>Editar Time</h2>
+        <h2>Edite seu Time</h2>
         <FormStyle onSubmit={handleSubmit(editTeam)}>
           <article>
             <section>
@@ -46,23 +58,23 @@ const ModalEditYourTeam = () => {
                 register={register}
                 label='Nome do Grupo'
               />
-              <span>
-                {typeof errors.name?.message === 'string' &&
-                  errors.name?.message}
-              </span>
+              <ErrorMessage error={errors.name?.message} />
+
               <Input
                 name='placeName'
                 placeholder='Digite o nome do local'
                 register={register}
                 label='Local'
               />
+              <ErrorMessage error={errors.placeName?.message} />
               <Input
                 name='maxWeight'
                 placeholder='Digite o peso máximo'
                 type='number'
                 register={register}
-                label='Peso'
+                label='Peso(kg)'
               />
+              <ErrorMessage error={errors.maxWeight?.message} />
               <Input
                 name='maxAge'
                 placeholder='Digite a idade máxima'
@@ -70,6 +82,7 @@ const ModalEditYourTeam = () => {
                 register={register}
                 label='Idade'
               />
+              <ErrorMessage error={errors.maxAge?.message} />
               <Input
                 name='description'
                 placeholder='O que procura?'
@@ -77,6 +90,7 @@ const ModalEditYourTeam = () => {
                 label='Descrição'
                 height='150px'
               />
+              <ErrorMessage error={errors.description?.message} />
             </section>
             <section>
               <FieldSet
@@ -89,30 +103,33 @@ const ModalEditYourTeam = () => {
                   placeholder='Digite o CEP'
                   register={register}
                   label='CEP'
+                  onChange={handleChange}
                 />
+                <ErrorMessage error={errors.cep?.message} />
                 <Input
                   name='state'
                   placeholder='Digite o estado'
                   register={register}
                   label='Estado'
+                  value={state}
                 />
+                <ErrorMessage error={errors.state?.message} />
                 <Input
                   name='city'
                   placeholder='Digite a cidade'
                   register={register}
                   label='Cidade'
+                  value={city}
                 />
+                <ErrorMessage error={errors.city?.message} />
               </FieldSet>
-              <span>
-                {typeof errors.state?.message === 'string' &&
-                  errors.state?.message}
-              </span>
               <FieldSet
                 type='checkbox'
                 legend='Qual posição busca para o time?'
                 register={register}
                 checkboxArr={positionsArr}
               />
+              <ErrorMessage error={errors.positionsSeachedfor?.message} />
             </section>
           </article>
           <Button color='yellow' width='75%' disabled={!isValid}>
