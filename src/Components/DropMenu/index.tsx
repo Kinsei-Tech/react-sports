@@ -7,13 +7,9 @@ import { toast } from 'react-hot-toast';
 
 interface IDropMenuProfile {
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  dashboard?: boolean;
 }
 
-export const DropMenuProfile = ({
-  setIsVisible,
-  dashboard,
-}: IDropMenuProfile) => {
+export const DropMenuProfile = ({ setIsVisible }: IDropMenuProfile) => {
   const navigate = useNavigate();
 
   const handleCloseDropMenu = (event: BaseSyntheticEvent) => {
@@ -28,7 +24,7 @@ export const DropMenuProfile = ({
     toast.success('Deslogad@! Até breve!');
   };
 
-  return dashboard ? (
+  return (
     <FloatMenu id='float-menu' onClick={handleCloseDropMenu}>
       <Container>
         <button onClick={logout}>
@@ -37,18 +33,6 @@ export const DropMenuProfile = ({
         <hr />
         <button onClick={() => navigate('/profile')}>
           Perfil <FaUser />
-        </button>
-      </Container>
-    </FloatMenu>
-  ) : (
-    <FloatMenu id='float-menu' onClick={handleCloseDropMenu}>
-      <Container>
-        <button onClick={logout}>
-          Sair <AiOutlineDoubleRight />
-        </button>
-        <hr />
-        <button onClick={() => navigate('/dashboard')}>
-          Voltar <FaUser />
         </button>
       </Container>
     </FloatMenu>
