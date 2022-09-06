@@ -6,6 +6,7 @@ import Button from '../Button';
 interface IModalProps {
   children: ReactNode;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
+  expandedModal?: boolean;
 }
 
 //Fazer Desmontagem do Modal com useEffect
@@ -28,6 +29,7 @@ const Modal = ({ children, setIsOpenModal }: IModalProps) => {
   return (
     <ModalStyle>
       <div ref={modalRef} className='Modal'>
+
         <header className='headerModal'>
           <Button
             backGround='transparent'

@@ -18,11 +18,39 @@ import {
 } from './style';
 import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
+import ModalAddNetwork from '../../Components/Modal/ModalAddNetwork';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext';
+import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
 
 const ProfilePage = () => {
+  const { isOpenModal, setIsOpenModal } = useContext(AuthContext);
+  const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
+  const [isModalEditProfile, setIsModalEditProfile] = useState(false);
+  const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
+
+  const openModalAddNetwork = () => {
+    setIsModalEditProfile(false);
+    setIsModalTeamDetails(false);
+
+    setIsOpenModal(true);
+    setIsModalAddNetwork(true);
+  };
+
+  const openModalTeamDetails = () => {
+    setIsModalEditProfile(false);
+    setIsModalAddNetwork(false);
+
+    setIsOpenModal(true);
+    setIsModalTeamDetails(true);
+  };
+
   return (
     <>
       <Header />
+      {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
+      {isModalEditProfile && isOpenModal /*ModalEditProfile*/}
+      {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
       <MainStyled>
         <SectionContactNetworks>
           <ContactsBox>
@@ -80,6 +108,7 @@ const ProfilePage = () => {
               height={'21px'}
               width={'84px'}
               colorHover='var(--color-green-primary-hover)'
+              onClick={openModalAddNetwork}
             >
               Add Redes
             </Button>
@@ -131,8 +160,8 @@ const ProfilePage = () => {
         <SectionGroupList>
           <span className='section-title'>Grupos:</span>
           <UlTeamCard>
-            <Card />
-            <Card />
+            {/* <Card openModalTeamDetails={openModalTeamDetails} />
+            <Card openModalTeamDetails={openModalTeamDetails} /> */}
           </UlTeamCard>
         </SectionGroupList>
       </MainStyled>

@@ -1,9 +1,15 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
-import ButtonStyle from "./style";
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+import ButtonStyle from './style';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color: string;
-  backGround: string;
+  color:
+    | string
+    | 'green_white'
+    | 'green_black'
+    | 'yellow'
+    | 'none'
+    | 'transparent_green';
+  backGround?: string;
   colorHover?: string;
   height?: string | number;
   width?: string | number;
