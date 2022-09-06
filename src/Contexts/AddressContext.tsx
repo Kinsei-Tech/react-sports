@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { IProvider } from '../Interfaces/Global';
-import addressApi from '../Services/addressApi';
+import addressApi from '../services/addressApi';
 
 export const AddressContext = createContext<addressContextData>(
    {} as addressContextData
