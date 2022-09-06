@@ -23,9 +23,13 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
 import ModalRequestList from '../../Components/Modal/ModalRequestList';
+import EditProfile from '../../Components/EditProfile';
+import { EditProfileContext } from '../../Contexts/EditProfileContext';
 
 const ProfilePage = () => {
   const { isOpenModal, setIsOpenModal, user } = useContext(AuthContext);
+  const { getProfileInfo } = useContext(EditProfileContext);
+
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
@@ -38,7 +42,7 @@ const ProfilePage = () => {
     height,
     weight,
     age,
-    isDoingSports,
+    isExercising,
     positions,
     state,
     cep,
@@ -64,19 +68,30 @@ const ProfilePage = () => {
   };
 
   const openModalRequestList = () => {
-    setIsModalRequestList(false);
     setIsModalEditProfile(false);
     setIsModalAddNetwork(false);
+    setIsModalTeamDetails(false);
 
     setIsOpenModal(true);
     setIsModalRequestList(true);
+  };
+
+  const openModalEditProfile = () => {
+    getProfileInfo();
+
+    setIsModalRequestList(false);
+    setIsModalTeamDetails(false);
+    setIsModalAddNetwork(false);
+
+    setIsOpenModal(true);
+    setIsModalEditProfile(true);
   };
 
   return (
     <>
       <Header />
       {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
-      {isModalEditProfile && isOpenModal /*ModalEditProfile*/}
+      {isModalEditProfile && isOpenModal && <EditProfile />}
       {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
       {isModalRequestList && isOpenModal && <ModalRequestList />}
       <MainStyled>
@@ -130,6 +145,7 @@ const ProfilePage = () => {
               height={'21px'}
               width={'84px'}
               colorHover='var(--color-green-primary-hover)'
+              onClick={openModalEditProfile}
             >
               Editar Perfil
             </Button>
@@ -163,8 +179,8 @@ const ProfilePage = () => {
                 {age ? <span>{age}</span> : <span>__</span>}
               </p>
             </PhysicalDescriptions>
-            {isDoingSports ? (
-              isDoingSports === 'yes' ? (
+            {isExercising ? (
+              isExercising === 'yes' ? (
                 <p>Pratica esportes regularmente</p>
               ) : (
                 <p>Não pratica esportes regularmente</p>
