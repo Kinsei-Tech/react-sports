@@ -29,13 +29,13 @@ const DropRequestDashboard = ({ isVisible, setIsVisible }: IProps) => {
     };
   }, [setIsVisible]);
 
-  const myArray = ['Ala Esquerda', 'Pivô', 'Ala Direita'];
+  const myArray = ['Goleiro', 'Fixo', 'Ala Esquerda', 'Ala Direita', 'Pivô'];
 
   return (
     <Container ref={modalRef}>
       {myArray?.map((elem, index) => {
         return (
-          <div key={index}>
+          <div className='dropDown' key={index}>
             <button
               onClick={() => {
                 console.log('oi');
