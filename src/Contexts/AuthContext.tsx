@@ -58,9 +58,15 @@ const AuthProvider = ({ children }: IProvider) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const userRegister = (data: FieldValues) => {
     delete data.confirmPassword;
+    data.teamsRequestedToJoin = [];
+    data.teamsRequestAccepted = [];
+    data.teamsRequestDenied = [];
+    data.socialNetworks = [];
+    data.urlImg = 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png';
     const postAPI = () => {
       const response = api.post('/users', data).then((response) => {
         response.status === 201 && navigate('/');
+        console.log(response);
       });
       return response;
     };
@@ -78,7 +84,6 @@ const AuthProvider = ({ children }: IProvider) => {
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
         /*   console.log(response.data.accessToken); */
         localStorage.setItem('@id', response.data.user.id);
-
         setUser(response.data.user);
         localStorage.setItem('userObject', JSON.stringify(response.data.user));
 
