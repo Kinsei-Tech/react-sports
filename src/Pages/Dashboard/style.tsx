@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Main = styled.main`
   background-color: #d9d9d9;
@@ -32,7 +32,7 @@ export const Main = styled.main`
     }
   }
 
-  @media (min-width: 930px) {
+  @media (min-width: 768px) {
     .buttonsFilter {
       margin-left: 13%;
       margin-right: 13%;
