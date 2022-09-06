@@ -12,36 +12,21 @@ import FormStyle from '../../Forms/style';
 import { Container } from '../style';
 import FieldSet from '../../Fieldset';
 import { TeamsContext } from '../../../Contexts/TeamsContext';
+import { schemaCreateYourTeam } from '../../../Validations/validationCreateYourTeam';
+import ErrorMessage from '../../InputErrorMessage';
 
 const ModalCreateYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
   const { createTeam } = useContext(TeamsContext);
-  const schema = yup.object().shape({
-    name: yup
-      .string()
-      .min(2, 'No minimo 2 caracteres')
-      .required('Nome Obrigatorio'),
-    placeName: yup.string(),
-    cep: yup.number(),
-    state: yup.string().required('Campo obrigatorio'),
-    city: yup.string().required('Campo Obrigatorio'),
-    maxWeight: yup.number(),
-    maxAge: yup.number(),
-    description: yup.string(),
-    positionsSeachedfor: yup.array(),
-  });
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ mode: 'onChange', resolver: yupResolver(schema) });
-
-  const addressArr = [
-    { name: 'cep', placeholder: 'Digite o CEP', label: 'CEP' },
-    { name: 'state', placeholder: 'Digite o estado', label: 'Estado' },
-    { name: 'city', placeholder: 'Digite a cidade', label: 'Cidade' },
-  ];
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemaCreateYourTeam),
+  });
 
   const positionsArr = [
     { label: 'Goleiro', name: 'positionsSearchedFor', value: 'goalkeeper' },
@@ -59,63 +44,87 @@ const ModalCreateYourTeam = () => {
         <h2>Forme seu Time</h2>
         <FormStyle onSubmit={handleSubmit(newTeam)}>
           <article>
-            <Input
-              placeholder='Digite o nome do grupo'
-              name='name'
-              register={register}
-              label='Nome do Grupo'
-            />
-            <span>
-              {typeof errors.name?.message === 'string' && errors.name?.message}
-            </span>
-            <Input
-              name='placeName'
-              placeholder='Digite o nome do local'
-              register={register}
-              label='Local'
-            />
-            <Input
-              name='maxWeight'
-              placeholder='Digite o peso máximo'
-              type='number'
-              register={register}
-              label='Peso'
-            />
-            <Input
-              name='maxAge'
-              placeholder='Digite a idade máxima'
-              type='number'
-              register={register}
-              label='Idade'
-            />
-            <Input
-              name='description'
-              placeholder='O que procura?'
-              register={register}
-              label='Descrição'
-            />
-            <FieldSet
-              type='textInput'
-              legend='Endereço do local'
-              register={register}
-              textInputArr={addressArr}
-            />
-            <span>
-              {typeof errors.state?.message === 'string' &&
-                errors.state?.message}
-            </span>
-            <FieldSet
-              type='checkbox'
-              legend='Qual posição busca para o time?'
-              register={register}
-              checkboxArr={positionsArr}
-            />
+            <section>
+              <Input
+                placeholder='Digite o nome do grupo'
+                name='name'
+                register={register}
+                label='Nome do Grupo'
+              />
+              <ErrorMessage error={errors.name?.message} />
+
+              <Input
+                name='placeName'
+                placeholder='Digite o nome do local'
+                register={register}
+                label='Local'
+              />
+              <ErrorMessage error={errors.placeName?.message} />
+              <Input
+                name='maxWeight'
+                placeholder='Digite o peso máximo'
+                type='number'
+                register={register}
+                label='Peso'
+              />
+              <ErrorMessage error={errors.maxWeight?.message} />
+              <Input
+                name='maxAge'
+                placeholder='Digite a idade máxima'
+                type='number'
+                register={register}
+                label='Idade'
+              />
+              <ErrorMessage error={errors.maxAge?.message} />
+              <Input
+                name='description'
+                placeholder='O que procura?'
+                register={register}
+                label='Descrição'
+                height='150px'
+              />
+              <ErrorMessage error={errors.description?.message} />
+            </section>
+            <section>
+              <FieldSet
+                type='textInput'
+                legend='Endereço do local'
+                register={register}
+              >
+                <Input
+                  name='cep'
+                  placeholder='Digite o CEP'
+                  register={register}
+                  label='CEP'
+                />
+                <ErrorMessage error={errors.cep?.message} />
+                <Input
+                  name='state'
+                  placeholder='Digite o estado'
+                  register={register}
+                  label='Estado'
+                />
+                <ErrorMessage error={errors.state?.message} />
+                <Input
+                  name='city'
+                  placeholder='Digite a cidade'
+                  register={register}
+                  label='Cidade'
+                />
+                <ErrorMessage error={errors.city?.message} />
+              </FieldSet>
+              <FieldSet
+                type='checkbox'
+                legend='Qual posição busca para o time?'
+                register={register}
+                checkboxArr={positionsArr}
+              />
+              <ErrorMessage error={errors.positionsSeachedfor?.message} />
+            </section>
           </article>
-          <section>
-            <Button color='yellow' width='75%' disabled={!isValid}>
-              Criar
-            </Button>
-          </section>
+          <Button color='yellow' width='75%' disabled={!isValid}>
+            Criar
+          </Button>
         </FormStyle>
       </Container>
     </Modal>
