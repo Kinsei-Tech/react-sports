@@ -1,7 +1,6 @@
 import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Modal from '..';
@@ -12,13 +11,13 @@ import FormStyle from '../../Forms/style';
 import { Container } from '../style';
 import FieldSet from '../../Fieldset';
 import { TeamsContext } from '../../../Contexts/TeamsContext';
-import { schemaCreateYourTeam } from '../../../Validations/validationCreateYourTeam';
-import ErrorMessage from '../../InputErrorMessage';
+import { schemaEditYourTeam } from '../../../Validations/validationEditYourTeam';
 import { AddressContext } from '../../../Contexts/AddressContext';
+import ErrorMessage from '../../InputErrorMessage';
 
-const ModalCreateYourTeam = () => {
+const ModalEditYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
-  const { createTeam } = useContext(TeamsContext);
+  const {} = useContext(TeamsContext);
   const { getAddress, city, state, cep, setCep } = useContext(AddressContext);
 
   const handleChange = (event: BaseSyntheticEvent) => {
@@ -29,10 +28,7 @@ const ModalCreateYourTeam = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(schemaCreateYourTeam),
-  });
+  } = useForm({ mode: 'onChange', resolver: yupResolver(schemaEditYourTeam) });
 
   const positionsArr = [
     { label: 'Goleiro', name: 'positionsSearchedFor', value: 'goalkeeper' },
@@ -41,8 +37,8 @@ const ModalCreateYourTeam = () => {
     { label: 'Ala Esquerda', name: 'positionsSearchedFor', value: 'left wing' },
     { label: 'Ala Direita', name: 'positionsSearchedFor', value: 'right wing' },
   ];
-  const newTeam = (data: FieldValues) => {
-    createTeam(data);
+  const editTeam = (data: FieldValues) => {
+    console.log(data);
   };
 
   useEffect(() => {
@@ -52,8 +48,8 @@ const ModalCreateYourTeam = () => {
   return (
     <Modal expandedModal setIsOpenModal={setIsOpenModal}>
       <Container>
-        <h2>Forme seu Time</h2>
-        <FormStyle onSubmit={handleSubmit(newTeam)}>
+        <h2>Edite seu Time</h2>
+        <FormStyle onSubmit={handleSubmit(editTeam)}>
           <article>
             <section>
               <Input
@@ -145,4 +141,4 @@ const ModalCreateYourTeam = () => {
   );
 };
 
-export default ModalCreateYourTeam;
+export default ModalEditYourTeam;

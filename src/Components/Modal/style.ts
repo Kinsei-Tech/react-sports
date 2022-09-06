@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-interface IModal {
+interface IModalStyle {
   expandedModal?: boolean;
 }
 
-const ModalStyle = styled.div<IModal>`
+const ModalStyle = styled.div<IModalStyle>`
   width: 100vw;
   height: 100vh;
 
@@ -15,72 +15,66 @@ const ModalStyle = styled.div<IModal>`
   position: absolute;
   z-index: 9999;
 
-  div.global-modal-style {
-    max-width: 400px;
+  div {
     min-height: auto;
     margin: 18vh auto;
+
+    max-width: 400px;
 
     ${(props) => {
       if (props.expandedModal) {
         return css`
           @media (min-width: 930px) {
-            width: 60vw;
-            margin-bottom: 20px;
-            max-height: 98vh;
+            max-width: 800px;
           }
-        `;
-      } else {
-        return css`
-          max-width: 400px;
         `;
       }
     }}
+  }
 
-    .headerModal {
-      height: 50px;
-      border-radius: 16px 16px 0px 0px;
-      background-color: var(--color-green-primary);
-      position: relative;
-      width: auto;
+  .headerModal {
+    height: 50px;
+    border-radius: 16px 16px 0px 0px;
+    background-color: var(--color-green-primary);
+    position: relative;
+    width: auto;
 
-      button {
-        padding: 0px;
-        height: 22px;
-        width: 22px;
-        background-color: black;
+    button {
+      padding: 0px;
+      height: 22px;
+      width: 22px;
+      background-color: black;
+      position: absolute;
+      border-radius: 0;
+      right: 10px;
+      top: 10px;
+      svg {
+        fill: var(--color-yellow-primary);
         position: absolute;
-        border-radius: 0;
-        right: 10px;
-        top: 10px;
-        svg {
-          fill: var(--color-yellow-primary);
-          position: absolute;
-          top: -3px;
-          left: -3px;
-
-          &:hover {
-            fill: var(--color-yellow-primary-hover);
-          }
-          path {
-            color: var(--color-yellow-primary);
-          }
+        top: -3px;
+        left: -3px;
+        &:hover {
+          fill: var(--color-yellow-primary-hover);
+        }
+        path {
+          color: var(--color-yellow-primary);
         }
       }
     }
+  }
 
-    .footerModal {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 16px;
-      max-height: 100px;
-      width: 100%;
-      margin: 0;
-      padding: 10px;
-      gap: 10px;
-      border-radius: 0px 0px 16px 16px;
-      background-color: var(--gray-0);
-    }
+  .footerModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 16px;
+    max-height: 100px;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 0px 0px 16px 16px;
+    background-color: var(--gray-0);
   }
 `;
 
