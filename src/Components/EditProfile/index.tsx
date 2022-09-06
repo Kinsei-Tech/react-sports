@@ -7,21 +7,25 @@ import FormStyle from '../Forms/style';
 import Input from '../Input';
 import Modal from '../Modal';
 import FooterModal from '../Modal/FooterModal';
-import Teste from './style';
+import Container from './style';
 
 const EditProfile = () => {
   const [isOpenModall, setIsOpenModall] = useState<boolean>(true);
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaEditProfile) });
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemaEditProfile),
+  });
 
   const onSubmitFunctionEditProfile = (data: FieldValues) => {
     console.log(data);
   };
   return (
-    <Teste>
+    <Container>
       {isOpenModall && (
         <Modal setIsOpenModal={setIsOpenModall}>
           <FormStyle onSubmit={handleSubmit(onSubmitFunctionEditProfile)}>
@@ -31,33 +35,73 @@ const EditProfile = () => {
                 <Input
                   placeholder='Url Avatar'
                   label='URL Avatar'
-                  name='url'
+                  name='urlImg'
                   register={register}
                 ></Input>
+                <span>
+                  {typeof errors.urlImg?.message === 'string' &&
+                    errors.urlImg?.message}
+                </span>
+                <Input
+                  placeholder='Nome'
+                  label='Nome'
+                  name='name'
+                  register={register}
+                ></Input>
+                <span>
+                  {typeof errors.name?.message === 'string' &&
+                    errors.name?.message}
+                </span>
+                <Input
+                  placeholder='Email'
+                  label='Email'
+                  name='email'
+                  register={register}
+                ></Input>
+                <span>
+                  {typeof errors.email?.message === 'string' &&
+                    errors.email?.message}
+                </span>
                 <Input
                   placeholder='Telefone'
                   label='Telefone'
-                  name='telefone'
+                  name='telephone'
                   register={register}
                 ></Input>
+                <span>
+                  {typeof errors.telephone?.message === 'string' &&
+                    errors.telephone?.message}
+                </span>
                 <Input
                   placeholder='Altura'
                   label='Altura'
-                  name='altura'
+                  name='height'
                   register={register}
                 ></Input>
+                <span>
+                  {typeof errors.height?.message === 'string' &&
+                    errors.height?.message}
+                </span>
                 <Input
                   placeholder='Peso'
                   label='Peso'
-                  name='peso'
+                  name='weight'
                   register={register}
                 ></Input>
+                <span>
+                  {typeof errors.weight?.message === 'string' &&
+                    errors.weight?.message}
+                </span>
                 <Input
                   placeholder='Idade'
                   label='Idade'
-                  name='idade'
+                  name='age'
                   register={register}
                 ></Input>
+                <span>
+                  {typeof errors.age?.message === 'string' &&
+                    errors.age?.message}
+                </span>
               </div>
               <div className='sectionForm'>
                 <Input
@@ -66,38 +110,80 @@ const EditProfile = () => {
                   name='cep'
                   register={register}
                 ></Input>
-                {/*                 <span>
-                  {typeof errors.Cep?.message === 'string' &&
-                    errors.password?.Cep}
-                </span> */}
-                <Input
-                  placeholder='Estado'
-                  label='Estado'
-                  name='estado'
-                  register={register}
-                ></Input>
+                <span>
+                  {typeof errors.cep?.message === 'string' &&
+                    errors.cep?.message}
+                </span>
+                <label>
+                  <span>Estado</span>
+                  <select
+                    {...register('state')}
+                    onChange={(e) =>
+                      setValue('state', e.target.value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  >
+                    <option value='AC'>Acre</option>
+                    <option value='AL'>Alagoas</option>
+                    <option value='AP'>Amapá</option>
+                    <option value='AM'>Amazonas</option>
+                    <option value='BA'>Bahia</option>
+                    <option value='CE'>Ceará</option>
+                    <option value='DF'>Distrito Federal</option>
+                    <option value='ES'>Espírito Santo</option>
+                    <option value='GO'>Goiás</option>
+                    <option value='MA'>Maranhão</option>
+                    <option value='MT'>Mato Grosso</option>
+                    <option value='MS'>Mato Grosso do Sul</option>
+                    <option value='MG'>Minas Gerais</option>
+                    <option value='PA'>Pará</option>
+                    <option value='PB'>Paraíba</option>
+                    <option value='PR'>Paraná</option>
+                    <option value='PE'>Pernambuco</option>
+                    <option value='PI'>Piauí</option>
+                    <option value='RJ'>Rio de Janeiro</option>
+                    <option value='RN'>Rio Grande do Norte</option>
+                    <option value='RS'>Rio Grande do Sul</option>
+                    <option value='RO'>Rondônia</option>
+                    <option value='RR'>Roraima</option>
+                    <option value='SC'>Santa Catarina</option>
+                    <option value='SP'>São Paulo</option>
+                    <option value='SE'>Sergipe</option>
+                    <option value='TO'>Tocantins</option>
+                    <option value='EX'>Estrangeiro</option>
+                  </select>
+                </label>
+
+                <span>
+                  {typeof errors.state?.message === 'string' &&
+                    errors.state?.message}
+                </span>
                 <Input
                   placeholder='Cidade'
                   label='Cidade'
-                  name='cidade'
+                  name='city'
                   register={register}
                 ></Input>
-
+                <span>
+                  {typeof errors.city?.message === 'string' &&
+                    errors.city?.message}
+                </span>
                 <fieldset>
                   <legend>Pratica Exercícios ativamente?</legend>
 
                   <Input
                     type='radio'
-                    value='yes'
-                    name='isDoingSports'
+                    value='Sim'
+                    name='isExercising'
                     register={register}
                     label='Sim'
                     height={'auto'}
                   />
                   <Input
                     type='radio'
-                    value='no'
-                    name='isDoingSports'
+                    value='Não'
+                    name='isExercising'
                     register={register}
                     label='Não'
                     height={'auto'}
@@ -160,7 +246,7 @@ const EditProfile = () => {
           <FooterModal></FooterModal>
         </Modal>
       )}
-    </Teste>
+    </Container>
   );
 };
 

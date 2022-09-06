@@ -4,13 +4,28 @@ import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
 import { Header } from '../../Components/Header';
 import { SearchInput } from '../../Components/SearchInput';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
+import api from '../../services/api';
 
 export const Dashboard = () => {
-  const { user, setIsOpenModal, isOpenModal } = useContext(AuthContext);
+  const { v4: uuidv4 } = require('uuid');
+  const { user, isOpenModal, setIsOpenModal } = useContext(AuthContext);
+
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    // const getTeams = () => {
+    api
+      .get('/teams')
+      .then((response) => {
+        setTeams(response.data);
+      })
+      .catch((err) => console.log(err));
+    // };
+  }, []);
   return user ? (
     <>
       <Header />
@@ -38,7 +53,9 @@ export const Dashboard = () => {
 
         <div className='teamsCards'>
           <ul>
-            <Card></Card>
+            {teams?.map((elem, index) => (
+              <Card elem={elem} key={uuidv4()}></Card>
+            ))}
           </ul>
         </div>
       </Main>
