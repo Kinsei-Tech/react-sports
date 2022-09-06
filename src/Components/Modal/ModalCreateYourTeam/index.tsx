@@ -46,7 +46,7 @@ const ModalCreateYourTeam = () => {
   };
 
   useEffect(() => {
-    cep.length === 8 && getAddress(cep);
+    cep.length >= 8 && getAddress(cep);
   }, [cep]);
 
   return (
