@@ -9,10 +9,18 @@ import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
+import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
 
 export const Dashboard = () => {
   const { v4: uuidv4 } = require('uuid');
-  const { user, isOpenModal, setIsOpenModal } = useContext(AuthContext);
+  const {
+    user,
+    isOpenModal,
+    setIsOpenModal,
+    isModalCreateYourTeam,
+    isModalEditYourTeam,
+    isModalRequest,
+  } = useContext(AuthContext);
 
   const [teams, setTeams] = useState([]);
 
@@ -29,7 +37,9 @@ export const Dashboard = () => {
   return user ? (
     <>
       <Header />
-      {isOpenModal && <ModalCreateYourTeam />}
+      {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
+      {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
+
       <Main>
         <div className='buttonsFilter'>
           <div>

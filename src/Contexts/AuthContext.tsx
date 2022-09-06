@@ -48,6 +48,12 @@ interface userContextData {
   user: IUserData;
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalCreateYourTeam: boolean;
+  setIsModalCreateYourTeam: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalEditYourTeam: boolean;
+  setIsModalEditYourTeam: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalRequest: boolean;
+  setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
@@ -56,6 +62,11 @@ const AuthProvider = ({ children }: IProvider) => {
   const [user, setUser] = useState(JSON.parse(localUser!));
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const [isModalCreateYourTeam, setIsModalCreateYourTeam] = useState(false);
+  const [isModalEditYourTeam, setIsModalEditYourTeam] = useState(false);
+  const [isModalRequest, setIsModalRequest] = useState(false);
+
   const userRegister = (data: FieldValues) => {
     delete data.confirmPassword;
     data.teamsRequestedToJoin = [];
@@ -101,7 +112,19 @@ const AuthProvider = ({ children }: IProvider) => {
 
   return (
     <AuthContext.Provider
-      value={{ userRegister, userLogin, user, isOpenModal, setIsOpenModal }}
+      value={{
+        userRegister,
+        userLogin,
+        user,
+        isOpenModal,
+        setIsOpenModal,
+        isModalCreateYourTeam,
+        setIsModalCreateYourTeam,
+        isModalEditYourTeam,
+        setIsModalEditYourTeam,
+        isModalRequest,
+        setIsModalRequest,
+      }}
     >
       {children}
     </AuthContext.Provider>
