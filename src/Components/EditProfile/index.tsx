@@ -1,19 +1,44 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { AddressContext } from '../../Contexts/AddressContext';
+import { AuthContext } from '../../Contexts/AuthContext';
+import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import { schemaEditProfile } from '../../Validations/validationEditProfile';
 import Button from '../Button';
 import FormStyle from '../Forms/style';
 import Input from '../Input';
+import ErrorMessage from '../InputErrorMessage';
 import Modal from '../Modal';
 import FooterModal from '../Modal/FooterModal';
 import Container from './style';
 
 const EditProfile = () => {
-  const [isOpenModall, setIsOpenModall] = useState<boolean>(true);
+  const { setIsOpenModal } = useContext(AuthContext);
+  const { state, city, cep, setCep, getAddress } = useContext(AddressContext);
+  const {
+    urlImg,
+    setUrlImg,
+    name,
+    setName,
+    email,
+    setEmail,
+    telephone,
+    setTelephone,
+    height,
+    setHeight,
+    weight,
+    setWeight,
+    age,
+    setAge,
+    editProfile,
+  } = useContext(EditProfileContext);
+  const handleChange = (event: BaseSyntheticEvent) => {
+    setCep(event.target.value);
+  };
+
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -21,231 +46,185 @@ const EditProfile = () => {
     resolver: yupResolver(schemaEditProfile),
   });
 
-  const onSubmitFunctionEditProfile = (data: FieldValues) => {
-    console.log(data);
+  const onSubmitFunction = (data: FieldValues) => {
+    editProfile(data);
   };
+
+  useEffect(() => {
+    cep.length >= 8 && getAddress(cep);
+  }, [cep]);
+
   return (
     <Container>
-      {isOpenModall && (
-        <Modal setIsOpenModal={setIsOpenModall}>
-          <FormStyle onSubmit={handleSubmit(onSubmitFunctionEditProfile)}>
-            <h1>Editar Perfil</h1>
-            <div className='teste'>
-              <div className='sectionForm'>
-                <Input
-                  placeholder='Url Avatar'
-                  label='URL Avatar'
-                  name='urlImg'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.urlImg?.message === 'string' &&
-                    errors.urlImg?.message}
-                </span>
-                <Input
-                  placeholder='Nome'
-                  label='Nome'
-                  name='name'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.name?.message === 'string' &&
-                    errors.name?.message}
-                </span>
-                <Input
-                  placeholder='Email'
-                  label='Email'
-                  name='email'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.email?.message === 'string' &&
-                    errors.email?.message}
-                </span>
-                <Input
-                  placeholder='Telefone'
-                  label='Telefone'
-                  name='telephone'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.telephone?.message === 'string' &&
-                    errors.telephone?.message}
-                </span>
-                <Input
-                  placeholder='Altura'
-                  label='Altura'
-                  name='height'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.height?.message === 'string' &&
-                    errors.height?.message}
-                </span>
-                <Input
-                  placeholder='Peso'
-                  label='Peso'
-                  name='weight'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.weight?.message === 'string' &&
-                    errors.weight?.message}
-                </span>
-                <Input
-                  placeholder='Idade'
-                  label='Idade'
-                  name='age'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.age?.message === 'string' &&
-                    errors.age?.message}
-                </span>
-              </div>
-              <div className='sectionForm'>
-                <Input
-                  placeholder='Cep'
-                  label='Cep'
-                  name='cep'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.cep?.message === 'string' &&
-                    errors.cep?.message}
-                </span>
-                <label>
-                  <span>Estado</span>
-                  <select
-                    {...register('state')}
-                    onChange={(e) =>
-                      setValue('state', e.target.value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  >
-                    <option value='AC'>Acre</option>
-                    <option value='AL'>Alagoas</option>
-                    <option value='AP'>Amapá</option>
-                    <option value='AM'>Amazonas</option>
-                    <option value='BA'>Bahia</option>
-                    <option value='CE'>Ceará</option>
-                    <option value='DF'>Distrito Federal</option>
-                    <option value='ES'>Espírito Santo</option>
-                    <option value='GO'>Goiás</option>
-                    <option value='MA'>Maranhão</option>
-                    <option value='MT'>Mato Grosso</option>
-                    <option value='MS'>Mato Grosso do Sul</option>
-                    <option value='MG'>Minas Gerais</option>
-                    <option value='PA'>Pará</option>
-                    <option value='PB'>Paraíba</option>
-                    <option value='PR'>Paraná</option>
-                    <option value='PE'>Pernambuco</option>
-                    <option value='PI'>Piauí</option>
-                    <option value='RJ'>Rio de Janeiro</option>
-                    <option value='RN'>Rio Grande do Norte</option>
-                    <option value='RS'>Rio Grande do Sul</option>
-                    <option value='RO'>Rondônia</option>
-                    <option value='RR'>Roraima</option>
-                    <option value='SC'>Santa Catarina</option>
-                    <option value='SP'>São Paulo</option>
-                    <option value='SE'>Sergipe</option>
-                    <option value='TO'>Tocantins</option>
-                    <option value='EX'>Estrangeiro</option>
-                  </select>
-                </label>
-
-                <span>
-                  {typeof errors.state?.message === 'string' &&
-                    errors.state?.message}
-                </span>
-                <Input
-                  placeholder='Cidade'
-                  label='Cidade'
-                  name='city'
-                  register={register}
-                ></Input>
-                <span>
-                  {typeof errors.city?.message === 'string' &&
-                    errors.city?.message}
-                </span>
-                <fieldset>
-                  <legend>Pratica Exercícios ativamente?</legend>
-
-                  <Input
-                    type='radio'
-                    value='Sim'
-                    name='isExercising'
-                    register={register}
-                    label='Sim'
-                    height={'auto'}
-                  />
-                  <Input
-                    type='radio'
-                    value='Não'
-                    name='isExercising'
-                    register={register}
-                    label='Não'
-                    height={'auto'}
-                  />
-                </fieldset>
-                <fieldset>
-                  <legend>Qual posição busca jogar?</legend>
-                  <div className='checkDivision'>
-                    <Input
-                      type='checkbox'
-                      value='goleiro'
-                      name='positions'
-                      register={register}
-                      label='Goleiro'
-                    />
-                    <Input
-                      type='checkbox'
-                      value='Fixo'
-                      name='positions'
-                      label='Fixo'
-                      register={register}
-                    />
-                    <Input
-                      type='checkbox'
-                      value='Pivô'
-                      name='positions'
-                      label='Pivô'
-                      register={register}
-                    />
-                  </div>
-                  <div className='checkDivision'>
-                    <Input
-                      type='checkbox'
-                      value='Ala Esquerda'
-                      name='positions'
-                      label='ala Esquerda'
-                      register={register}
-                    />
-                    <Input
-                      type='checkbox'
-                      value='Ala Direita'
-                      name='positions'
-                      label='Ala Direita'
-                      register={register}
-                    />
-                  </div>
-                </fieldset>
-              </div>
+      <Modal setIsOpenModal={setIsOpenModal}>
+        <FormStyle onSubmit={handleSubmit(onSubmitFunction)}>
+          <h1>Editar Perfil</h1>
+          <div className='teste'>
+            <div className='sectionForm'>
+              <Input
+                placeholder='Cole aqui a url da sua foto'
+                label='URL Avatar'
+                name='urlImg'
+                value={urlImg}
+                onChange={(event) => setUrlImg(event.target.value)}
+                register={register}
+              ></Input>
+              <ErrorMessage error={errors.urlImg?.message} />
+              <Input
+                placeholder='Digite seu nome'
+                label='Nome'
+                name='name'
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                register={register}
+              ></Input>
+              <ErrorMessage error={errors.name?.message} />
+              <Input
+                placeholder='Digite seu email'
+                label='Email'
+                name='email'
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                register={register}
+              ></Input>
+              <ErrorMessage error={errors.email?.message} />
+              <Input
+                placeholder='Digite seu telefone'
+                label='Telefone'
+                name='telephone'
+                value={telephone}
+                onChange={(event) => setTelephone(event.target.value)}
+                register={register}
+                type='number'
+              ></Input>
+              <ErrorMessage error={errors.telephone?.message} />
+              <Input
+                placeholder='Digite sua altura'
+                label='Altura(m)'
+                name='height'
+                register={register}
+                type='number'
+                value={height}
+                onChange={(event) => setHeight(event.target.value)}
+              ></Input>
+              <ErrorMessage error={errors.height?.message} />
+              <Input
+                placeholder='Digite seu peso'
+                label='Peso(kg)'
+                name='weight'
+                register={register}
+                type='number'
+                value={weight}
+                onChange={(event) => setWeight(event.target.value)}
+              ></Input>
+              <ErrorMessage error={errors.weight?.message} />
+              <Input
+                placeholder='Digite sua idade'
+                label='Idade'
+                name='age'
+                register={register}
+                type='number'
+                value={age}
+                onChange={(event) => setAge(event.target.value)}
+              ></Input>
+              <ErrorMessage error={errors.age?.message} />
             </div>
-            <Button
-              width={'90%'}
-              height={'50px'}
-              backGround='var(--color-yellow-primary)'
-              colorHover='var(--color-yellow-primary-hover)'
-              color='var(--gray-2)'
-            >
-              Editar
-            </Button>
-          </FormStyle>
-          <FooterModal></FooterModal>
-        </Modal>
-      )}
+            <div className='sectionForm'>
+              <Input
+                placeholder='Digite seu cep'
+                label='CEP'
+                value={cep}
+                name='cep'
+                onChange={handleChange}
+                register={register}
+              ></Input>
+              <ErrorMessage error={errors.cep?.message} />
+              <Input
+                placeholder='Digite seu estado'
+                label='Estado'
+                name='state'
+                register={register}
+                value={state}
+              />
+              <ErrorMessage error={errors.state?.message} />
+              <Input
+                placeholder='Digite a sua cidade'
+                label='Cidade'
+                name='city'
+                register={register}
+                value={city}
+              ></Input>
+              <ErrorMessage error={errors.city?.message} />
+              <fieldset>
+                <legend>Pratica Exercícios ativamente?</legend>
+
+                <Input
+                  type='radio'
+                  value='yes'
+                  name='isExercising'
+                  register={register}
+                  label='Sim'
+                  height={'auto'}
+                />
+                <Input
+                  type='radio'
+                  value='no'
+                  name='isExercising'
+                  register={register}
+                  label='Não'
+                  height={'auto'}
+                />
+              </fieldset>
+              <fieldset>
+                <legend>Qual posição busca jogar?</legend>
+                <div className='checkDivision'>
+                  <Input
+                    type='checkbox'
+                    value='goalkeeper'
+                    name='positions'
+                    register={register}
+                    label='Goleiro'
+                  />
+                  <Input
+                    type='checkbox'
+                    value='fixed'
+                    name='positions'
+                    label='Fixo'
+                    register={register}
+                  />
+                  <Input
+                    type='checkbox'
+                    value='target'
+                    name='positions'
+                    label='Pivô'
+                    register={register}
+                  />
+                </div>
+                <div className='checkDivision'>
+                  <Input
+                    type='checkbox'
+                    value='left wing'
+                    name='positions'
+                    label='Ala esquerda'
+                    register={register}
+                  />
+                  <Input
+                    type='checkbox'
+                    value='right wing'
+                    name='positions'
+                    label='Ala direita'
+                    register={register}
+                  />
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <Button width={'90%'} height={'50px'} color='yellow' type='submit'>
+            Editar
+          </Button>
+        </FormStyle>
+        <FooterModal></FooterModal>
+      </Modal>
     </Container>
   );
 };
