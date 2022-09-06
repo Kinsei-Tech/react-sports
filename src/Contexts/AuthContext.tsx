@@ -72,6 +72,7 @@ const AuthProvider = ({ children }: IProvider) => {
     const postAPI = () => {
       const response = api.post('/login', data).then((response) => {
         localStorage.setItem('@accessToken', response.data.accessToken);
+        api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
         localStorage.setItem('@id', response.data.user.id);
         //const {user: userResponse} = response.data
         setUser(response.data.user.id);

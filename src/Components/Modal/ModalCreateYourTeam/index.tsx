@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -10,31 +10,32 @@ import Input from '../../Input';
 import Button from '../../Button';
 import FormStyle from '../../Forms/style';
 import { Container } from '../style';
-import Label from '../../Label';
 import FieldSet from '../../Fieldset';
+import { TeamsContext } from '../../../Contexts/TeamsContext';
 
 const ModalCreateYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
-
+  const { createTeam } = useContext(TeamsContext);
   const schema = yup.object().shape({
     name: yup
       .string()
-      .min(2, 'Nome da rede com mínimo de 2 dígitos')
-      .required('Nome da rede obrigatório'),
-    URL: yup
-      .string()
-      .matches(
-        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Link inválido'
-      )
-      .required('Link obrigatório'),
+      .min(2, 'No minimo 2 caracteres')
+      .required('Nome Obrigatorio'),
+    placeName: yup.string(),
+    cep: yup.number(),
+    state: yup.string().required('Campo obrigatorio'),
+    city: yup.string().required('Campo Obrigatorio'),
+    maxWeight: yup.number(),
+    maxAge: yup.number(),
+    description: yup.string(),
+    positionsSeachedfor: yup.array(),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ mode: 'onChange', resolver: yupResolver(schema) });
 
   const addressArr = [
     { name: 'cep', placeholder: 'Digite o CEP', label: 'CEP' },
@@ -49,12 +50,14 @@ const ModalCreateYourTeam = () => {
     { label: 'Ala Esquerda', name: 'positionsSearchedFor', value: 'left wing' },
     { label: 'Ala Direita', name: 'positionsSearchedFor', value: 'right wing' },
   ];
-
+  const newTeam = (data: FieldValues) => {
+    createTeam(data);
+  };
   return (
     <Modal expandedModal setIsOpenModal={setIsOpenModal}>
       <Container>
         <h2>Forme seu Time</h2>
-        <FormStyle>
+        <FormStyle onSubmit={handleSubmit(newTeam)}>
           <article>
             <Input
               placeholder='Digite o nome do grupo'
@@ -62,6 +65,9 @@ const ModalCreateYourTeam = () => {
               register={register}
               label='Nome do Grupo'
             />
+            <span>
+              {typeof errors.name?.message === 'string' && errors.name?.message}
+            </span>
             <Input
               name='placeName'
               placeholder='Digite o nome do local'
@@ -94,6 +100,10 @@ const ModalCreateYourTeam = () => {
               register={register}
               textInputArr={addressArr}
             />
+            <span>
+              {typeof errors.state?.message === 'string' &&
+                errors.state?.message}
+            </span>
             <FieldSet
               type='checkbox'
               legend='Qual posição busca para o time?'
@@ -102,7 +112,7 @@ const ModalCreateYourTeam = () => {
             />
           </article>
           <section>
-            <Button color='yellow' width='75%'>
+            <Button color='yellow' width='75%' disabled={!isValid}>
               Criar
             </Button>
           </section>
