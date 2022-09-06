@@ -16,6 +16,28 @@ const FormStyle = styled.form`
     color: green;
     font-size: 1rem;
   }
+
+  article {
+    overflow-x: auto;
+    width: 100%;
+
+    @media (min-width: 930px) {
+      display: flex;
+      flex-direction: row;
+
+      section {
+        width: 50%;
+
+        input {
+          margin-bottom: 8px;
+        }
+
+        fieldset {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
 `;
 
 export default FormStyle;
