@@ -8,6 +8,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   type?: string;
   name: string;
+  height?: string;
   register: UseFormRegister<FieldValues>;
 }
 
@@ -17,6 +18,7 @@ const Input = ({
   label,
   register,
   name,
+  height,
   ...rest
 }: IInputProps) => {
   return (
@@ -26,6 +28,7 @@ const Input = ({
         <InputStyle
           placeholder={placeholder}
           type={type}
+          height={height}
           {...register(name)}
           {...rest}
         />

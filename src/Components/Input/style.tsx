@@ -1,7 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const InputStyle = styled.input`
-  height: 30px;
+interface IInputStyle {
+  height?: string;
+}
+const InputStyle = styled.input<IInputStyle>`
+  height: ${(props) => props.height || '30px'};
   width: auto;
 
   padding-left: 10px;
