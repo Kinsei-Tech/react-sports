@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const FloatMenu = styled.div`
   float: left;
   z-index: 9999;
-  position: fixed;
+  position: relative;
 
-  margin-top: 200px;
 `;
 
 export const Container = styled.div`
@@ -18,7 +17,7 @@ export const Container = styled.div`
   background-color: var(--gray-0);
   border: 2px solid rgba(110, 148, 35, 0.72);
   border-radius: 8px;
-
+  position: absolute;
   width: 96px;
   height: 80px;
 
@@ -48,7 +47,5 @@ export const Container = styled.div`
 
     transition: 0.5s;
 
-    &:hover {
-    }
   }
 `;
