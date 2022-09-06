@@ -27,6 +27,7 @@ export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
 
 const TeamsProvider = ({ children }: IProvider) => {
   const createTeam = (data: FieldValues) => {
+    console.log(data);
     data.userId = localStorage.getItem('@id');
     const postApi = () => {
       const response = api.post('/teams', data).then((response) => {

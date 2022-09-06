@@ -11,7 +11,8 @@ import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
 
 export const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { v4: uuidv4 } = require('uuid');
+  const { user, isOpenModal, setIsOpenModal } = useContext(AuthContext);
 
   const [teams, setTeams] = useState([]);
 
@@ -21,7 +22,6 @@ export const Dashboard = () => {
       .get('/teams')
       .then((response) => {
         setTeams(response.data);
-        console.log(response.data);
       })
       .catch((err) => console.log(err));
     // };
@@ -29,7 +29,7 @@ export const Dashboard = () => {
   return user ? (
     <>
       <Header />
-      {/* {isOpenModal && <ModalCreateYourTeam />} */}
+      {isOpenModal && <ModalCreateYourTeam />}
       <Main>
         <div className='buttonsFilter'>
           <div>
@@ -37,7 +37,7 @@ export const Dashboard = () => {
               className='createTeam'
               color='#000000'
               backGround='#93C335'
-              // onClick={() => setIsOpenModal(true)}
+              onClick={() => setIsOpenModal(true)}
             >
               +
             </Button>
@@ -53,8 +53,8 @@ export const Dashboard = () => {
 
         <div className='teamsCards'>
           <ul>
-            {teams?.map((elem) => (
-              <Card  elem={elem}></Card>
+            {teams?.map((elem, index) => (
+              <Card elem={elem} key={uuidv4()}></Card>
             ))}
           </ul>
         </div>

@@ -25,9 +25,8 @@ interface ICard {
 }
 function Card({ elem }: ICard) {
   const [isVisible, setIsVisible] = useState(false);
-
   return (
-    <TeamCard key={elem.id}>
+    <TeamCard>
       <img
         src='https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
         alt='Logo do time'
