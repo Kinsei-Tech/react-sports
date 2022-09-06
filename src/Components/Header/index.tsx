@@ -4,7 +4,7 @@ import ProfilePicture from '../../Images/example-profile-picture.svg';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { SearchInput } from '../SearchInput';
 import { DropMenuProfile } from '../DropMenu';
-import { useEffect, useRef, useState } from 'react';
+import { BaseSyntheticEvent, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const Header = () => {
@@ -21,9 +21,15 @@ export const Header = () => {
     }
   }, [location]);
 
+  const handleCloseDropMenu = (event: BaseSyntheticEvent) => {
+    if (event.target.id !== 'section') {
+      setIsVisible(false);
+    }
+  }
+
   return (
     <StyledHeader>
-      <div className='simple-header'>
+      <div className='simple-header' onMouseLeave={handleCloseDropMenu}>
         <img src={Logo} alt='brand logo' />
         <section>
           <UserImage>

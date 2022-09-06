@@ -10,6 +10,7 @@ import { Navigate } from 'react-router-dom';
 import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
 import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
+import Footer from '../../Components/Footer';
 
 export const Dashboard = () => {
   const { v4: uuidv4 } = require('uuid');
@@ -81,7 +82,7 @@ export const Dashboard = () => {
         </div>
       </Main>
 
-      <footer></footer>
+      <Footer></Footer>
     </>
   ) : (
     <Navigate to='/login' replace />
