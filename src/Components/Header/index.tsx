@@ -5,9 +5,21 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { SearchInput } from '../SearchInput';
 import { DropMenuProfile } from '../DropMenu';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const [dashboard, setDashboard] = useState(false);
+
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === '/dashboard') {
+      setDashboard(true);
+    } else {
+      setDashboard(false);
+    }
+  }, [location]);
 
   return (
     <StyledHeader>
@@ -22,7 +34,12 @@ export const Header = () => {
               <AiFillCaretDown />
             </div>
           </button>
-          {isVisible && <DropMenuProfile setIsVisible={setIsVisible} />}
+          {isVisible &&
+            (dashboard ? (
+              <DropMenuProfile dashboard setIsVisible={setIsVisible} />
+            ) : (
+              <DropMenuProfile setIsVisible={setIsVisible} />
+            ))}
         </section>
       </div>
       <InputContainer>
