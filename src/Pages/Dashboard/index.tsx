@@ -18,8 +18,11 @@ export const Dashboard = () => {
     isOpenModal,
     setIsOpenModal,
     isModalCreateYourTeam,
+    setIsModalCreateYourTeam,
     isModalEditYourTeam,
+    setIsModalEditYourTeam,
     isModalRequest,
+    setIsModalRequest,
   } = useContext(AuthContext);
 
   const [teams, setTeams] = useState([]);
@@ -34,6 +37,14 @@ export const Dashboard = () => {
       .catch((err) => console.log(err));
     // };
   }, []);
+
+  const openCreateYourTeam = () => {
+    setIsModalEditYourTeam(false);
+    setIsModalRequest(false);
+
+    setIsOpenModal(true);
+    setIsModalCreateYourTeam(true);
+  };
   return user ? (
     <>
       <Header />
@@ -47,7 +58,7 @@ export const Dashboard = () => {
               className='createTeam'
               color='#000000'
               backGround='#93C335'
-              onClick={() => setIsOpenModal(true)}
+              onClick={openCreateYourTeam}
             >
               +
             </Button>
