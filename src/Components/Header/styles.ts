@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
     var(--color-green-primary-hover) 100%
   );
 
-  width: 100vw;
+  width: 100%;
   height: 185px;
 
   .simple-header {
