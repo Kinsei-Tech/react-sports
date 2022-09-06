@@ -7,7 +7,7 @@ const ModalTeamDetails = () => {
   const { setIsOpenModal } = useContext(AuthContext);
 
   return (
-    <Modal expandedModal setIsOpenModal={setIsOpenModal}>
+    <Modal setIsOpenModal={setIsOpenModal}>
       <Container>
         <h2>Detalhes do Time</h2>
       </Container>
