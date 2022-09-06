@@ -11,7 +11,6 @@ const FormStyle = styled.form`
   padding: 10px;
   background-color: var(--gray-0);
   max-height: 60vh;
-  /*   position: relative; */
 
   h1 {
     color: green;

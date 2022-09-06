@@ -10,4 +10,6 @@ export const schemaEditProfile = yup.object().shape({
   telephone: yup.string(),
   isExercising: yup.string(),
   positions: yup.array(),
+  height: yup.string(),
+  weight: yup.string(),
 });
