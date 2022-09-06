@@ -8,11 +8,18 @@ import Select from '../../Select';
 /* import SelectCheckBoxStyled from '../../SelectCheckBox/style';
  */ import Container from './style';
 import { schema } from '../../../Validations/validationRegister';
-import { useContext } from 'react';
+import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
+import { AddressContext } from '../../../Contexts/AddressContext';
 
 export const FormRegister = () => {
   const { userRegister } = useContext(AuthContext);
+  const { getAddress, city, state, cep, setCep } = useContext(AddressContext);
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    setCep(event.target.value);
+  };
+
   const onSubmitFunction = (data: FieldValues) => {
     userRegister(data);
     console.log(data);
@@ -22,7 +29,11 @@ export const FormRegister = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({ resolver: yupResolver(schema) });
+  } = useForm<FieldValues>({ mode: 'onChange', resolver: yupResolver(schema) });
+
+  useEffect(() => {
+    cep.length === 8 && getAddress(cep);
+  }, [cep]);
 
   return (
     <Container>
@@ -79,29 +90,29 @@ export const FormRegister = () => {
                   errors.confirmPassword?.message}
               </span>
               <Input
-                type='text'
+                type='number'
                 placeholder='Digite sua altura'
                 register={register}
                 name='height'
-                label='Altura'
+                label='Altura(m)'
               />
               <span>
                 {typeof errors.height?.message === 'string' &&
                   errors.height?.message}
               </span>
               <Input
-                type='text'
+                type='number'
                 placeholder='Digite seu peso'
                 register={register}
                 name='weight'
-                label='Peso'
+                label='Peso(kg)'
               />
               <span>
                 {typeof errors.weight?.message === 'string' &&
                   errors.weight?.message}
               </span>
               <Input
-                type='text'
+                type='number'
                 placeholder='Digite sua Idade'
                 register={register}
                 name='age'
@@ -113,16 +124,17 @@ export const FormRegister = () => {
             </div>
             <div className='sectionForm'>
               <Input
-                type='text'
+                type='number'
                 placeholder='Digite seu CEP'
                 register={register}
                 name='cep'
                 label='CEP'
+                onChange={handleChange}
               />
               <span>
                 {typeof errors.cep?.message === 'string' && errors.cep?.message}
               </span>
-              <Select label='Estado'>
+              {/*<Select label='Estado'>
                 <option value='AC'>Acre</option>
                 <option value='AL'>Alagoas</option>
                 <option value='AP'>Amapá</option>
@@ -151,13 +163,26 @@ export const FormRegister = () => {
                 <option value='SE'>Sergipe</option>
                 <option value='TO'>Tocantins</option>
                 <option value='EX'>Estrangeiro</option>
-              </Select>
+              </Select>*/}
+              <Input
+                type='text'
+                placeholder='Digite seu estado'
+                register={register}
+                name='state'
+                label='Estado'
+                value={state}
+              />
+              <span>
+                {typeof errors.state?.message === 'string' &&
+                  errors.state?.message}
+              </span>
               <Input
                 type='text'
                 placeholder='Digite sua cidade'
                 register={register}
                 name='city'
                 label='Cidade'
+                value={city}
               />
               {!!errors && (
                 <span>
@@ -166,7 +191,7 @@ export const FormRegister = () => {
                 </span>
               )}
               <Input
-                type='text'
+                type='number'
                 placeholder='Digite seu telefone'
                 register={register}
                 name='telephone'
