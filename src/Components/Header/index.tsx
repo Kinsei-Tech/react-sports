@@ -4,12 +4,19 @@ import ProfilePicture from '../../Images/example-profile-picture.svg';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { SearchInput } from '../SearchInput';
 import { DropMenuProfile } from '../DropMenu';
-import { BaseSyntheticEvent, useEffect, useRef, useState } from 'react';
+import {
+  BaseSyntheticEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 export const Header = () => {
+  const { userImg, setUserImg } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
-
   const [dashboard, setDashboard] = useState(false);
 
   const location = useLocation();
@@ -25,7 +32,11 @@ export const Header = () => {
     if (event.target.id !== 'section') {
       setIsVisible(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    setUserImg(localStorage.getItem('@userImg') || '');
+  }, []);
 
   return (
     <StyledHeader>
@@ -33,7 +44,7 @@ export const Header = () => {
         <img src={Logo} alt='brand logo' />
         <section>
           <UserImage>
-            <img src={ProfilePicture} alt='user profile img' />
+            <img src={userImg} alt='user profile img' />
           </UserImage>
           <button onClick={() => setIsVisible(true)}>
             <div className='icon'>

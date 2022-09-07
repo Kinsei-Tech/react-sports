@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -96,6 +96,7 @@ export const UserImage = styled.div`
   img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
   }
 `;
 
