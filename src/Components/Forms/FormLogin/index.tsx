@@ -20,7 +20,7 @@ const FormLogin = () => {
   return (
     <>
       <FormStyle onSubmit={handleSubmit(userLogin)}>
-        <h1>Login</h1>
+        <h2>Login</h2>
         <Input
           type='text'
           placeholder='Digite seu email'

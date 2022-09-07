@@ -66,25 +66,36 @@ const Container = styled.div`
       }
 
       fieldset {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        padding-left: 5%;
-        border: 2px solid var(--color-green-primary-hover);
-        border-radius: 8px;
-        label {
+        > article {
           display: flex;
-          flex-direction: row-reverse;
-          align-items: center;
-        }
-        .checkDivision {
-          margin: 0;
-          display: flex;
-          flex-direction: column;
           align-items: flex-start;
-          width: 50%;
-          gap: 20px;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          padding: 10px;
+
+          border: 3px solid var(--color-green-primary);
+
+          border-radius: 8px;
+
+          background-color: var(--gray-0);
+
+          color: var(--gray-2);
+
+          padding-left: 5%;
+
+          > label {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+          }
+          .checkDivision {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+            gap: 20px;
+          }
         }
       }
     }
