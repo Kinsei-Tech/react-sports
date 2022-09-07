@@ -22,7 +22,9 @@ import ModalAddNetwork from '../../Components/Modal/ModalAddNetwork';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
-import ModalRequestList from '../../Components/Modal/ModalRequestList';
+import ModalRequestList, {
+  ITeam,
+} from '../../Components/Modal/ModalRequestTeam';
 import EditProfile from '../../Components/EditProfile';
 import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import api from '../../services/api';
@@ -32,18 +34,20 @@ const ProfilePage = () => {
   const { isOpenModal, setIsOpenModal, user, setUserImg, userImg } =
     useContext(AuthContext);
   const { getProfileInfo } = useContext(EditProfileContext);
-
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
+  const [teams2, setTeams2] = useState<ITeam[]>([]);
   /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
+
 
   useEffect(() => {
     setUserImg(localStorage.getItem('@userImg') || '');
   }, []);
+
 
   useEffect(() => {
     user &&
@@ -52,7 +56,17 @@ const ProfilePage = () => {
         .then((response) => setTeams(response.data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(teams);
+
+  useEffect(() => {
+    gettTeams();
+  }, []);
+
+  const gettTeams = async () => {
+    if (user?.id) {
+      const { data } = await api.get<ITeam[]>(`teams?userId=${user.id}`);
+      setTeams2(data);
+    }
+  };
 
   const openModalAddNetwork = () => {
     setIsModalEditProfile(false);
@@ -109,9 +123,10 @@ const ProfilePage = () => {
         {isModalEditProfile && isOpenModal && <EditProfile />}
         {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
         {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
-        {isModalRequestList && isOpenModal && <ModalRequestList />}
+        {isModalRequestList && isOpenModal && (
+          <ModalRequestList teams2={teams2} />
+        )}
         <Header />
-
         <MainStyled>
           <SectionContactNetworks>
             <ContactsBox>

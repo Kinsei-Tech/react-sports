@@ -1,11 +1,10 @@
 import '../../Pages/Dashboard/style';
 import { SectionImagem, TeamCard } from './style';
 import Button from '../../Components/Button';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
 import { FaEnvelope } from 'react-icons/fa';
 import { AuthContext } from '../../Contexts/AuthContext';
-
 export interface IElementsProps {
   name: string;
   placeName: string;

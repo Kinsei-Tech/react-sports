@@ -4,7 +4,6 @@ export const HeaderModal = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 0 auto;
   margin-bottom: 14px;
   &::after {
     content: '';
