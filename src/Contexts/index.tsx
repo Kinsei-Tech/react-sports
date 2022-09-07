@@ -1,17 +1,20 @@
 import { IProvider } from '../Interfaces/Global';
 import AddressProvider from './AddressContext';
 import AuthProvider from './AuthContext';
+import EditProfileProvider from './EditProfileContext';
 import NetworksProvider from './NetworksContext';
 import TeamsProvider from './TeamsContext';
 
 const Provider = ({ children }: IProvider) => (
-  <AddressProvider>
-    <TeamsProvider>
-      <NetworksProvider>
-        <AuthProvider>{children}</AuthProvider>
-      </NetworksProvider>
-    </TeamsProvider>
-  </AddressProvider>
+  <AuthProvider>
+    <AddressProvider>
+      <EditProfileProvider>
+        <TeamsProvider>
+          <NetworksProvider>{children}</NetworksProvider>
+        </TeamsProvider>
+      </EditProfileProvider>
+    </AddressProvider>
+  </AuthProvider>
 );
 
 export default Provider;

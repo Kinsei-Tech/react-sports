@@ -26,15 +26,16 @@ export interface IUserData {
   id: number;
   name: string;
   email: string;
-  height?: number;
-  weight?: number;
-  age: number;
+  height?: string;
+  weight?: string;
+  age: string;
   state: string;
-  telephone: number;
-  isDoingSports: string;
+  telephone: string;
+  isExercising: string;
   cep: string;
   city: string;
   positions: string[];
+  urlImg: string;
 }
 
 export interface IDataLogin {
@@ -54,6 +55,7 @@ interface userContextData {
   setIsModalEditYourTeam: React.Dispatch<React.SetStateAction<boolean>>;
   isModalRequest: boolean;
   setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
+  setUser: React.Dispatch<any>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
@@ -124,6 +126,7 @@ const AuthProvider = ({ children }: IProvider) => {
         setIsModalEditYourTeam,
         isModalRequest,
         setIsModalRequest,
+        setUser,
       }}
     >
       {children}
