@@ -36,28 +36,29 @@ const ProfilePage = () => {
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
-  const userId = localStorage.getItem('@id');
+  /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
 
-  const {
-    name,
-    telephone,
-    email,
-    height,
-    weight,
-    age,
-    isExercising,
-    positions,
-    state,
-    cep,
-    city,
-  } = user;
+  /*     const {
+      name,
+      telephone,
+      email,
+      height,
+      weight,
+      age,
+      isExercising,
+      positions,
+      state,
+      cep,
+      city,
+    } = user; */
 
   useEffect(() => {
-    userId &&
+    user &&
       api
-        .get(`/teams?userId=${userId}`)
+        .get(`/teams?userId=${user.id}`)
         .then((response) => setTeams(response.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(teams);
 
@@ -124,9 +125,9 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className='user-contacts'>
-                <span className='user-name'>{name}</span>
-                <span>{email}</span>
-                <span>{telephone}</span>
+                <span className='user-name'>{user?.name}</span>
+                <span>{user?.email}</span>
+                <span>{user?.telephone}</span>
               </div>
             </Contacts>
           </ContactsBox>
@@ -179,21 +180,21 @@ const ProfilePage = () => {
             <PhysicalDescriptions>
               <p>
                 Altura:
-                {height ? <span>{height}</span> : <span>__</span>}
+                {user?.height ? <span>{user?.height}</span> : <span>__</span>}
               </p>
               <Pipe>|</Pipe>
               <p>
                 Peso:
-                {weight ? <span>{weight}</span> : <span>__</span>}
+                {user?.weight ? <span>{user?.weight}</span> : <span>__</span>}
               </p>
               <Pipe>|</Pipe>
               <p>
                 Idade:
-                {age ? <span>{age}</span> : <span>__</span>}
+                {user?.age ? <span>{user?.age}</span> : <span>__</span>}
               </p>
             </PhysicalDescriptions>
-            {isExercising ? (
-              isExercising === 'yes' ? (
+            {user?.isExercising ? (
+              user?.isExercising === 'yes' ? (
                 <p>Pratica esportes regularmente</p>
               ) : (
                 <p>Não pratica esportes regularmente</p>
@@ -202,16 +203,16 @@ const ProfilePage = () => {
               <p>___</p>
             )}
 
-            {positions.length > 0 ? (
-              positions.length === 1 ? (
+            {user && user.positions?.length > 0 ? (
+              user && user.positions.length === 1 ? (
                 <p>
                   Posição:
-                  <span>{positions[0]}</span>
+                  <span>{user?.positions[0]}</span>
                 </p>
               ) : (
                 <p>
                   Posições:
-                  {positions.map((position) => (
+                  {user?.positions.map((position) => (
                     <span> {position} /</span>
                   ))}
                 </p>
@@ -226,15 +227,15 @@ const ProfilePage = () => {
           <SectionUserAddress>
             <p>
               Estado:
-              <span>{state}</span>
+              <span>{user?.state}</span>
             </p>
             <p>
               CEP:
-              <span>{cep}</span>
+              <span>{user?.cep}</span>
             </p>
             <p>
               Cidade:
-              <span>{city}</span>
+              <span>{user?.city}</span>
             </p>
             <p>
               Bairro:

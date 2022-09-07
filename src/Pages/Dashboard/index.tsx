@@ -24,6 +24,7 @@ export const Dashboard = () => {
     setIsModalEditYourTeam,
     isModalRequest,
     setIsModalRequest,
+    userLocalStorage,
   } = useContext(AuthContext);
 
   const [teams, setTeams] = useState([]);
@@ -46,7 +47,8 @@ export const Dashboard = () => {
     setIsOpenModal(true);
     setIsModalCreateYourTeam(true);
   };
-  return user ? (
+
+  return userLocalStorage ? (
     <>
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}

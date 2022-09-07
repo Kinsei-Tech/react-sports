@@ -46,7 +46,7 @@ export interface IDataLogin {
 interface userContextData {
   userRegister: (IDataRegister: FieldValues) => void;
   userLogin: (IDataLogin: FieldValues) => void;
-  user: IUserData;
+  user: IUserData | null | undefined;
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   isModalCreateYourTeam: boolean;
@@ -56,18 +56,22 @@ interface userContextData {
   isModalRequest: boolean;
   setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
   setUser: React.Dispatch<any>;
+  userLocalStorage: IUserData;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
   const localUser = localStorage.getItem('userObject');
-  const navigate = useNavigate();
-  const [user, setUser] = useState(JSON.parse(localUser!));
-
+  const [userLocalStorage, setUserLocalStorage] = useState(
+    JSON.parse(localUser!)
+  );
+  const [user, setUser] = useState<IUserData | null>();
+  const [teamDashBoard, setTeamDashBoard] = useState();
+  const [teamProfile, setTeamProfile] = useState();
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const [isModalCreateYourTeam, setIsModalCreateYourTeam] = useState(false);
   const [isModalEditYourTeam, setIsModalEditYourTeam] = useState(false);
   const [isModalRequest, setIsModalRequest] = useState(false);
+  const navigate = useNavigate();
 
   const userRegister = (data: FieldValues) => {
     delete data.confirmPassword;
@@ -95,12 +99,11 @@ const AuthProvider = ({ children }: IProvider) => {
       const response = api.post('/login', data).then((response) => {
         localStorage.setItem('@accessToken', response.data.accessToken);
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
-        console.log(api.defaults);
-        localStorage.setItem('@id', response.data.user.id);
-        setUser(response.data.user);
-        localStorage.setItem('userObject', JSON.stringify(response.data.user));
-
         navigate('/dashboard', { replace: true });
+        setUser(response.data.user);
+        setUserLocalStorage(response.data.user);
+        localStorage.setItem('userObject', JSON.stringify(response.data.user));
+        /*         localStorage.setItem('@id', response.data.user.id); */
       });
       return response;
     };
@@ -132,6 +135,7 @@ const AuthProvider = ({ children }: IProvider) => {
         isModalRequest,
         setIsModalRequest,
         setUser,
+        userLocalStorage,
       }}
     >
       {children}
