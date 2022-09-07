@@ -61,7 +61,7 @@ export const FormRegister = () => {
                 name='name'
                 label='Nome'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.name?.message === 'string' &&
                   errors.name?.message}
               </span>
@@ -78,7 +78,7 @@ export const FormRegister = () => {
                 name='email'
                 label='Email'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.email?.message === 'string' &&
                   errors.email?.message}
               </span>
@@ -89,7 +89,7 @@ export const FormRegister = () => {
                 name='password'
                 label='Senha'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.password?.message === 'string' &&
                   errors.password?.message}
               </span>
@@ -100,7 +100,7 @@ export const FormRegister = () => {
                 name='confirmPassword'
                 label='Confirme senha'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.confirmPassword?.message === 'string' &&
                   errors.confirmPassword?.message}
               </span>
@@ -111,7 +111,7 @@ export const FormRegister = () => {
                 name='height'
                 label='Altura(m)'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.height?.message === 'string' &&
                   errors.height?.message}
               </span>
@@ -122,7 +122,7 @@ export const FormRegister = () => {
                 name='weight'
                 label='Peso(kg)'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.weight?.message === 'string' &&
                   errors.weight?.message}
               </span>
@@ -133,7 +133,7 @@ export const FormRegister = () => {
                 name='age'
                 label='Idade'
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.age?.message === 'string' && errors.age?.message}
               </span>
             </section>
@@ -146,7 +146,7 @@ export const FormRegister = () => {
                 label='CEP'
                 onChange={handleChange}
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.cep?.message === 'string' && errors.cep?.message}
               </span>
 
@@ -158,7 +158,7 @@ export const FormRegister = () => {
                 label='Estado'
                 value={state}
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.state?.message === 'string' &&
                   errors.state?.message}
               </span>
@@ -171,7 +171,7 @@ export const FormRegister = () => {
                 value={city}
               />
               {!!errors && (
-                <span>
+                <span className='errorMessage'>
                   {typeof errors.city?.message === 'string' &&
                     errors.city?.message}
                 </span>
@@ -183,7 +183,7 @@ export const FormRegister = () => {
                 name='telephone'
                 label={'Telefone'}
               />
-              <span>
+              <span className='errorMessage'>
                 {typeof errors.telephone?.message === 'string' &&
                   errors.telephone?.message}
               </span>

@@ -28,7 +28,7 @@ const FormLogin = () => {
           name='email'
           label='Email'
         />
-        <span>
+        <span className='errorMessage'>
           {typeof errors.email?.message === 'string' && errors.email?.message}
         </span>
         <Input
@@ -38,7 +38,7 @@ const FormLogin = () => {
           name='password'
           label='Senha'
         />
-        <span>
+        <span className='errorMessage'>
           {typeof errors.password?.message === 'string' &&
             errors.password?.message}
         </span>

@@ -6,7 +6,7 @@ type IButtonStyleProps = Omit<IButtonProps, 'children'>;
 const ButtonStyle = styled.button<IButtonStyleProps>`
   height: 40px;
   width: ${(props) => props.width || '100%'};
-
+  transition: 0.5s;
   color: ${({ color }) => color};
 
   font-size: 20px;
