@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IProvider } from '../Interfaces/Global';
 import api from '../services/api';
@@ -111,6 +111,11 @@ const AuthProvider = ({ children }: IProvider) => {
         'Infelizmente, não conseguimos te logar.Verifique se email e senha estão corretos',
     });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('@accessToken');
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+  }, []);
 
   return (
     <AuthContext.Provider
