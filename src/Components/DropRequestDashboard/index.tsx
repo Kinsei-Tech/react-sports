@@ -35,7 +35,13 @@ const DropRequestDashboard = ({ isVisible, setIsVisible, elem }: IProps) => {
         <div key={index}>
           <button
             onClick={() => {
-              requestTeam(user?.id, user?.name, position, elem.id);
+              requestTeam(
+                user?.id,
+                user?.name,
+                position,
+                elem.id,
+                elem.requests
+              );
               setIsVisible(false);
             }}
           >
