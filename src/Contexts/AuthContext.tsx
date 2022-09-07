@@ -4,6 +4,7 @@ import { IProvider } from '../Interfaces/Global';
 import api from '../services/api';
 import { FieldValues } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { number, string } from 'yup/lib/locale';
 
 export const AuthContext = createContext<userContextData>(
   {} as userContextData
@@ -22,6 +23,12 @@ export interface IDataRegister {
   positions: string[];
 }
 
+interface ITeamsRequestAccepted {
+  name: string;
+  id: string | number;
+  type: string;
+}
+
 export interface IUserData {
   id: number;
   name: string;
@@ -36,8 +43,8 @@ export interface IUserData {
   city: string;
   positions: string[];
   teamsRequestedToJoin: string[];
-  teamsRequestAccepted: string[];
-  teamsRequestDenied: string[];
+  teamsRequestAccepted: ITeamsRequestAccepted[];
+  teamsRequestDenied: ITeamsRequestAccepted[];
   socialNetworks: string[];
   urlImg: string;
 }
