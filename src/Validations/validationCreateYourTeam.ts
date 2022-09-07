@@ -15,4 +15,5 @@ export const schemaCreateYourTeam = yup.object().shape({
   maxAge: yup.string(),
   description: yup.string(),
   positionsSeachedfor: yup.array(),
+  urlImg: yup.string(),
 });
