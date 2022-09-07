@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
-import { FieldsetStyle } from './style';
+import { FieldsetCheckbox, FieldsetRadio, FieldsetStyle } from './style';
 
 interface ICheckBox {
   label: string;
@@ -10,7 +10,7 @@ interface ICheckBox {
 }
 
 interface IFieldSet {
-  type: 'textInput' | 'checkbox';
+  type: 'textInput' | 'checkbox' | 'radio';
   legend: string;
   checkboxArr?: ICheckBox[];
   children?: ReactNode;
@@ -29,25 +29,22 @@ const FieldSet = ({
       case 'checkbox':
         return (
           <>
-            <FieldsetStyle>
+            <FieldsetCheckbox>
               <legend>{legend}</legend>
-              <ul>
-                {checkboxArr?.map((option) => {
-                  return (
-                    <li key={uuid()}>
-                      <label>
-                        <input
-                          type='checkbox'
-                          value={option.value}
-                          {...register(option.name)}
-                        />
-                        <span>{option.label}</span>
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
-            </FieldsetStyle>
+              {checkboxArr?.map((option) => {
+                return (
+                  <label key={uuid()} className='container'>
+                    {option.label}
+                    <input
+                      type='checkbox'
+                      value={option.value}
+                      {...register(option.name)}
+                    />
+                    <span className='checkmark'></span>
+                  </label>
+                );
+              })}
+            </FieldsetCheckbox>
             {children}
           </>
         );
@@ -57,6 +54,22 @@ const FieldSet = ({
             <legend>{legend}</legend>
             {children}
           </FieldsetStyle>
+        );
+      case 'radio':
+        return (
+          <FieldsetRadio>
+            <legend>{legend}</legend>
+            <label className='container'>
+              Sim
+              <input type='radio' value='yes' {...register('isExercising')} />
+              <span className='checkmark'></span>
+            </label>
+            <label className='container'>
+              Não
+              <input type='radio' value='no' {...register('isExercising')} />
+              <span className='checkmark'></span>
+            </label>
+          </FieldsetRadio>
         );
     }
   };
