@@ -35,6 +35,10 @@ export interface IUserData {
   cep: string;
   city: string;
   positions: string[];
+  teamsRequestedToJoin: string[];
+  teamsRequestAccepted: string[];
+  teamsRequestDenied: string[];
+  socialNetworks: string[];
   urlImg: string;
 }
 

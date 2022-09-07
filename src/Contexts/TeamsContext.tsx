@@ -21,7 +21,12 @@ import toast from 'react-hot-toast';
 
 interface ITeamsContext {
   createTeam: (data: FieldValues) => void;
-  requestTeam: (id: number, userRequest: string, position: string) => void;
+  requestTeam: (
+    id: number | undefined,
+    userRequest: string | undefined,
+    position: string,
+    elemId: number
+  ) => void;
 }
 
 export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
@@ -43,14 +48,19 @@ const TeamsProvider = ({ children }: IProvider) => {
       error: 'Algo de errado não está certo',
     });
   };
-  const requestTeam = (id: number, userRequest: string, position: string) => {
+  const requestTeam = (
+    id: number | undefined,
+    userRequest: string | undefined,
+    position: string,
+    elemId: number
+  ) => {
     const data = {
       requests: [{ name: userRequest, id: id, position: position }],
     };
     console.log(data);
     const postApi = () => {
       const response = api
-        .patch(`/teams/${3}`, data)
+        .patch(`/teams/${elemId}`, data)
         .then((response) => {
           console.log(response.data);
         })
