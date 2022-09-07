@@ -54,15 +54,21 @@ export const Dashboard = () => {
 
       <Main>
         <div className='buttonsFilter'>
-          <div>
-            <Button
-              className='createTeam'
-              color='#000000'
-              backGround='#93C335'
-              onClick={openCreateYourTeam}
-            >
-              +
-            </Button>
+          <div className='btn'>
+            <div className='hoverClass'>
+              <Button
+                className='createTeam'
+                color='#000000'
+                backGround='#93C335'
+                onClick={openCreateYourTeam}
+              >
+                +
+              </Button>
+              <button className='onHoverInfo' onClick={openCreateYourTeam}>
+                  Criar um novo time
+              </button>
+            </div>
+
             <Button className='filter' color='#000000' backGround='#93C335'>
               Filtrar por...
             </Button>

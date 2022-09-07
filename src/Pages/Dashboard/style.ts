@@ -9,8 +9,12 @@ export const Main = styled.main`
 
   .createTeam {
     width: 40px;
-    margin: 20px;
+    margin: 20px 0;
     margin-left: 20px;
+  }
+
+  .onHoverInfo {
+    display: none;
   }
 
   .filter {
@@ -41,6 +45,39 @@ export const Main = styled.main`
       flex-direction: row;
       justify-content: space-between;
     }
+    
+    .btn{
+      width: auto;
+      display: flex;      
+    }
+
+    .hoverClass{
+      display: flex;
+      flex-direction: row;
+      &:hover{
+        .onHoverInfo{
+          display: flex;
+          background-color: white;
+        }
+
+        .createTeam{
+          border-radius: 8px 0 0 8px;
+        }
+
+      }
+    }
+
+    .onHoverInfo {
+      display: hide;
+      background-color: white;
+      width: fit-content;
+      height: 40px;
+      margin-top: 20px;
+      align-items: center;
+      padding: 0 15px;
+      border-radius: 0 8px 8px 0;
+      border: 0;
+    }
 
     .filter {
       width: 152px;
@@ -69,5 +106,6 @@ export const Main = styled.main`
       flex-direction: column;
       align-items: center;
     }
+
   }
 `;

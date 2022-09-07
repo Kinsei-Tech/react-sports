@@ -88,6 +88,8 @@ export const TeamCard = styled.li`
       flex-direction: column;
       width: 20%;
       justify-content: center;
+      align-items: flex-end;
+      margin-right: 15px;
       gap: 20px;
     }
 
