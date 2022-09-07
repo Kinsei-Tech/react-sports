@@ -42,6 +42,13 @@ body {
         cursor: pointer;
     }
 
+    .errorMessage{
+        color: var(--error);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
             -webkit-appearance: none;
