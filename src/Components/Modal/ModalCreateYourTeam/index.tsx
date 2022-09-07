@@ -43,6 +43,7 @@ const ModalCreateYourTeam = () => {
   ];
   const newTeam = (data: FieldValues) => {
     createTeam(data);
+    setIsOpenModal(false)
   };
 
   useEffect(() => {

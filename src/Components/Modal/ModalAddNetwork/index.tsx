@@ -23,6 +23,7 @@ const ModalAddNetwork = () => {
 
   const onSubmitFunction = (data: FieldValues) => {
     console.log(data);
+    setIsOpenModal(false)
   };
 
   return (
