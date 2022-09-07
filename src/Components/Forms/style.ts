@@ -10,11 +10,15 @@ const FormStyle = styled.form`
   gap: 1rem;
   padding: 10px;
   background-color: var(--gray-0);
-  max-height: 60vh;
+  max-height: 68vh;
 
-  h1 {
-    color: green;
-    font-size: 1rem;
+  h2 {
+    text-align: center;
+
+    color: var(--color-green-primary-hover);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 31px;
   }
 
   article {
@@ -24,6 +28,10 @@ const FormStyle = styled.form`
     @media (min-width: 930px) {
       display: flex;
       flex-direction: row;
+
+      section + section {
+        padding-left: 10px;
+      }
 
       section {
         width: 50%;

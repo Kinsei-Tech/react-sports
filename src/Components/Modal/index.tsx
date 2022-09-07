@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import ModalStyle from './style';
-import { AiFillCloseSquare } from 'react-icons/ai';
-import Button from '../Button';
+import { AiOutlineClose } from 'react-icons/ai';
 
 interface IModalProps {
   children: ReactNode;
@@ -30,14 +29,9 @@ const Modal = ({ children, setIsOpenModal, expandedModal }: IModalProps) => {
     <ModalStyle expandedModal={expandedModal}>
       <div ref={modalRef} className='Modal global-modal-style'>
         <header className='headerModal'>
-          <Button
-            backGround='transparent'
-            color='none'
-            width={'30px'}
-            onClick={() => setIsOpenModal(false)}
-          >
-            <AiFillCloseSquare size={28} />
-          </Button>
+          <button onClick={() => setIsOpenModal(false)}>
+            <AiOutlineClose size={18} />
+          </button>
         </header>
         {children}
       </div>
