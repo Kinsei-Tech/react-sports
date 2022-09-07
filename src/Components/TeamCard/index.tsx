@@ -1,8 +1,9 @@
 import '../../Pages/Dashboard/style';
 import { TeamCard } from './style';
 import Button from '../../Components/Button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
+import { AuthContext } from '../../Contexts/AuthContext';
 export interface IElementsProps {
   name: string;
   placeName: string;
@@ -17,6 +18,7 @@ export interface IElementsProps {
   positionsSearchedFor: [];
   requests: [];
   participantsId: [];
+  urlImg: string;
 }
 
 interface ICard {
@@ -28,7 +30,10 @@ function Card({ elem }: ICard) {
   return (
     <TeamCard>
       <img
-        src='https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
+        src={
+          elem.urlImg ||
+          'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
+        }
         alt='Logo do time'
       />
 
