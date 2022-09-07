@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
-import api from '../../../../services/api';
+import { AuthContext } from '../../../../Contexts/AuthContext';
 import { LiStyle } from './style';
 
 interface ICardAcceptedDeniedProps {
   type?: string;
-  id: string;
+  name: string;
 }
 
 interface IRequests {
@@ -31,21 +31,15 @@ interface ITeam {
   userId: string;
 }
 
-const CardAcceptedDenied = ({ type, id }: ICardAcceptedDeniedProps) => {
-  const [teamsId, setTeamsId] = useState<string>('');
-
-  const getTeamsId = async () => {
-    const { data } = await api.get<ITeam>(`teams/${id}`);
-    setTeamsId(data.name);
-  };
-  getTeamsId();
+const CardAcceptedDenied = ({ type, name }: ICardAcceptedDeniedProps) => {
+  const { user } = useContext(AuthContext);
 
   return (
     <>
       {type === 'Accepted' ? (
         <LiStyle>
           <div>
-            <p>Sua solicitaçãa para o grupo {teamsId} foi aceita!</p>
+            <p>Sua solicitação para o grupo {name} foi aceita!</p>
             <span>Entre em contato com o time para mas informações.</span>
           </div>
           <FaCheck />
@@ -53,7 +47,7 @@ const CardAcceptedDenied = ({ type, id }: ICardAcceptedDeniedProps) => {
       ) : (
         <LiStyle>
           <div>
-            <p>Sua solicitaçãa para o grupo {teamsId} foi recusada!</p>
+            <p>Sua solicitação para o grupo {name} foi recusada!</p>
             <span>Entre em contato com o time para mas informações.</span>
           </div>
           <GrClose />
