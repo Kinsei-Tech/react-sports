@@ -41,12 +41,6 @@ function Card({ elem, type }: ICard) {
             alt='Logo do time'
           />
         </figure>
-        {type === 'profile' && (
-          <div className='box-notification'>
-            <FaEnvelope className='svg-envelope-style' />
-            <span>2</span>
-          </div>
-        )}
       </SectionImagem>
       <div>
         <h2>{elem.name}</h2>
@@ -59,7 +53,7 @@ function Card({ elem, type }: ICard) {
           {/* {elem?.positionsSearchedFor?.reduce<string[]>((acc, proxima) =>
                   console.log(acc, proxima)
                 )} */}
-          {elem.positionsSearchedFor.join('/')}
+          {/*elem.positionsSearchedFor.join('/')*/}
         </span>
       </div>
       {type === 'profile' ? (
