@@ -3,7 +3,7 @@ import { TeamCard } from './style';
 import Button from '../../Components/Button';
 import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
-interface IElementsProps {
+export interface IElementsProps {
   name: string;
   placeName: string;
   cep: string;
@@ -66,6 +66,7 @@ function Card({ elem }: ICard) {
           <DropRequestDashboard
             isVisible={isVisible}
             setIsVisible={setIsVisible}
+            elem={elem}
           />
         )}
       </div>
