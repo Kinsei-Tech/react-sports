@@ -1,6 +1,5 @@
 import { Header } from '../../Components/Header';
 import { FaAngleDoubleRight, FaEnvelope } from 'react-icons/fa';
-import ImgProfile from '../../Images/ImagemPerfil.svg';
 import {
   ButtonBox,
   Contacts,
@@ -43,11 +42,9 @@ const ProfilePage = () => {
   /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
 
-
   useEffect(() => {
     setUserImg(localStorage.getItem('@userImg') || '');
   }, []);
-
 
   useEffect(() => {
     user &&
@@ -256,17 +253,13 @@ const ProfilePage = () => {
                 Cidade:
                 <span>{user?.city}</span>
               </p>
-              <p>
-                Bairro:
-                <span>Pajuçara</span>
-              </p>
             </SectionUserAddress>
           </DivFlex>
           <SectionGroupList>
             <span className='section-title'>Grupos:</span>
             <UlTeamCard>
               {teams?.map((team) => (
-                <Card elem={team} key={uuidv4()} type='profile'></Card>
+                <Card elem={team} key={uuidv4()} type='profile' />
               ))}
             </UlTeamCard>
           </SectionGroupList>
