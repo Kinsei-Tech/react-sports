@@ -54,7 +54,21 @@ export const Main = styled.main`
     .hoverClass{
       display: flex;
       flex-direction: row;
+      
       &:hover{
+
+        .onHoverInfo {
+          background-color: white;
+          width: fit-content;
+          transition: display 2s;
+          height: 40px;
+          margin-top: 20px;
+          align-items: center;
+          padding: 0 15px;
+          border-radius: 0 8px 8px 0;
+          border: 0;
+        }
+
         .onHoverInfo{
           display: flex;
           background-color: white;
@@ -65,18 +79,6 @@ export const Main = styled.main`
         }
 
       }
-    }
-
-    .onHoverInfo {
-      display: hide;
-      background-color: white;
-      width: fit-content;
-      height: 40px;
-      margin-top: 20px;
-      align-items: center;
-      padding: 0 15px;
-      border-radius: 0 8px 8px 0;
-      border: 0;
     }
 
     .filter {

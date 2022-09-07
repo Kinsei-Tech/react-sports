@@ -16,6 +16,7 @@ const InputStyle = styled.input<IInputStyle>`
   background-color: var(--gray-0);
 
   &:focus {
+    transition: all 800ms;
     border-color: var(--color-green-primary-hover);
   }
 
