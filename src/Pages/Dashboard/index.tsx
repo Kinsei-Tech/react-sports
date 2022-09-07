@@ -11,9 +11,10 @@ import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
 import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
 import Footer from '../../Components/Footer';
+import { v4 as uuid } from 'uuid';
 
 export const Dashboard = () => {
-  const { v4: uuidv4 } = require('uuid');
+  // const { v4: uuidv4 } = require('uuid');
   const {
     user,
     isOpenModal,
@@ -65,7 +66,7 @@ export const Dashboard = () => {
                 +
               </Button>
               <button className='onHoverInfo' onClick={openCreateYourTeam}>
-                  Criar um novo time
+                Criar um novo time
               </button>
             </div>
 
@@ -81,8 +82,8 @@ export const Dashboard = () => {
 
         <div className='teamsCards'>
           <ul>
-            {teams?.map((elem, index) => (
-              <Card elem={elem} key={uuidv4()}></Card>
+            {teams?.map((elem) => (
+              <Card elem={elem} key={uuid()}></Card>
             ))}
           </ul>
         </div>
