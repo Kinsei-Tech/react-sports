@@ -46,7 +46,7 @@ export interface IDataLogin {
 interface userContextData {
   userRegister: (IDataRegister: FieldValues) => void;
   userLogin: (IDataLogin: FieldValues) => void;
-  user: IUserData | null | undefined;
+  user: IUserData | undefined;
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   isModalCreateYourTeam: boolean;
@@ -67,7 +67,7 @@ const AuthProvider = ({ children }: IProvider) => {
   const [userLocalStorage, setUserLocalStorage] = useState(
     JSON.parse(localUser!)
   );
-  const [user, setUser] = useState<IUserData | null>();
+  const [user, setUser] = useState<IUserData>();
   const [teamDashBoard, setTeamDashBoard] = useState();
   const [teamProfile, setTeamProfile] = useState();
   const [userImg, setUserImg] = useState<string>();
@@ -125,6 +125,8 @@ const AuthProvider = ({ children }: IProvider) => {
   useEffect(() => {
     const token = localStorage.getItem('@accessToken');
     api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const user = JSON.parse(localUser!);
+    setUser(user);
   }, []);
 
   return (

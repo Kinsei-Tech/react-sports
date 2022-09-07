@@ -14,7 +14,6 @@ import Footer from '../../Components/Footer';
 import { v4 as uuid } from 'uuid';
 import { motion } from 'framer-motion';
 
-
 export const Dashboard = () => {
   // const { v4: uuidv4 } = require('uuid');
   const {
@@ -52,14 +51,18 @@ export const Dashboard = () => {
   };
 
   const pageMotion = {
-    initial: {opacity: 0, x: -50},
-    animate: {opacity: 1, x: 0, transition: {duration: 0.3}},
-    exit: {opacity: 0, x:0, transition: {duration: 0.3}}
+    initial: { opacity: 0, x: -50 },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+    exit: { opacity: 0, x: 0, transition: { duration: 0.3 } },
   };
 
-  return userLocalStorage ? ( 
-    <motion.div initial="initial" animate="animate" exit="exit" variants={pageMotion}>
-      <Header />
+  return userLocalStorage ? (
+    <motion.div
+      initial='initial'
+      animate='animate'
+      exit='exit'
+      variants={pageMotion}
+    >
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
       <Header />

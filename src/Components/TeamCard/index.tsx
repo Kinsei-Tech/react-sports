@@ -32,17 +32,16 @@ function Card({ elem, type }: ICard) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <TeamCard>
+      <SectionImagem>
         <figure>
-      <img
-        src={
-          elem.urlImg ||
-          'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
-        }
-        alt='Logo do time'
-      />
+          <img
+            src={
+              elem.urlImg ||
+              'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
+            }
+            alt='Logo do time'
+          />
         </figure>
-
-
         {type === 'profile' && (
           <div className='box-notification'>
             <FaEnvelope className='svg-envelope-style' />
@@ -98,14 +97,14 @@ function Card({ elem, type }: ICard) {
             Solicitar
           </Button>
 
-        {isVisible && (
-          <DropRequestDashboard
-            isVisible={isVisible}
-            setIsVisible={setIsVisible}
-            elem={elem}
-          />
-        )}
-      </div>
+          {isVisible && (
+            <DropRequestDashboard
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              elem={elem}
+            />
+          )}
+        </div>
       )}
     </TeamCard>
   );
