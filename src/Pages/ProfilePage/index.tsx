@@ -89,11 +89,12 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Header />
-      {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
       {isModalEditProfile && isOpenModal && <EditProfile />}
+      {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
       {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
       {isModalRequestList && isOpenModal && <ModalRequestList />}
+      <Header />
+
       <MainStyled>
         <SectionContactNetworks>
           <ContactsBox>
@@ -232,8 +233,8 @@ const ProfilePage = () => {
         <SectionGroupList>
           <span className='section-title'>Grupos:</span>
           <UlTeamCard>
-            {/* <Card openModalTeamDetails={openModalTeamDetails} />
-            <Card openModalTeamDetails={openModalTeamDetails} /> */}
+            {/*             <Card  openModalTeamDetails={openModalTeamDetails} />
+            <Card  openModalTeamDetails={openModalTeamDetails}  /> */}
           </UlTeamCard>
         </SectionGroupList>
       </MainStyled>

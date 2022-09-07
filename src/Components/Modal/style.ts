@@ -7,15 +7,16 @@ interface IModalStyle {
 const ModalStyle = styled.div<IModalStyle>`
   width: 100vw;
   height: 100vh;
-
+  margin: 0 auto;
   padding: 15px;
+  background-color: red;
 
   background: var(--gray-2-blur);
 
   position: absolute;
   z-index: 9999;
 
-  div {
+  .Modal {
     min-height: auto;
     margin: 18vh auto;
 
