@@ -25,6 +25,7 @@ import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
 import ModalRequestList from '../../Components/Modal/ModalRequestList';
 import EditProfile from '../../Components/EditProfile';
 import { EditProfileContext } from '../../Contexts/EditProfileContext';
+import api from '../../services/api';
 
 const ProfilePage = () => {
   const { isOpenModal, setIsOpenModal, user } = useContext(AuthContext);
