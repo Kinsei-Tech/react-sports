@@ -87,16 +87,23 @@ export const UserImage = styled.div`
   border: 2.5px solid var(--color-yellow-second);
   border-radius: 100%;
 
-  height: 6vw;
-  width: 6vw;
+  height: 80px;
+  width: 80px;
 
-  min-height: 80px;
-  min-width: 80px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+  @media (min-width: 930px) {
+    width: 140px;
+    height: 140px;
+  }
+  figure {
+    width: inherit;
+    height: inherit;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2.5px solid var(--color-yellow-second);
+      object-fit: cover;
+    }
   }
 `;
 
