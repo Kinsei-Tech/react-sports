@@ -1,7 +1,6 @@
 import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Modal from '..';
@@ -43,7 +42,7 @@ const ModalCreateYourTeam = () => {
   ];
   const newTeam = (data: FieldValues) => {
     createTeam(data);
-    setIsOpenModal(false)
+    setIsOpenModal(false);
   };
 
   useEffect(() => {
@@ -83,6 +82,7 @@ const ModalCreateYourTeam = () => {
                 name='maxWeight'
                 placeholder='Digite o peso máximo'
                 type='number'
+                step='.01'
                 register={register}
                 label='Peso(kg)'
               />

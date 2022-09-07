@@ -20,13 +20,13 @@ export const schema = yup.object().shape({
     .oneOf([yup.ref('password')], 'As senhas devem ser as mesmas'),
   height: yup.string(),
   weight: yup.string(),
-  age: yup.string().required('Idade obrigatório'),
+  age: yup.string(),
   cep: yup
     .string()
-    .min(8, 'O CEP contém 8 dígitos, sendo todos numéricos')
+    .min(8, 'O CEP deve conter 8 dígitos, sendo todos numéricos')
     .required('CEP obrigatório'),
-  city: yup.string().required('Cidade obrigatória'),
-  telephone: yup.string().required('Telefone obrigatório'),
+  city: yup.string(),
+  telephone: yup.string(),
   isExercising: yup.string(),
   positions: yup.array(),
 });

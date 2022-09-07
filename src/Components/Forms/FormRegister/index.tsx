@@ -11,6 +11,7 @@ import { schema } from '../../../Validations/validationRegister';
 import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { AddressContext } from '../../../Contexts/AddressContext';
+import FieldSet from '../../Fieldset';
 
 export const FormRegister = () => {
   const { userRegister } = useContext(AuthContext);
@@ -28,12 +29,20 @@ export const FormRegister = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FieldValues>({ mode: 'onChange', resolver: yupResolver(schema) });
 
   useEffect(() => {
     cep.length === 8 && getAddress(cep);
   }, [cep]);
+
+  const positionsArr = [
+    { label: 'Goleiro', name: 'positionsSearchedFor', value: 'goalkeeper' },
+    { label: 'Fixo', name: 'positionsSearchedFor', value: 'fixed' },
+    { label: 'Pivô', name: 'positionsSearchedFor', value: 'target' },
+    { label: 'Ala Esquerda', name: 'positionsSearchedFor', value: 'left wing' },
+    { label: 'Ala Direita', name: 'positionsSearchedFor', value: 'right wing' },
+  ];
 
   return (
     <Container>
@@ -43,9 +52,9 @@ export const FormRegister = () => {
       <div className='div_Header_Container_FormStyle'>
         <div className='div_Header_Form'></div>
         <FormStyle onSubmit={handleSubmit(onSubmitFunction)}>
-          <h1>Crie sua conta</h1>
-          <div className='div_FormStyle'>
-            <div className='sectionForm'>
+          <h2>Crie sua conta</h2>
+          <article>
+            <section>
               <Input
                 placeholder='Digite seu nome'
                 register={register}
@@ -127,8 +136,8 @@ export const FormRegister = () => {
               <span className='errorMessage'>
                 {typeof errors.age?.message === 'string' && errors.age?.message}
               </span>
-            </div>
-            <div className='sectionForm'>
+            </section>
+            <section>
               <Input
                 type='number'
                 placeholder='Digite seu CEP'
@@ -178,85 +187,28 @@ export const FormRegister = () => {
                 {typeof errors.telephone?.message === 'string' &&
                   errors.telephone?.message}
               </span>
-              <fieldset>
-                <legend>Pratica Exercícios ativamente?</legend>
-                <label htmlFor='yes'>
-                  Sim
-                  <input
-                    type='radio'
-                    value='yes'
-                    checked
-                    {...register('isDoingSports')}
-                  />
-                </label>
-                <label htmlFor='yes'>
-                  Não
-                  <input
-                    type='radio'
-                    value='no'
-                    checked
-                    {...register('isDoingSports')}
-                  />
-                </label>
-              </fieldset>
-              <fieldset className='fieldPlayer'>
-                <legend>Qual posição busca jogar?</legend>
-                <div className='checkDivision'>
-                  <label htmlFor='goleiro'>
-                    Goleiro
-                    <input
-                      type='checkbox'
-                      value='goleiro'
-                      {...register('positions')}
-                    />
-                  </label>
-                  <label htmlFor='alaEsquerda'>
-                    Ala Esquerda
-                    <input
-                      type='checkbox'
-                      value='alaEsquerda'
-                      {...register('positions')}
-                    />
-                  </label>
-                  <label htmlFor='fixo'>
-                    Fixo
-                    <input
-                      type='checkbox'
-                      value='fixo'
-                      {...register('positions')}
-                    />
-                  </label>
-                </div>
-                <div className='checkDivision'>
-                  <label htmlFor='alaDireita'>
-                    Ala Direita
-                    <input
-                      type='checkbox'
-                      value='alaDireita'
-                      {...register('positions')}
-                    />
-                  </label>
-
-                  <label htmlFor='pivo'>
-                    Pivô
-                    <input
-                      type='checkbox'
-                      value='pivo'
-                      {...register('positions')}
-                    />
-                  </label>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <Button
-            backGround={'var(--color-yellow-primary)'}
-            colorHover={'var(--color-yellow-primary-hover)'}
-            color={'var(--gray-2: #202020)'}
-            type={'submit'}
-          >
-            Cadastrar
-          </Button>
+              <FieldSet
+                type='radio'
+                legend='Pratica exercícios regularmente?'
+                register={register}
+              />
+              <FieldSet
+                type='checkbox'
+                legend='Qual posição busca para o time?'
+                register={register}
+                checkboxArr={positionsArr}
+              />
+            </section>
+          </article>
+          {isValid ? (
+            <Button color='yellow' type={'submit'}>
+              Cadastrar
+            </Button>
+          ) : (
+            <Button color='yellow-disabled' type={'submit'}>
+              Cadastrar
+            </Button>
+          )}
         </FormStyle>
       </div>
     </Container>

@@ -14,8 +14,11 @@ const ButtonStyle = styled.button<IButtonStyleProps>`
   border: none;
   border-radius: 8px;
   background-color: ${({ backGround }) => backGround};
+  transition: 0.5s;
+
   &:hover {
     background-color: ${({ colorHover }) => colorHover};
+    transition: 0.5s;
   }
 
   ${(props) => {
@@ -55,6 +58,7 @@ const ButtonStyle = styled.button<IButtonStyleProps>`
       case 'yellow-disabled':
         return css`
           background-color: var(--color-yellow-primary-negative);
+          color: var(--gray-1);
         `;
       case 'none':
         return css`

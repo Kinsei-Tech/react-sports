@@ -5,7 +5,10 @@ const LabelStyled = styled.label`
   flex-direction: column;
   width: 100%;
   span {
-    margin-left: 15px;
+    margin: 0px 0px 5px 15px;
+    color: var(--gray-2);
+    font-weight: 400;
+    font-size: 15px;
   }
 `;
 

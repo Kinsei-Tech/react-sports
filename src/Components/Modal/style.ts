@@ -34,32 +34,36 @@ const ModalStyle = styled.div<IModalStyle>`
   }
 
   .headerModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 18px;
     height: 50px;
     border-radius: 16px 16px 0px 0px;
     background-color: var(--color-green-primary);
-    position: relative;
-    width: auto;
 
     button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       padding: 0px;
-      height: 22px;
-      width: 22px;
-      background-color: black;
-      position: absolute;
-      border-radius: 0;
-      right: 10px;
-      top: 10px;
-      svg {
-        fill: var(--color-yellow-primary);
-        position: absolute;
-        top: -3px;
-        left: -3px;
-        &:hover {
-          fill: var(--color-yellow-primary-hover);
-        }
-        path {
-          color: var(--color-yellow-primary);
-        }
+      height: 25px;
+      width: 25px;
+      background-color: var(--color-yellow-primary);
+      border-radius: 50%;
+      border: none;
+
+      -webkit-box-shadow: 0px 10px 13px -7px #000000,
+        5px 5px 15px 5px rgba(0, 0, 0, 0);
+      box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+
+      transition: 0.5s;
+
+      &:hover {
+        background-color: var(--color-yellow-primary-hover);
+        transition: 0.5s;
       }
     }
   }
@@ -98,5 +102,10 @@ export const Container = styled.section`
 
   section {
     align-items: center;
+  }
+  @media (min-width: 930px) {
+    section + section {
+      margin-left: 30px;
+    }
   }
 `;
