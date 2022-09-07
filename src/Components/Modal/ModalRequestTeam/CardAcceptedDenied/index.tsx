@@ -1,7 +1,5 @@
-import { useContext } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
-import { AuthContext } from '../../../../Contexts/AuthContext';
 import { LiStyle } from './style';
 
 interface ICardAcceptedDeniedProps {
@@ -9,31 +7,7 @@ interface ICardAcceptedDeniedProps {
   name: string;
 }
 
-interface IRequests {
-  id: string;
-  name: string;
-  position: string;
-}
-
-interface ITeam {
-  cep: string | number;
-  city: string;
-  description: string;
-  id: string | number;
-  maxAge: string | number;
-  maxWeight: string | number;
-  name: string;
-  participantsId: string[];
-  placeName: string;
-  positionsSearchedFor: string[];
-  requests: IRequests[];
-  state: string;
-  userId: string;
-}
-
 const CardAcceptedDenied = ({ type, name }: ICardAcceptedDeniedProps) => {
-  const { user } = useContext(AuthContext);
-
   return (
     <>
       {type === 'Accepted' ? (
