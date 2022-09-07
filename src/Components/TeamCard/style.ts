@@ -9,6 +9,7 @@ export const TeamCard = styled.li`
   justify-content: flex-start;
   border-bottom: 2px solid var(--color-yellow-primary);
   margin: 0 auto;
+  padding: 20px;
 
 
   div {
@@ -16,8 +17,8 @@ export const TeamCard = styled.li`
     flex-direction: column;
     justify-content: space-evenly;
   img {
-    height: 20vw;
-    max-height: 100px;
+    width: 20vw;
+    max-width: 150px;
     align-self: center;
     border: 2px solid var(--color-yellow-primary);
     border-radius: 50%;
@@ -55,6 +56,10 @@ export const TeamCard = styled.li`
     width: 100%;
     flex-direction: row;
     margin-bottom: 10px;
+
+    @media (min-width: 930px) {
+      position: relative;
+
 
   }
 
