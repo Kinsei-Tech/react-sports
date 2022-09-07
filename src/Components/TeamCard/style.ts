@@ -15,13 +15,14 @@ export const TeamCard = styled.li`
     flex-direction: column;
     justify-content: space-evenly;
 
-  img {
-    width: 20vw;
-    max-width: 150px;
-    align-self: center;
-    border: 2px solid var(--color-yellow-primary);
-    border-radius: 50%;
-    margin-bottom: 15px;
+    img {
+      width: 20vw;
+      max-width: 150px;
+      align-self: center;
+      border: 2px solid var(--color-yellow-primary);
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
   }
 
   div {
@@ -30,7 +31,6 @@ export const TeamCard = styled.li`
     flex-direction: column;
     justify-content: space-evenly;
     width: 70%;
-
   }
 
   h2 {
@@ -55,11 +55,9 @@ export const TeamCard = styled.li`
     flex-direction: row;
     margin-bottom: 10px;
 
-
     @media (min-width: 930px) {
       position: relative;
-
-
+    }
   }
 
   .btnContainer > Button {

@@ -1,6 +1,5 @@
 import { InputContainer, StyledHeader, UserImage } from './styles';
 import Logo from '../../Images/LogoWithBall.svg';
-import ProfilePicture from '../../Images/example-profile-picture.svg';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { SearchInput } from '../SearchInput';
 import { DropMenuProfile } from '../DropMenu';
@@ -44,7 +43,9 @@ export const Header = () => {
         <img src={Logo} alt='brand logo' />
         <section>
           <UserImage>
-            <img src={userImg} alt='user profile img' />
+            <figure>
+              <img src={userImg} alt='user profile img' />
+            </figure>
           </UserImage>
           <button onClick={() => setIsVisible(true)}>
             <div className='icon'>

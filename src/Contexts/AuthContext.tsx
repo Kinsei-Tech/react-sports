@@ -18,7 +18,7 @@ export interface IDataRegister {
   age: number;
   state: string;
   telephone: number;
-  isDoingSports: string;
+  isExercising: string;
   positions: string[];
 }
 

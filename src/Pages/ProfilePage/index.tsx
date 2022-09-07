@@ -31,7 +31,8 @@ import api from '../../services/api';
 import { motion } from 'framer-motion';
 
 const ProfilePage = () => {
-  const { isOpenModal, setIsOpenModal, user } = useContext(AuthContext);
+  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg } =
+    useContext(AuthContext);
   const { getProfileInfo } = useContext(EditProfileContext);
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
@@ -41,6 +42,12 @@ const ProfilePage = () => {
   const [teams2, setTeams2] = useState<ITeam[]>([]);
   /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
+
+
+  useEffect(() => {
+    setUserImg(localStorage.getItem('@userImg') || '');
+  }, []);
+
 
   useEffect(() => {
     user &&
@@ -126,7 +133,7 @@ const ProfilePage = () => {
               <Contacts>
                 <div className='img-user'>
                   <figure>
-                    <img src={ImgProfile} alt='Usuario' />
+                    <img src={userImg} alt='Usuario' />
                   </figure>
                   <div className='box-notification'>
                     <FaEnvelope
