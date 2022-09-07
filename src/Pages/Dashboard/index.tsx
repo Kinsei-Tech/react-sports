@@ -27,6 +27,7 @@ export const Dashboard = () => {
     setIsModalEditYourTeam,
     isModalRequest,
     setIsModalRequest,
+    userLocalStorage,
   } = useContext(AuthContext);
 
   const [teams, setTeams] = useState([]);
@@ -56,13 +57,12 @@ export const Dashboard = () => {
     exit: {opacity: 0, x:0, transition: {duration: 0.3}}
   };
 
-  return user ? (
-    
+  return userLocalStorage ? ( 
     <motion.div initial="initial" animate="animate" exit="exit" variants={pageMotion}>
       <Header />
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
-
+      <Header />
       <Main>
         <div className='buttonsFilter'>
           <div className='btn'>

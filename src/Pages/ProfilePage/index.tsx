@@ -37,28 +37,16 @@ const ProfilePage = () => {
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
-  const userId = localStorage.getItem('@id');
+  /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
 
-  const {
-    name,
-    telephone,
-    email,
-    height,
-    weight,
-    age,
-    isExercising,
-    positions,
-    state,
-    cep,
-    city,
-  } = user;
 
   useEffect(() => {
-    userId &&
+    user &&
       api
-        .get(`/teams?userId=${userId}`)
+        .get(`/teams?userId=${user.id}`)
         .then((response) => setTeams(response.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(teams);
 
@@ -116,150 +104,150 @@ const ProfilePage = () => {
         {isModalRequestList && isOpenModal && <ModalRequestList />}
         <Header />
 
-        <MainStyled>
-          <SectionContactNetworks>
-            <ContactsBox>
-              <Contacts>
-                <div className='img-user'>
-                  <figure>
-                    <img src={ImgProfile} alt='Usuario' />
-                  </figure>
-                  <div className='box-notification'>
-                    <FaEnvelope
-                      className='svg-envelope-style'
-                      onClick={openModalRequestList}
-                    />
-                    <span>2</span>
-                  </div>
+<MainStyled>
+        <SectionContactNetworks>
+          <ContactsBox>
+            <Contacts>
+              <div className='img-user'>
+                <figure>
+                  <img src={ImgProfile} alt='Usuario' />
+                </figure>
+                <div className='box-notification'>
+                  <FaEnvelope
+                    className='svg-envelope-style'
+                    onClick={openModalRequestList}
+                  />
+                  <span>2</span>
                 </div>
-                <div className='user-contacts'>
-                  <span className='user-name'>{name}</span>
-                  <span>{email}</span>
-                  <span>{telephone}</span>
-                </div>
-              </Contacts>
-            </ContactsBox>
-            <DivNetworks>
-              <h3>Redes:</h3>
-              <div>
-                <a href='#'>
-                  <span>Facebook</span>
-                  <FaAngleDoubleRight className='svg-doublerigth-style' />
-                </a>
-                <a href='#'>
-                  <span>Facebook</span>
-                  <FaAngleDoubleRight className='svg-doublerigth-style' />
-                </a>
-                <a href='#'>
-                  <span>Facebook</span>
-                  <FaAngleDoubleRight className='svg-doublerigth-style' />
-                </a>
-                <a href='#'>
-                  <span>Facebook</span>
-                  <FaAngleDoubleRight className='svg-doublerigth-style' />
-                </a>
               </div>
-            </DivNetworks>
-            <ButtonBox>
-              <Button
-                color='var(--gray-2)'
-                backGround='var(--color-green-primary)'
-                height={'21px'}
-                width={'84px'}
-                colorHover='var(--color-green-primary-hover)'
-                onClick={openModalEditProfile}
-              >
-                Editar Perfil
-              </Button>
-              <Button
-                color='var(--gray-2)'
-                backGround='var(--color-green-primary)'
-                height={'21px'}
-                width={'84px'}
-                colorHover='var(--color-green-primary-hover)'
-                onClick={openModalAddNetwork}
-              >
-                Add Redes
-              </Button>
-            </ButtonBox>
-          </SectionContactNetworks>
-          <DivFlex>
-            <SectionUserDescription>
-              <PhysicalDescriptions>
-                <p>
-                  Altura:
-                  {height ? <span>{height}</span> : <span>__</span>}
-                </p>
-                <Pipe>|</Pipe>
-                <p>
-                  Peso:
-                  {weight ? <span>{weight}</span> : <span>__</span>}
-                </p>
-                <Pipe>|</Pipe>
-                <p>
-                  Idade:
-                  {age ? <span>{age}</span> : <span>__</span>}
-                </p>
-              </PhysicalDescriptions>
-              {isExercising ? (
-                isExercising === 'yes' ? (
-                  <p>Pratica esportes regularmente</p>
-                ) : (
-                  <p>Não pratica esportes regularmente</p>
-                )
+              <div className='user-contacts'>
+                <span className='user-name'>{user?.name}</span>
+                <span>{user?.email}</span>
+                <span>{user?.telephone}</span>
+              </div>
+            </Contacts>
+          </ContactsBox>
+          <DivNetworks>
+            <h3>Redes:</h3>
+            <div>
+              <a href='#'>
+                <span>Facebook</span>
+                <FaAngleDoubleRight className='svg-doublerigth-style' />
+              </a>
+              <a href='#'>
+                <span>Facebook</span>
+                <FaAngleDoubleRight className='svg-doublerigth-style' />
+              </a>
+              <a href='#'>
+                <span>Facebook</span>
+                <FaAngleDoubleRight className='svg-doublerigth-style' />
+              </a>
+              <a href='#'>
+                <span>Facebook</span>
+                <FaAngleDoubleRight className='svg-doublerigth-style' />
+              </a>
+            </div>
+          </DivNetworks>
+          <ButtonBox>
+            <Button
+              color='var(--gray-2)'
+              backGround='var(--color-green-primary)'
+              height={'21px'}
+              width={'84px'}
+              colorHover='var(--color-green-primary-hover)'
+              onClick={openModalEditProfile}
+            >
+              Editar Perfil
+            </Button>
+            <Button
+              color='var(--gray-2)'
+              backGround='var(--color-green-primary)'
+              height={'21px'}
+              width={'84px'}
+              colorHover='var(--color-green-primary-hover)'
+              onClick={openModalAddNetwork}
+            >
+              Add Redes
+            </Button>
+          </ButtonBox>
+        </SectionContactNetworks>
+        <DivFlex>
+          <SectionUserDescription>
+            <PhysicalDescriptions>
+              <p>
+                Altura:
+                {user?.height ? <span>{user?.height}</span> : <span>__</span>}
+              </p>
+              <Pipe>|</Pipe>
+              <p>
+                Peso:
+                {user?.weight ? <span>{user?.weight}</span> : <span>__</span>}
+              </p>
+              <Pipe>|</Pipe>
+              <p>
+                Idade:
+                {user?.age ? <span>{user?.age}</span> : <span>__</span>}
+              </p>
+            </PhysicalDescriptions>
+            {user?.isExercising ? (
+              user?.isExercising === 'yes' ? (
+                <p>Pratica esportes regularmente</p>
               ) : (
-                <p>___</p>
-              )}
+                <p>Não pratica esportes regularmente</p>
+              )
+            ) : (
+              <p>___</p>
+            )}
 
-              {positions.length > 0 ? (
-                positions.length === 1 ? (
-                  <p>
-                    Posição:
-                    <span>{positions[0]}</span>
-                  </p>
-                ) : (
-                  <p>
-                    Posições:
-                    {positions.map((position) => (
-                      <span> {position} /</span>
-                    ))}
-                  </p>
-                )
+            {user && user.positions?.length > 0 ? (
+              user && user.positions.length === 1 ? (
+                <p>
+                  Posição:
+                  <span>{user?.positions[0]}</span>
+                </p>
               ) : (
                 <p>
                   Posições:
-                  <span>___</span>
+                  {user?.positions.map((position) => (
+                    <span> {position} /</span>
+                  ))}
                 </p>
-              )}
-            </SectionUserDescription>
-            <SectionUserAddress>
+              )
+            ) : (
               <p>
-                Estado:
-                <span>{state}</span>
+                Posições:
+                <span>___</span>
               </p>
-              <p>
-                CEP:
-                <span>{cep}</span>
-              </p>
-              <p>
-                Cidade:
-                <span>{city}</span>
-              </p>
-              <p>
-                Bairro:
-                <span>Pajuçara</span>
-              </p>
-            </SectionUserAddress>
-          </DivFlex>
-          <SectionGroupList>
-            <span className='section-title'>Grupos:</span>
-            <UlTeamCard>
-              {teams?.map((team) => (
-                <Card elem={team} key={uuidv4()} type='profile'></Card>
-              ))}
-            </UlTeamCard>
-          </SectionGroupList>
-        </MainStyled>
+            )}
+          </SectionUserDescription>
+          <SectionUserAddress>
+            <p>
+              Estado:
+              <span>{user?.state}</span>
+            </p>
+            <p>
+              CEP:
+              <span>{user?.cep}</span>
+            </p>
+            <p>
+              Cidade:
+              <span>{user?.city}</span>
+            </p>
+            <p>
+              Bairro:
+              <span>Pajuçara</span>
+            </p>
+          </SectionUserAddress>
+        </DivFlex>
+        <SectionGroupList>
+          <span className='section-title'>Grupos:</span>
+          <UlTeamCard>
+            {teams?.map((team) => (
+              <Card elem={team} key={uuidv4()} type='profile'></Card>
+            ))}
+          </UlTeamCard>
+        </SectionGroupList>
+      </MainStyled>
       </motion.div>
     </>
     );

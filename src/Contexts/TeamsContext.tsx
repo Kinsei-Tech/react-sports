@@ -50,7 +50,7 @@ const TeamsProvider = ({ children }: IProvider) => {
     console.log(data);
     const postApi = () => {
       const response = api
-        .patch(`/teams/${1}`, data)
+        .patch(`/teams/${3}`, data)
         .then((response) => {
           console.log(response.data);
         })

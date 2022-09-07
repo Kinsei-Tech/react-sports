@@ -47,34 +47,38 @@ const EditProfileProvider = ({ children }: IProvider) => {
   const [positions, setPositions] = useState<string[]>([]);
 
   const getProfileInfo = () => {
-    api.get(`/users/${user.id}`).then((res) => {
-      setUser(res.data);
-      setUrlImg(user.urlImg);
-      setName(user.name);
-      setEmail(user.email);
-      setTelephone(user.telephone);
-      user.height && setHeight(user.height);
-      user.weight && setWeight(user.weight);
-      setAge(user.age);
-      setIsExercising(user.isExercising);
-      setPositions(user.positions);
-      setCep(user.cep);
-    });
+    if (user) {
+      api.get(`/users/${user?.id}`).then((res) => {
+        setUser(res.data);
+        setUrlImg(user.urlImg);
+        setName(user.name);
+        setEmail(user.email);
+        setTelephone(user.telephone);
+        user.height && setHeight(user.height);
+        user.weight && setWeight(user.weight);
+        setAge(user.age);
+        setIsExercising(user.isExercising);
+        setPositions(user.positions);
+        setCep(user.cep);
+      });
+    }
   };
 
   const editProfile = (data: object) => {
-    const patchAPI = () => {
-      const response = api
-        .patch(`users/${user.id}`, data)
-        .then((res) => console.log(res));
+    if (user) {
+      const patchAPI = () => {
+        const response = api
+          .patch(`users/${user.id}`, data)
+          .then((res) => console.log(res));
 
-      return response;
-    };
-    toast.promise(patchAPI(), {
-      loading: 'Loading',
-      success: 'Perfil editado com sucesso',
-      error: 'Infelizmente, não conseguimos editar seu perfil',
-    });
+        return response;
+      };
+      toast.promise(patchAPI(), {
+        loading: 'Loading',
+        success: 'Perfil editado com sucesso',
+        error: 'Infelizmente, não conseguimos editar seu perfil',
+      });
+    }
   };
 
   return (
