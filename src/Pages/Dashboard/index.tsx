@@ -11,6 +11,7 @@ import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
 import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
 import Footer from '../../Components/Footer';
+import { motion } from 'framer-motion';
 
 export const Dashboard = () => {
   const { v4: uuidv4 } = require('uuid');
@@ -46,8 +47,16 @@ export const Dashboard = () => {
     setIsOpenModal(true);
     setIsModalCreateYourTeam(true);
   };
+
+  const pageMotion = {
+    initial: {opacity: 0, x: -50},
+    animate: {opacity: 1, x: 0, transition: {duration: 0.3}},
+    exit: {opacity: 0, x:0, transition: {duration: 0.3}}
+  };
+
   return user ? (
-    <>
+    
+    <motion.div initial="initial" animate="animate" exit="exit" variants={pageMotion}>
       <Header />
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
@@ -89,7 +98,7 @@ export const Dashboard = () => {
       </Main>
 
       <Footer></Footer>
-    </>
+    </motion.div>
   ) : (
     <Navigate to='/login' replace />
   );
