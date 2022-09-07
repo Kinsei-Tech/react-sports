@@ -13,7 +13,7 @@ const ModalStyle = styled.div<IModalStyle>`
 
   background: var(--gray-2-blur);
 
-  position: absolute;
+  position: fixed;
   z-index: 9999;
 
   .Modal {
