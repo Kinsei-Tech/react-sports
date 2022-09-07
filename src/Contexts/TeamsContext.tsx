@@ -25,7 +25,8 @@ interface ITeamsContext {
     id: number | undefined,
     userRequest: string | undefined,
     position: string,
-    elemId: number
+    elemId: number,
+    ArrayRequests: string[]
   ) => void;
 }
 
@@ -48,14 +49,19 @@ const TeamsProvider = ({ children }: IProvider) => {
       error: 'Algo de errado não está certo',
     });
   };
+
   const requestTeam = (
     id: number | undefined,
     userRequest: string | undefined,
     position: string,
-    elemId: number
+    elemId: number,
+    ArrayRequests: string[]
   ) => {
     const data = {
-      requests: [{ name: userRequest, id: id, position: position }],
+      requests: [
+        ...ArrayRequests,
+        { name: userRequest, id: id, position: position },
+      ],
     };
     console.log(data);
     const postApi = () => {
