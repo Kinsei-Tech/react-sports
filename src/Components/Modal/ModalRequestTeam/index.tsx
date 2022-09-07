@@ -93,7 +93,7 @@ const ModalRequestList = ({ teams2 }: ITeams2Props) => {
             user.teamsRequestAccepted.length > 0 &&
             user.teamsRequestAccepted.map((teamsAccepted) => (
               <CardAcceptedDenied
-                id={teamsAccepted}
+                name={teamsAccepted?.name}
                 type='Accepted'
                 key={uuid()}
               />
@@ -104,7 +104,7 @@ const ModalRequestList = ({ teams2 }: ITeams2Props) => {
           {user &&
             user.teamsRequestDenied.length > 0 &&
             user.teamsRequestDenied.map((teamsAccepted) => (
-              <CardAcceptedDenied id={teamsAccepted} key={uuid()} />
+              <CardAcceptedDenied name={teamsAccepted.name} key={uuid()} />
             ))}
         </ul>
       </Container>
