@@ -57,12 +57,19 @@ const ModalCreateYourTeam = () => {
           <article>
             <section>
               <Input
-                placeholder='Digite o nome do grupo'
+                placeholder='Digite o nome do time'
                 name='name'
                 register={register}
-                label='Nome do Grupo'
+                label='Nome do Time'
               />
               <ErrorMessage error={errors.name?.message} />
+
+              <Input
+                placeholder='Cole aqui a URL da imagem do time'
+                name='urlImg'
+                register={register}
+                label='Imagem do Time'
+              />
 
               <Input
                 name='placeName'
@@ -92,7 +99,7 @@ const ModalCreateYourTeam = () => {
                 placeholder='O que procura?'
                 register={register}
                 label='Descrição'
-                height='150px'
+                height='100px'
               />
               <ErrorMessage error={errors.description?.message} />
             </section>
