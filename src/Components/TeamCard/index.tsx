@@ -59,7 +59,7 @@ function Card({ elem, type }: ICard) {
           {/* {elem?.positionsSearchedFor?.reduce<string[]>((acc, proxima) =>
                   console.log(acc, proxima)
                 )} */}
-          {elem.positionsSearchedFor.join('/')}
+          {/*       {elem?.positionsSearchedFor?.join('/')} */}
         </span>
       </div>
       {type === 'profile' ? (
