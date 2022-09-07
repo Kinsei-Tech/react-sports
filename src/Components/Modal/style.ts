@@ -15,7 +15,7 @@ const ModalStyle = styled.div<IModalStyle>`
   position: absolute;
   z-index: 9999;
 
-  div {
+  div.global-modal-style {
     min-height: auto;
     margin: 18vh auto;
 

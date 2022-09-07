@@ -22,7 +22,9 @@ import ModalAddNetwork from '../../Components/Modal/ModalAddNetwork';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
-import ModalRequestList from '../../Components/Modal/ModalRequestList';
+import ModalRequestList, {
+  ITeam,
+} from '../../Components/Modal/ModalRequestTeam';
 import api from '../../services/api';
 
 const ProfilePage = () => {
@@ -32,6 +34,7 @@ const ProfilePage = () => {
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
+  const [teams2, setTeams2] = useState<ITeam[]>([]);
   const userId = localStorage.getItem('@id');
   const { v4: uuidv4 } = require('uuid');
 
@@ -55,7 +58,17 @@ const ProfilePage = () => {
         .get(`/teams?userId=${userId}`)
         .then((response) => setTeams(response.data));
   }, []);
-  console.log(teams);
+
+  useEffect(() => {
+    gettTeams();
+  }, []);
+
+  const gettTeams = async () => {
+    if (userId) {
+      const { data } = await api.get<ITeam[]>(`teams?userId=${userId}`);
+      setTeams2(data);
+    }
+  };
 
   const openModalAddNetwork = () => {
     setIsModalEditProfile(false);
@@ -86,11 +99,13 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Header />
       {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
       {isModalEditProfile && isOpenModal /*ModalEditProfile*/}
       {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
-      {isModalRequestList && isOpenModal && <ModalRequestList />}
+      {isModalRequestList && isOpenModal && (
+        <ModalRequestList teams2={teams2} />
+      )}
+      <Header />
       <MainStyled>
         <SectionContactNetworks>
           <ContactsBox>
