@@ -6,7 +6,7 @@ export const schemaEditProfile = yup.object().shape({
   name: yup.string(),
   cep: yup
     .string()
-    .min(8, 'O CEP contém 8 dígitos, sendo todos numéricos')
+    .min(8, 'O CEP deve conter 8 dígitos, sendo todos numéricos')
     .required(),
   state: yup.string(),
   city: yup.string(),

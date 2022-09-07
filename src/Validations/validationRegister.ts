@@ -23,7 +23,7 @@ export const schema = yup.object().shape({
   age: yup.string(),
   cep: yup
     .string()
-    .min(8, 'O CEP contém 8 dígitos, sendo todos numéricos')
+    .min(8, 'O CEP deve conter 8 dígitos, sendo todos numéricos')
     .required('CEP obrigatório'),
   city: yup.string(),
   telephone: yup.string(),

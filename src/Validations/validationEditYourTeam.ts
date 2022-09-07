@@ -8,7 +8,7 @@ export const schemaEditYourTeam = yup.object().shape({
   placeName: yup.string(),
   cep: yup
     .number()
-    .min(8, 'O CEP contém 8 dígitos, sendo todos numéricos')
+    .min(8, 'O CEP deve conter 8 dígitos, sendo todos numéricos')
     .required(),
   state: yup.string(),
   city: yup.string(),

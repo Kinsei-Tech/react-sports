@@ -6,7 +6,9 @@ export const schemaCreateYourTeam = yup.object().shape({
     .min(2, 'O nome deve conter no mínimo 2 caracteres')
     .required('Nome Obrigatório'),
   placeName: yup.string(),
-  cep: yup.string().min(8, 'O CEP contém 8 dígitos, sendo todos numéricos'),
+  cep: yup
+    .string()
+    .min(8, 'O CEP deve conter 8 dígitos, sendo todos numéricos'),
   state: yup.string(),
   city: yup.string(),
   maxWeight: yup.string(),
