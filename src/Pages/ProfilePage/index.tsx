@@ -19,7 +19,7 @@ import {
 import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
 import ModalAddNetwork from '../../Components/Modal/ModalAddNetwork';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import ModalTeamDetails from '../../Components/Modal/ModalTeamDetails';
 import ModalRequestList from '../../Components/Modal/ModalRequestList';
@@ -34,6 +34,9 @@ const ProfilePage = () => {
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
   const [isModalTeamDetails, setIsModalTeamDetails] = useState(false);
   const [isModalRequestList, setIsModalRequestList] = useState(false);
+  const [teams, setTeams] = useState([]);
+  const userId = localStorage.getItem('@id');
+  const { v4: uuidv4 } = require('uuid');
 
   const {
     name,
@@ -48,6 +51,14 @@ const ProfilePage = () => {
     cep,
     city,
   } = user;
+
+  useEffect(() => {
+    userId &&
+      api
+        .get(`/teams?userId=${userId}`)
+        .then((response) => setTeams(response.data));
+  }, []);
+  console.log(teams);
 
   const openModalAddNetwork = () => {
     setIsModalEditProfile(false);
@@ -233,8 +244,9 @@ const ProfilePage = () => {
         <SectionGroupList>
           <span className='section-title'>Grupos:</span>
           <UlTeamCard>
-            {/*             <Card  openModalTeamDetails={openModalTeamDetails} />
-            <Card  openModalTeamDetails={openModalTeamDetails}  /> */}
+            {teams?.map((team) => (
+              <Card elem={team} key={uuidv4()} type='profile'></Card>
+            ))}
           </UlTeamCard>
         </SectionGroupList>
       </MainStyled>
