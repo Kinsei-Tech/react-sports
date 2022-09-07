@@ -56,13 +56,15 @@ interface userContextData {
   isModalRequest: boolean;
   setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
   setUser: React.Dispatch<any>;
+  userImg: string | undefined;
+  setUserImg: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
   const localUser = localStorage.getItem('userObject');
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localUser!));
-
+  const [userImg, setUserImg] = useState<string>();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const [isModalCreateYourTeam, setIsModalCreateYourTeam] = useState(false);
@@ -75,11 +77,12 @@ const AuthProvider = ({ children }: IProvider) => {
     data.teamsRequestAccepted = [];
     data.teamsRequestDenied = [];
     data.socialNetworks = [];
-    data.urlImg = 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png';
+    if (data.urlImg.length < 1) {
+      data.urlImg = 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png';
+    }
     const postAPI = () => {
       const response = api.post('/users', data).then((response) => {
         response.status === 201 && navigate('/');
-        console.log(response);
       });
       return response;
     };
@@ -95,11 +98,11 @@ const AuthProvider = ({ children }: IProvider) => {
       const response = api.post('/login', data).then((response) => {
         localStorage.setItem('@accessToken', response.data.accessToken);
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
-        console.log(api.defaults);
         localStorage.setItem('@id', response.data.user.id);
         setUser(response.data.user);
         localStorage.setItem('userObject', JSON.stringify(response.data.user));
-
+        setUserImg(response.data.user.urlImg);
+        localStorage.setItem('@userImg', response.data.user.urlImg);
         navigate('/dashboard', { replace: true });
       });
       return response;
@@ -127,6 +130,8 @@ const AuthProvider = ({ children }: IProvider) => {
         isModalRequest,
         setIsModalRequest,
         setUser,
+        userImg,
+        setUserImg,
       }}
     >
       {children}
