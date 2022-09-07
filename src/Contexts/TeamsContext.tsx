@@ -27,6 +27,7 @@ interface ITeamsContext {
     position: string,
     elemId: number
   ) => void;
+  accRequestTeam: (name: string, idUserRequest: string, type: string) => void;
 }
 
 export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
@@ -74,8 +75,40 @@ const TeamsProvider = ({ children }: IProvider) => {
     });
   };
 
+  const accRequestTeam = (
+    name: string,
+    idUserRequest: string,
+    type: string
+  ) => {
+    let data = {};
+    if (type === 'accepted') {
+      data = {
+        teamsRequestAccepted: [{ name: name, id: idUserRequest }],
+      };
+    } else {
+      data = {
+        teamsRequestDenied: [{ name: name, id: idUserRequest }],
+      };
+    }
+    console.log(data);
+    const patchApi = () => {
+      const response = api
+        .patch(`/users/${idUserRequest}`, data)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => console.log(error));
+      return response;
+    };
+    toast.promise(patchApi(), {
+      loading: 'Enviando resposta ...',
+      success: ' Resposta enviada',
+      error: 'Algo de errado não está certo',
+    });
+  };
+
   return (
-    <TeamsContext.Provider value={{ createTeam, requestTeam }}>
+    <TeamsContext.Provider value={{ createTeam, requestTeam, accRequestTeam }}>
       {children}
     </TeamsContext.Provider>
   );
