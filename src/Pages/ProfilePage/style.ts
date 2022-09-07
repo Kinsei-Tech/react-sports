@@ -398,7 +398,7 @@ export const SectionGroupList = styled.section`
   }
 `;
 export const UlTeamCard = styled.ul`
-  height: 300px;
+  height: auto;
   overflow: auto;
   margin-top: 10px;
   li {
