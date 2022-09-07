@@ -48,10 +48,9 @@ export const Dashboard = () => {
   };
   return user ? (
     <>
-      <Header />
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
-
+      <Header />
       <Main>
         <div className='buttonsFilter'>
           <div className='btn'>
@@ -65,7 +64,7 @@ export const Dashboard = () => {
                 +
               </Button>
               <button className='onHoverInfo' onClick={openCreateYourTeam}>
-                  Criar um novo time
+                Criar um novo time
               </button>
             </div>
 
