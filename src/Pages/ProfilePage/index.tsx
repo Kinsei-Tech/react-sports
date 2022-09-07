@@ -26,6 +26,7 @@ import ModalRequestList from '../../Components/Modal/ModalRequestList';
 import EditProfile from '../../Components/EditProfile';
 import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import api from '../../services/api';
+import { motion } from 'framer-motion';
 
 const ProfilePage = () => {
   const { isOpenModal, setIsOpenModal, user } = useContext(AuthContext);
@@ -39,19 +40,6 @@ const ProfilePage = () => {
   /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
 
-  /*     const {
-      name,
-      telephone,
-      email,
-      height,
-      weight,
-      age,
-      isExercising,
-      positions,
-      state,
-      cep,
-      city,
-    } = user; */
 
   useEffect(() => {
     user &&
@@ -100,15 +88,23 @@ const ProfilePage = () => {
     setIsModalEditProfile(true);
   };
 
+  const pageMotion = {
+    initial: {opacity: 0, x: -50},
+    animate: {opacity: 1, x: 0, transition: {duration: 0.3}},
+    exit: {opacity: 0, x:0, transition: {duration: 0.3}}
+  };
+
   return (
     <>
-      {isModalEditProfile && isOpenModal && <EditProfile />}
-      {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
-      {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
-      {isModalRequestList && isOpenModal && <ModalRequestList />}
-      <Header />
 
-      <MainStyled>
+      <motion.div initial="initial" animate="animate" exit="exit" variants={pageMotion}>
+        {isModalEditProfile && isOpenModal && <EditProfile />}
+        {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
+        {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
+        {isModalRequestList && isOpenModal && <ModalRequestList />}
+        <Header />
+
+<MainStyled>
         <SectionContactNetworks>
           <ContactsBox>
             <Contacts>
@@ -252,8 +248,9 @@ const ProfilePage = () => {
           </UlTeamCard>
         </SectionGroupList>
       </MainStyled>
+      </motion.div>
     </>
-  );
+    );
 };
 
 export default ProfilePage;

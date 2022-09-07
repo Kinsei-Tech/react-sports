@@ -16,7 +16,6 @@ function App() {
           },
         }}
       />
-
       <RoutesMain />
     </Provider>
   );

@@ -57,16 +57,20 @@ interface userContextData {
   setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
   setUser: React.Dispatch<any>;
   userLocalStorage: IUserData;
+  userImg: string | undefined;
+  setUserImg: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
   const localUser = localStorage.getItem('userObject');
+
   const [userLocalStorage, setUserLocalStorage] = useState(
     JSON.parse(localUser!)
   );
   const [user, setUser] = useState<IUserData | null>();
   const [teamDashBoard, setTeamDashBoard] = useState();
   const [teamProfile, setTeamProfile] = useState();
+  const [userImg, setUserImg] = useState<string>();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isModalCreateYourTeam, setIsModalCreateYourTeam] = useState(false);
   const [isModalEditYourTeam, setIsModalEditYourTeam] = useState(false);
@@ -79,11 +83,12 @@ const AuthProvider = ({ children }: IProvider) => {
     data.teamsRequestAccepted = [];
     data.teamsRequestDenied = [];
     data.socialNetworks = [];
-    data.urlImg = 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png';
+    if (data.urlImg.length < 1) {
+      data.urlImg = 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png';
+    }
     const postAPI = () => {
       const response = api.post('/users', data).then((response) => {
         response.status === 201 && navigate('/');
-        console.log(response);
       });
       return response;
     };
@@ -98,12 +103,14 @@ const AuthProvider = ({ children }: IProvider) => {
     const postAPI = () => {
       const response = api.post('/login', data).then((response) => {
         localStorage.setItem('@accessToken', response.data.accessToken);
+        localStorage.setItem('@id', response.data.user.id);
+        localStorage.setItem('userObject', JSON.stringify(response.data.user));
+        localStorage.setItem('@userImg', response.data.user.urlImg);
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
-        navigate('/dashboard', { replace: true });
         setUser(response.data.user);
         setUserLocalStorage(response.data.user);
-        localStorage.setItem('userObject', JSON.stringify(response.data.user));
-        /*         localStorage.setItem('@id', response.data.user.id); */
+        setUserImg(response.data.user.urlImg);
+        navigate('/dashboard', { replace: true });
       });
       return response;
     };
@@ -136,6 +143,8 @@ const AuthProvider = ({ children }: IProvider) => {
         setIsModalRequest,
         setUser,
         userLocalStorage,
+        userImg,
+        setUserImg,
       }}
     >
       {children}

@@ -11,9 +11,12 @@ import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
 import api from '../../services/api';
 import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
 import Footer from '../../Components/Footer';
+import { v4 as uuid } from 'uuid';
+import { motion } from 'framer-motion';
+
 
 export const Dashboard = () => {
-  const { v4: uuidv4 } = require('uuid');
+  // const { v4: uuidv4 } = require('uuid');
   const {
     user,
     isOpenModal,
@@ -48,8 +51,15 @@ export const Dashboard = () => {
     setIsModalCreateYourTeam(true);
   };
 
-  return userLocalStorage ? (
-    <>
+  const pageMotion = {
+    initial: {opacity: 0, x: -50},
+    animate: {opacity: 1, x: 0, transition: {duration: 0.3}},
+    exit: {opacity: 0, x:0, transition: {duration: 0.3}}
+  };
+
+  return userLocalStorage ? ( 
+    <motion.div initial="initial" animate="animate" exit="exit" variants={pageMotion}>
+      <Header />
       {isOpenModal && isModalCreateYourTeam && <ModalCreateYourTeam />}
       {isOpenModal && isModalEditYourTeam && <ModalEditYourTeam />}
       <Header />
@@ -82,15 +92,15 @@ export const Dashboard = () => {
 
         <div className='teamsCards'>
           <ul>
-            {teams?.map((elem, index) => (
-              <Card elem={elem} key={uuidv4()}></Card>
+            {teams?.map((elem) => (
+              <Card elem={elem} key={uuid()}></Card>
             ))}
           </ul>
         </div>
       </Main>
 
       <Footer></Footer>
-    </>
+    </motion.div>
   ) : (
     <Navigate to='/login' replace />
   );

@@ -39,6 +39,7 @@ const ModalEditYourTeam = () => {
   ];
   const editTeam = (data: FieldValues) => {
     console.log(data);
+    setIsOpenModal(false)
   };
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import '../../Pages/Dashboard/style';
 import { SectionImagem, TeamCard } from './style';
 import Button from '../../Components/Button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
 import { FaEnvelope } from 'react-icons/fa';
-
+import { AuthContext } from '../../Contexts/AuthContext';
 
 export interface IElementsProps {
   name: string;
@@ -20,6 +20,7 @@ export interface IElementsProps {
   positionsSearchedFor: [];
   requests: [];
   participantsId: [];
+  urlImg: string;
 }
 
 interface ICard {
@@ -31,13 +32,16 @@ function Card({ elem, type }: ICard) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <TeamCard>
-      <SectionImagem>
         <figure>
-          <img
-            src='https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
-            alt='Logo do time'
-          />
+      <img
+        src={
+          elem.urlImg ||
+          'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
+        }
+        alt='Logo do time'
+      />
         </figure>
+
 
         {type === 'profile' && (
           <div className='box-notification'>
