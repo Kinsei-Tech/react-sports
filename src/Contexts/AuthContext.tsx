@@ -26,15 +26,16 @@ export interface IUserData {
   id: number;
   name: string;
   email: string;
-  height?: number;
-  weight?: number;
-  age: number;
+  height?: string;
+  weight?: string;
+  age: string;
   state: string;
-  telephone: number;
-  isDoingSports: string;
+  telephone: string;
+  isExercising: string;
   cep: string;
   city: string;
   positions: string[];
+  urlImg: string;
 }
 
 export interface IDataLogin {
@@ -54,6 +55,7 @@ interface userContextData {
   setIsModalEditYourTeam: React.Dispatch<React.SetStateAction<boolean>>;
   isModalRequest: boolean;
   setIsModalRequest: React.Dispatch<React.SetStateAction<boolean>>;
+  setUser: React.Dispatch<any>;
 }
 
 const AuthProvider = ({ children }: IProvider) => {
@@ -93,7 +95,7 @@ const AuthProvider = ({ children }: IProvider) => {
       const response = api.post('/login', data).then((response) => {
         localStorage.setItem('@accessToken', response.data.accessToken);
         api.defaults.headers.common.authorization = `Bearer ${response.data.accessToken}`;
-        /*   console.log(response.data.accessToken); */
+        console.log(api.defaults);
         localStorage.setItem('@id', response.data.user.id);
         setUser(response.data.user);
         localStorage.setItem('userObject', JSON.stringify(response.data.user));
@@ -124,6 +126,7 @@ const AuthProvider = ({ children }: IProvider) => {
         setIsModalEditYourTeam,
         isModalRequest,
         setIsModalRequest,
+        setUser,
       }}
     >
       {children}

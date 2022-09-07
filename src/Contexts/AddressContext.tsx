@@ -8,10 +8,10 @@ export const AddressContext = createContext<addressContextData>(
 
 export interface addressContextData {
   getAddress: (cep: string) => void;
-  city: string | undefined;
-  setCity: Dispatch<SetStateAction<undefined>>;
-  state: string | undefined;
-  setState: Dispatch<SetStateAction<undefined>>;
+  city: string;
+  setCity: Dispatch<SetStateAction<string>>;
+  state: string;
+  setState: Dispatch<SetStateAction<string>>;
   cep: string;
   setCep: Dispatch<SetStateAction<string>>;
 }
@@ -30,11 +30,14 @@ export interface addressResponse {
 }
 
 const AddressProvider = ({ children }: IProvider) => {
-  const [city, setCity] = useState();
-  const [state, setState] = useState();
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [cep, setCep] = useState('');
 
   const getAddress = (cep: string) => {
+    if (cep.includes('-')) {
+      cep.replace('-', '');
+    }
     addressApi.get(`${cep}/json/`).then((response) => {
       setCity(response.data.localidade);
       setState(response.data.uf);

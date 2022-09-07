@@ -22,7 +22,7 @@ const ModalRequestList = () => {
   return (
     <Modal setIsOpenModal={setIsOpenModal}>
       <Container>
-        <HeaderModal>
+        <HeaderModal className='HeaderModal'>
           <FaEnvelope />
           <h2>Lista de Solicitações</h2>
         </HeaderModal>

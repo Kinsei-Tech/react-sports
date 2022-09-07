@@ -4,7 +4,9 @@ import Button from '../../Components/Button';
 import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
 import { FaEnvelope } from 'react-icons/fa';
-interface IElementsProps {
+
+
+export interface IElementsProps {
   name: string;
   placeName: string;
   cep: string;
@@ -58,7 +60,6 @@ function Card({ elem, type }: ICard) {
           {elem.positionsSearchedFor.join('/')}
         </span>
       </div>
-
       {type === 'profile' ? (
         <div className='btnContainer'>
           <Button
@@ -93,13 +94,14 @@ function Card({ elem, type }: ICard) {
             Solicitar
           </Button>
 
-          {isVisible && (
-            <DropRequestDashboard
-              isVisible={isVisible}
-              setIsVisible={setIsVisible}
-            />
-          )}
-        </div>
+        {isVisible && (
+          <DropRequestDashboard
+            isVisible={isVisible}
+            setIsVisible={setIsVisible}
+            elem={elem}
+          />
+        )}
+      </div>
       )}
     </TeamCard>
   );

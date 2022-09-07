@@ -29,7 +29,7 @@ export const DropMenuProfile = ({
   };
 
   return dashboard ? (
-    <FloatMenu id='float-menu' onClick={handleCloseDropMenu}>
+    <FloatMenu id='float-menu' onClick={handleCloseDropMenu} onMouseLeave={handleCloseDropMenu}>
       <Container>
         <button onClick={logout}>
           Sair <AiOutlineDoubleRight />
@@ -41,7 +41,7 @@ export const DropMenuProfile = ({
       </Container>
     </FloatMenu>
   ) : (
-    <FloatMenu id='float-menu' onClick={handleCloseDropMenu}>
+    <FloatMenu id='float-menu' onClick={handleCloseDropMenu} onMouseLeave={handleCloseDropMenu}>
       <Container>
         <button onClick={logout}>
           Sair <AiOutlineDoubleRight />
