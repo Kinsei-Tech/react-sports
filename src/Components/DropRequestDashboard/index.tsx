@@ -1,20 +1,18 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react';
 import { BsChevronDoubleRight } from 'react-icons/bs';
-import api from '../../services/api';
+import { TeamsContext } from '../../Contexts/TeamsContext';
+import { IElementsProps } from '../TeamCard';
 import { Container } from './style';
 
 interface IProps {
   isVisible: boolean;
   setIsVisible: Dispatch<SetStateAction<boolean>>;
+  elem: IElementsProps;
 }
 
-const DropRequestDashboard = ({ isVisible, setIsVisible }: IProps) => {
+const DropRequestDashboard = ({ isVisible, setIsVisible, elem }: IProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  // const [positions, setPositions] = useState([]);
-  // const positionsSearchedFor = api.get('/teams').then((response) => {
-  //   setPositions(response.data.positionsSearchedFor);
-  //   console.log(response);
-  // });
+  const { requestTeam } = useContext(TeamsContext);
 
   useEffect(() => {
     function handleCloseModal(event: { target: any }) {
@@ -29,25 +27,21 @@ const DropRequestDashboard = ({ isVisible, setIsVisible }: IProps) => {
     };
   }, [setIsVisible]);
 
-  const myArray = ['Goleiro', 'Fixo', 'Ala Esquerda', 'Ala Direita', 'Pivô'];
-
   return (
     <Container ref={modalRef}>
-      {myArray?.map((elem, index) => {
-        return (
-          <div className='dropDown' key={index}>
-            <button
-              onClick={() => {
-                console.log('oi');
-                setIsVisible(false);
-              }}
-            >
-              {elem}
-            </button>
-            <BsChevronDoubleRight />
-          </div>
-        );
-      })}
+      {elem.positionsSearchedFor?.map((position, index) => (
+        <div key={index}>
+          <button
+            onClick={() => {
+              requestTeam(5, 'grimm', position);
+              setIsVisible(false);
+            }}
+          >
+            {position}
+          </button>
+          <BsChevronDoubleRight />
+        </div>
+      ))}
     </Container>
   );
 };
