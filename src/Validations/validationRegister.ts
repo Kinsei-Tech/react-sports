@@ -17,7 +17,7 @@ export const schema = yup.object().shape({
   confirmPassword: yup
     .string()
     .required('Confirmar senha obrigatório')
-    .oneOf([yup.ref('password')], 'As senhas devem ser as mesmas'),
+    .oneOf([yup.ref('password')], 'As senhas devem ser iguais'),
   height: yup.string(),
   weight: yup.string(),
   age: yup.string(),
