@@ -1,23 +1,8 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { IProvider } from '../Interfaces/Global';
 import { FieldValues } from 'react-hook-form';
 import api from '../services/api';
 import toast from 'react-hot-toast';
-
-/* export interface IDataCreateTeams {
-  name: string;
-  placeName: string;
-  cep: string;
-  state: string;
-  city: string;
-  maxWeight: number;
-  maxAge: number;
-  userId: number; 
-  description: string;
-  positionsSearchedFor: string[];
-  requests: string[];
-  participantsId: number[];
-} */
 
 interface ITeamsContext {
   createTeam: (data: FieldValues) => void;
@@ -28,19 +13,24 @@ interface ITeamsContext {
     elemId: number,
     ArrayRequests: string[]
   ) => void;
+  teamDashBoard: [] | undefined;
+  getTeams: () => Promise<void>;
   accRequestTeam: (name: string, idUserRequest: string, type: string) => void;
 }
 
 export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
 
 const TeamsProvider = ({ children }: IProvider) => {
+  const [teamDashBoard, setTeamDashBoard] = useState();
+  const [teamProfile, setTeamProfile] = useState();
+
   const createTeam = (data: FieldValues) => {
     data.userId = localStorage.getItem('@id');
     data.requests = [];
     data.participantsId = [];
     const postApi = () => {
       const response = api.post('/teams', data).then((response) => {
-        console.log(response);
+        getTeams();
       });
       return response;
     };
@@ -81,6 +71,14 @@ const TeamsProvider = ({ children }: IProvider) => {
     });
   };
 
+  const getTeams = () => {
+    return api
+      .get('/teams')
+      .then((response) => {
+        setTeamDashBoard(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
   const accRequestTeam = (
     name: string,
     idUserRequest: string,
@@ -114,7 +112,7 @@ const TeamsProvider = ({ children }: IProvider) => {
   };
 
   return (
-    <TeamsContext.Provider value={{ createTeam, requestTeam, accRequestTeam }}>
+    <TeamsContext.Provider value={{ createTeam, requestTeam, accRequestTeam, teamDashBoard, getTeams }}>
       {children}
     </TeamsContext.Provider>
   );

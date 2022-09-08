@@ -4,42 +4,34 @@ import Button from '../../Components/Button';
 import Card from '../../Components/TeamCard';
 import { Header } from '../../Components/Header';
 import { SearchInput } from '../../Components/SearchInput';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 import ModalCreateYourTeam from '../../Components/Modal/ModalCreateYourTeam';
-import api from '../../services/api';
+
 import ModalEditYourTeam from '../../Components/Modal/ModalEditYourTeam';
 import Footer from '../../Components/Footer';
 import { v4 as uuid } from 'uuid';
 import { motion } from 'framer-motion';
+import { TeamsContext } from '../../Contexts/TeamsContext';
 
 export const Dashboard = () => {
-  // const { v4: uuidv4 } = require('uuid');
   const {
-    user,
     isOpenModal,
     setIsOpenModal,
     isModalCreateYourTeam,
     setIsModalCreateYourTeam,
     isModalEditYourTeam,
     setIsModalEditYourTeam,
-    isModalRequest,
     setIsModalRequest,
     userLocalStorage,
   } = useContext(AuthContext);
 
-  const [teams, setTeams] = useState([]);
+  const { teamDashBoard, getTeams } = useContext(TeamsContext);
 
   useEffect(() => {
-    // const getTeams = () => {
-    api
-      .get('/teams')
-      .then((response) => {
-        setTeams(response.data);
-      })
-      .catch((err) => console.log(err));
-    // };
+    getTeams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const openCreateYourTeam = () => {
@@ -95,7 +87,7 @@ export const Dashboard = () => {
 
         <div className='teamsCards'>
           <ul>
-            {teams?.map((elem) => (
+            {teamDashBoard?.map((elem) => (
               <Card elem={elem} key={uuid()}></Card>
             ))}
           </ul>
