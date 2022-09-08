@@ -29,10 +29,10 @@ import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import api from '../../services/api';
 import { motion } from 'framer-motion';
 import { AiFillExclamationCircle } from 'react-icons/ai';
-import Footer from '../../Components/Footer';
+import { Navigate } from 'react-router-dom';
 
 const ProfilePage = () => {
-  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg } =
+  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg, userLocalStorage } =
     useContext(AuthContext);
   const { getProfileInfo } = useContext(EditProfileContext);
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
@@ -41,23 +41,23 @@ const ProfilePage = () => {
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
   const [teams2, setTeams2] = useState<ITeam[]>([]);
-  /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
 
   useEffect(() => {
     setUserImg(localStorage.getItem('@userImg') || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    user &&
-      api
-        .get(`/teams?userId=${user.id}`)
-        .then((response) => setTeams(response.data));
+    const id = localStorage.getItem('@id');
+    api.get(`/teams?userId=${id}`).then((response) => setTeams(response.data));
+    gettTeams();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     gettTeams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const gettTeams = async () => {
@@ -111,7 +111,7 @@ const ProfilePage = () => {
     exit: { opacity: 0, x: 0, transition: { duration: 0.3 } },
   };
 
-  return (
+  return userLocalStorage ? (
     <>
       <motion.div
         initial='initial'
@@ -270,6 +270,8 @@ const ProfilePage = () => {
         </MainStyled>
       </motion.div>
     </>
+  ) : (
+    <Navigate to='/login' replace />
   );
 };
 

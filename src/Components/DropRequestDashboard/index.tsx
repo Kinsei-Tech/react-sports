@@ -28,7 +28,6 @@ const DropRequestDashboard = ({ isVisible, setIsVisible, elem }: IProps) => {
       document.removeEventListener('mousedown', handleCloseModal);
     };
   }, [setIsVisible]);
-  console.log('teste', user);
   return (
     <Container ref={modalRef}>
       {elem.positionsSearchedFor?.map((position, index) => (

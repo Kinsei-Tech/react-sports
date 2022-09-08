@@ -132,6 +132,8 @@ export const Container = styled.section`
         background-color: var(--color-yellow-second);
         margin-top: 10px;
       }
-    }
   }
+ }
+ 
+
 `;
