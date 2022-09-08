@@ -49,10 +49,7 @@ function Card({ elem, type }: ICard) {
       <div className='infos'>
         <span>{elem.placeName}</span>
         <span>
-          {/* {elem?.positionsSearchedFor?.reduce<string[]>((acc, proxima) =>
-                  console.log(acc, proxima)
-                )} */}
-          {/*       {elem?.positionsSearchedFor?.join('/')} */}
+          {elem?.positionsSearchedFor.map((position) => position + ' /')}
         </span>
       </div>
       {type === 'profile' ? (
