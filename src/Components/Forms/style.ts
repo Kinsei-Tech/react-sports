@@ -22,9 +22,23 @@ const FormStyle = styled.form`
   }
 
   article {
-    overflow-x: auto;
+    /*     overflow-x: auto; */
     width: 100%;
-
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: var(--color-yellow-second);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    }
     @media (min-width: 930px) {
       display: flex;
       flex-direction: row;

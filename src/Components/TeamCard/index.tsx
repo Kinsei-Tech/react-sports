@@ -1,5 +1,5 @@
 import '../../Pages/Dashboard/style';
-import { SectionImagem, TeamCard } from './style';
+import { /* SectionImagem,  */ TeamCard } from './style';
 import Button from '../../Components/Button';
 import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
@@ -29,20 +29,24 @@ function Card({ elem, type }: ICard) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <TeamCard>
-      <SectionImagem>
-        <figure>
-          <img
-            src={
-              elem.urlImg ||
-              'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
-            }
-            alt='Logo do time'
-          />
-        </figure>
-      </SectionImagem>
-      <div>
-        <h2>{elem.name}</h2>
-        <p>{elem.description}</p>
+      {/* <SectionImagem> */}
+      <div className='divImg-Description'>
+        <section>
+          <figure>
+            <img
+              src={
+                elem.urlImg ||
+                'https://cdn-icons-png.flaticon.com/128/1177/1177568.png'
+              }
+              alt='Logo do time'
+            />
+          </figure>
+        </section>
+        {/* </SectionImagem> */}
+        <div className='description'>
+          <h2>{elem.name}</h2>
+          <p>{elem.description}</p>
+        </div>
       </div>
 
       <div className='infos'>

@@ -86,7 +86,7 @@ export const Dashboard = () => {
         </div>
 
         <div className='teamsCards'>
-          <ul>
+          <ul className='scrollBar'>
             {teamDashBoard?.map((elem) => (
               <Card elem={elem} key={uuid()}></Card>
             ))}

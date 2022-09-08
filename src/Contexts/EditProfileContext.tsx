@@ -67,9 +67,7 @@ const EditProfileProvider = ({ children }: IProvider) => {
   const editProfile = (data: object) => {
     if (user) {
       const patchAPI = () => {
-        const response = api
-          .patch(`users/${user.id}`, data)
-          .then((res) => console.log(res));
+        const response = api.patch(`users/${user.id}`, data).then((res) => res);
 
         return response;
       };

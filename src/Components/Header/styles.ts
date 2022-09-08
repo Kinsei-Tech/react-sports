@@ -15,7 +15,8 @@ export const StyledHeader = styled.header`
   );
 
   width: 100%;
-  height: 185px;
+  /*   height: 185px; */
+  height: 20vh;
 
   .simple-header {
     display: flex;

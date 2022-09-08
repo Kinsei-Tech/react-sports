@@ -4,7 +4,6 @@ import FormStyle from '../style';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, useForm } from 'react-hook-form';
-import Select from '../../Select';
 /* import SelectCheckBoxStyled from '../../SelectCheckBox/style';
  */ import Container from './style';
 import { schema } from '../../../Validations/validationRegister';
@@ -24,7 +23,6 @@ export const FormRegister = () => {
 
   const onSubmitFunction = (data: FieldValues) => {
     userRegister(data);
-    console.log(data);
   };
 
   const {
@@ -35,6 +33,7 @@ export const FormRegister = () => {
 
   useEffect(() => {
     cep.length === 8 && getAddress(cep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
 
   const positionsArr = [

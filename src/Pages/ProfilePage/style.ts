@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const MainStyled = styled.main`
   margin: 0 auto;
-  width: 100%;
-  max-width: 925px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,14 +19,14 @@ export const SectionContactNetworks = styled.section`
     content: '';
     align-self: center;
     height: 2.5px;
-    width: 256px;
+    width: 100%;
     margin-top: 11px;
     background-color: var(--color-yellow-second);
     @media (min-width: 600px) {
       position: absolute;
       bottom: 0;
-      right: 55px;
-      width: 800px;
+      right: 0px;
+      width: 100%;
     }
   }
 `;
@@ -145,8 +144,9 @@ export const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: -15px;
+  gap: 10px;
   @media (min-width: 600px) {
     top: 40px;
   }
@@ -155,7 +155,7 @@ export const ButtonBox = styled.div`
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    margin: 9px;
+    margin: 0px;
     @media (min-width: 600px) {
       width: 139px;
       height: 34;
@@ -166,15 +166,15 @@ export const ButtonBox = styled.div`
   }
 `;
 export const DivNetworks = styled.div`
-  width: 96%;
-  max-width: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: center;
 
   @media (min-width: 600px) {
-    margin-left: 65px;
+    /*     margin-left: 65px; */
+    width: 50%;
     margin-top: 50px;
     align-self: flex-start;
   }
@@ -193,13 +193,14 @@ export const DivNetworks = styled.div`
     }
   }
   div {
-    width: 250px;
+    width: 80%;
     display: flex;
     flex-direction: row;
+    justify-content: start;
     flex-wrap: wrap;
     gap: 18px;
     @media (min-width: 600px) {
-      width: 205;
+      /*       width: 200px; */
     }
     a {
       width: 70px;
@@ -248,24 +249,25 @@ export const DivFlex = styled.div`
   margin-top: 15px;
   @media (min-width: 600px) {
     flex-direction: row;
+    width: 100%;
     &::after {
       content: '';
       height: 2.5px;
-      width: 800px;
+      width: 100%;
       background-color: var(--color-yellow-second);
       align-self: center;
       position: absolute;
       bottom: 0;
-      right: 55px;
+      right: 0px;
     }
   }
 `;
 export const SectionUserDescription = styled.section`
-  width: 96%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 280px;
+  /*   max-width: 280px; */
   @media (min-width: 600px) {
     width: 50%;
     max-width: 364px;
@@ -300,7 +302,7 @@ export const SectionUserDescription = styled.section`
   &::after {
     content: '';
     height: 2.5px;
-    width: 256px;
+    width: 100%;
     background-color: var(--color-yellow-second);
     align-self: center;
     @media (min-width: 600px) {
@@ -332,10 +334,9 @@ export const Pipe = styled.span`
   }
 `;
 export const SectionUserAddress = styled.section`
-  width: 96%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 280px;
   margin-top: 23px;
   @media (min-width: 600px) {
     width: 50%;
@@ -374,7 +375,7 @@ export const SectionUserAddress = styled.section`
   &::after {
     content: '';
     height: 2.5px;
-    width: 256px;
+    width: 100%;
     background-color: var(--color-yellow-second);
     align-self: center;
     @media (min-width: 600px) {
@@ -402,10 +403,24 @@ export const SectionGroupList = styled.section`
   }
 `;
 export const UlTeamCard = styled.ul`
-  height: auto;
-  overflow: auto;
+  height: 40vh;
   margin-top: 10px;
-  li {
-    width: inherit;
+  overflow-y: overlay;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: var(--color-yellow-second);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 `;

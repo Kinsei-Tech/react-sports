@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,12 +18,11 @@ const ModalAddNetwork = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({ resolver: yupResolver(schemaAddNetwork) });
 
   const onSubmitFunction = (data: FieldValues) => {
-    console.log(data);
-    setIsOpenModal(false)
+    setIsOpenModal(false);
   };
 
   return (

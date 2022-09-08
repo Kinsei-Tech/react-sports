@@ -31,23 +31,16 @@ const DropRequestDashboard = ({ isVisible, setIsVisible, elem }: IProps) => {
   return (
     <Container ref={modalRef}>
       {elem.positionsSearchedFor?.map((position, index) => (
-        <div key={index}>
-          <button
-            onClick={() => {
-              requestTeam(
-                user?.id,
-                user?.name,
-                position,
-                elem.id,
-                elem.requests
-              );
-              setIsVisible(false);
-            }}
-          >
-            {position}
-          </button>
+        <button
+          onClick={() => {
+            requestTeam(user?.id, user?.name, position, elem.id, elem.requests);
+            setIsVisible(false);
+          }}
+          key={index}
+        >
+          {position}
           <BsChevronDoubleRight />
-        </div>
+        </button>
       ))}
     </Container>
   );

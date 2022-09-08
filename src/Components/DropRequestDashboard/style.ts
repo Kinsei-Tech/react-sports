@@ -1,35 +1,40 @@
 import styled from 'styled-components';
 
 export const Container = styled.nav`
-  background-color: var(--gray-0);
-  border: 2px solid rgba(110, 148, 35, 0.72);
-  border-radius: 8px;
-  margin-left: 12px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 10px;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--gray-0);
+  border: 2px solid rgba(110, 148, 35, 0.72);
+  border-radius: 8px;
 
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  gap: 2px;
+  width: 100%;
 
   button {
     background: transparent;
     border: none;
-    margin-left: 1rem;
-  }
-
-  svg {
-    color: var(--color-green-primary);
-    margin-right: -3rem;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5%;
+    background-color: var(--gray-0);
+    svg {
+      color: var(--color-green-primary);
+    }
+    &:hover {
+      background-color: var(--color-green-primary-hover);
+      color: var(--gray-0);
+    }
   }
 
   @media (min-width: 930px) {
     position: absolute;
-    top: 59px;
     right: -90px;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -44,7 +49,7 @@ export const Container = styled.nav`
     }
 
     .dropDown {
-      width: 110px;
+      /* width: 110px; */
 
       display: flex;
       flex-direction: row;
