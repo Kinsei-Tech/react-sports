@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
+import { IRequests } from '..';
 import { AuthContext } from '../../../../Contexts/AuthContext';
 import { TeamsContext } from '../../../../Contexts/TeamsContext';
 import { LiStyle } from './style';

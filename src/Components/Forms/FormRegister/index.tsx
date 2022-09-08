@@ -12,6 +12,7 @@ import { BaseSyntheticEvent, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { AddressContext } from '../../../Contexts/AddressContext';
 import FieldSet from '../../Fieldset';
+import ErrorMessage from '../../InputErrorMessage';
 
 export const FormRegister = () => {
   const { userRegister } = useContext(AuthContext);
@@ -61,10 +62,7 @@ export const FormRegister = () => {
                 name='name'
                 label='Nome'
               />
-              <span className='errorMessage'>
-                {typeof errors.name?.message === 'string' &&
-                  errors.name?.message}
-              </span>
+              <ErrorMessage error={errors.name?.message} />
               <Input
                 placeholder='Cole aqui a URL da sua imagem'
                 register={register}
@@ -78,10 +76,7 @@ export const FormRegister = () => {
                 name='email'
                 label='Email'
               />
-              <span className='errorMessage'>
-                {typeof errors.email?.message === 'string' &&
-                  errors.email?.message}
-              </span>
+              <ErrorMessage error={errors.email?.message} />
               <Input
                 type='password'
                 placeholder='Digite sua senha'
@@ -89,10 +84,7 @@ export const FormRegister = () => {
                 name='password'
                 label='Senha'
               />
-              <span className='errorMessage'>
-                {typeof errors.password?.message === 'string' &&
-                  errors.password?.message}
-              </span>
+              <ErrorMessage error={errors.password?.message} />
               <Input
                 type='password'
                 placeholder='Confirme sua senha'
@@ -100,10 +92,7 @@ export const FormRegister = () => {
                 name='confirmPassword'
                 label='Confirme senha'
               />
-              <span className='errorMessage'>
-                {typeof errors.confirmPassword?.message === 'string' &&
-                  errors.confirmPassword?.message}
-              </span>
+              <ErrorMessage error={errors.confirmPassword?.message} />
               <Input
                 type='number'
                 placeholder='Digite sua altura'
@@ -111,10 +100,6 @@ export const FormRegister = () => {
                 name='height'
                 label='Altura(m)'
               />
-              <span className='errorMessage'>
-                {typeof errors.height?.message === 'string' &&
-                  errors.height?.message}
-              </span>
               <Input
                 type='number'
                 placeholder='Digite seu peso'
@@ -122,10 +107,6 @@ export const FormRegister = () => {
                 name='weight'
                 label='Peso(kg)'
               />
-              <span className='errorMessage'>
-                {typeof errors.weight?.message === 'string' &&
-                  errors.weight?.message}
-              </span>
               <Input
                 type='number'
                 placeholder='Digite sua Idade'
@@ -133,9 +114,6 @@ export const FormRegister = () => {
                 name='age'
                 label='Idade'
               />
-              <span className='errorMessage'>
-                {typeof errors.age?.message === 'string' && errors.age?.message}
-              </span>
             </section>
             <section>
               <Input
@@ -146,10 +124,7 @@ export const FormRegister = () => {
                 label='CEP'
                 onChange={handleChange}
               />
-              <span className='errorMessage'>
-                {typeof errors.cep?.message === 'string' && errors.cep?.message}
-              </span>
-
+              <ErrorMessage error={errors.cep?.message} />
               <Input
                 type='text'
                 placeholder='Digite seu estado'
@@ -158,10 +133,6 @@ export const FormRegister = () => {
                 label='Estado'
                 value={state}
               />
-              <span className='errorMessage'>
-                {typeof errors.state?.message === 'string' &&
-                  errors.state?.message}
-              </span>
               <Input
                 type='text'
                 placeholder='Digite sua cidade'
@@ -170,12 +141,6 @@ export const FormRegister = () => {
                 label='Cidade'
                 value={city}
               />
-              {!!errors && (
-                <span className='errorMessage'>
-                  {typeof errors.city?.message === 'string' &&
-                    errors.city?.message}
-                </span>
-              )}
               <Input
                 type='number'
                 placeholder='Digite seu telefone'
@@ -183,10 +148,7 @@ export const FormRegister = () => {
                 name='telephone'
                 label={'Telefone'}
               />
-              <span className='errorMessage'>
-                {typeof errors.telephone?.message === 'string' &&
-                  errors.telephone?.message}
-              </span>
+              <ErrorMessage error={errors.telephone?.message} />
               <FieldSet
                 type='radio'
                 legend='Pratica exercícios regularmente?'

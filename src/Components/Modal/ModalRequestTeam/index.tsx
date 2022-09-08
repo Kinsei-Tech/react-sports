@@ -10,7 +10,7 @@ import CardAcceptedDenied from './CardAcceptedDenied';
 import { HeaderModal } from './style';
 import { LiStyle } from './CardRequestTeam/style';
 
-interface IRequests {
+export interface IRequests {
   id: string;
   name: string;
   position: string;
