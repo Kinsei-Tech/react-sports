@@ -39,6 +39,7 @@ export const LiStyle = styled.li`
     flex-direction: row;
     gap: 7px;
     margin-bottom: 8px;
+    margin-right: 6px;
     @media (min-width: 600px) {
       flex-direction: column;
     }
