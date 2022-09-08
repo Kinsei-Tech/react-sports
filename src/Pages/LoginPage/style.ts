@@ -1,4 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const color = keyframes`
+    0% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 50% 50%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+`;
 
 const ContainerLoginPage = styled.div`
   background-color: var(--gray-0);
@@ -175,6 +187,9 @@ const ContainerLoginPage = styled.div`
       width: 15vw;
       height: 100vh;
       justify-content: center;
+      background: linear-gradient(180deg, #93c335, #4a6416, #93c335);
+      background-size: 1300% 1300%;
+      animation: ${color} 12s ease infinite;
       div {
         .logoMobile {
           display: none;
@@ -188,8 +203,9 @@ const ContainerLoginPage = styled.div`
     .mainPage {
       width: 70vw;
       height: 100vh;
-      background-color: var(--color-green-primary);
-
+      background: linear-gradient(180deg, #93c335, #4a6416, #93c335);
+      background-size: 1300% 1300%;
+      animation: ${color} 12s ease infinite;
       .logoDesktop {
         display: block;
         position: absolute;
@@ -252,7 +268,6 @@ const ContainerLoginPage = styled.div`
     .mainPage {
       width: 70vw;
       height: 100vh;
-      background-color: var(--color-green-primary);
 
       .logoDesktop {
         display: block;
