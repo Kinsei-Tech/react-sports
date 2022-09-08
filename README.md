@@ -20,11 +20,15 @@
 - styled-components
 - adicionar todas que forem utilizadas
 - react-toastify
+- react-hot-toast
 - react-router-dom
 - react-hook-form
 - framer-motion
 - react-icons
 - react-typical
+
+- uuid
+
 
 ## Conventional Branchs/Commits
 
@@ -178,13 +182,16 @@ Atualizações que não ocasionam alteração no código de produção.
 
 ### Funções
 
-    Devem ser variaveis também ou function ? decidir em daily
+    Devem ser variaveis
+    const Nome () =>{
+        return
+    }
 
 ### Formatação do codigo
 
     Espaços devem ser evitados pois deixam um codigo pequeno, extenso e cansativo de ler
 
-    decidir o uso de "" e '' em daily
+    adotar aspas simples ( '' )
 
 ### Estrutura do html
 
