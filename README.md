@@ -26,7 +26,9 @@
 - framer-motion
 - react-icons
 - react-typical
+
 - uuid
+
 
 ## Conventional Branchs/Commits
 
