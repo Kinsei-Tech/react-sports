@@ -33,7 +33,7 @@ export const TeamCard = styled.li`
       }
     }
     .description {
-      width: 65%;
+      width: 70%;
       h2 {
         margin-left: 10%;
         overflow: hidden;
