@@ -103,6 +103,10 @@ export const Container = styled.section`
   section {
     align-items: center;
   }
+
+  ul {
+    overflow: auto;
+    max-height: 120px;
   @media (min-width: 930px) {
     section + section {
       margin-left: 30px;

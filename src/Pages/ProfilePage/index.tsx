@@ -28,9 +28,10 @@ import EditProfile from '../../Components/EditProfile';
 import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import api from '../../services/api';
 import { motion } from 'framer-motion';
+import { Navigate } from 'react-router-dom';
 
 const ProfilePage = () => {
-  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg } =
+  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg, userLocalStorage } =
     useContext(AuthContext);
   const { getProfileInfo } = useContext(EditProfileContext);
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
@@ -109,7 +110,7 @@ const ProfilePage = () => {
     exit: { opacity: 0, x: 0, transition: { duration: 0.3 } },
   };
 
-  return (
+  return userLocalStorage ? (
     <>
       <motion.div
         initial='initial'
@@ -253,23 +254,21 @@ const ProfilePage = () => {
                 Cidade:
                 <span>{user?.city}</span>
               </p>
-              <p>
-                Bairro:
-                <span>Pajuçara</span>
-              </p>
             </SectionUserAddress>
           </DivFlex>
           <SectionGroupList>
             <span className='section-title'>Grupos:</span>
             <UlTeamCard>
               {teams?.map((team) => (
-                <Card elem={team} key={uuidv4()} type='profile'></Card>
+                <Card elem={team} key={uuidv4()} type='profile' />
               ))}
             </UlTeamCard>
           </SectionGroupList>
         </MainStyled>
       </motion.div>
     </>
+  ) : (
+    <Navigate to='/login' replace />
   );
 };
 

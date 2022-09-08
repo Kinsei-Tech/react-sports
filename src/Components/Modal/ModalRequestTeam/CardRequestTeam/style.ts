@@ -5,6 +5,7 @@ export const LiStyle = styled.li`
   flex-direction: column;
   margin-bottom: 13px;
   position: relative;
+  gap: 12px;
   @media (min-width: 600px) {
     flex-direction: row;
   }
@@ -37,7 +38,7 @@ export const LiStyle = styled.li`
     display: flex;
     flex-direction: row;
     gap: 7px;
-    margin-top: 8px;
+    margin-bottom: 8px;
     @media (min-width: 600px) {
       flex-direction: column;
     }
