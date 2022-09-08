@@ -1,6 +1,5 @@
 import { Header } from '../../Components/Header';
 import { FaAngleDoubleRight, FaEnvelope } from 'react-icons/fa';
-import ImgProfile from '../../Images/ImagemPerfil.svg';
 import {
   ButtonBox,
   Contacts,
@@ -40,25 +39,23 @@ const ProfilePage = () => {
   const [isModalRequestList, setIsModalRequestList] = useState(false);
   const [teams, setTeams] = useState([]);
   const [teams2, setTeams2] = useState<ITeam[]>([]);
-  /*   const userId = localStorage.getItem('@id'); */
   const { v4: uuidv4 } = require('uuid');
-
 
   useEffect(() => {
     setUserImg(localStorage.getItem('@userImg') || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   useEffect(() => {
-    user &&
-      api
-        .get(`/teams?userId=${user.id}`)
-        .then((response) => setTeams(response.data));
+    const id = localStorage.getItem('@id');
+    api.get(`/teams?userId=${id}`).then((response) => setTeams(response.data));
+    gettTeams();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     gettTeams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const gettTeams = async () => {

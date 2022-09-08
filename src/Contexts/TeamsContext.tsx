@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { IProvider } from '../Interfaces/Global';
 import { FieldValues } from 'react-hook-form';
 import api from '../services/api';
@@ -28,18 +28,23 @@ interface ITeamsContext {
     elemId: number,
     ArrayRequests: string[]
   ) => void;
+  teamDashBoard: [] | undefined;
+  getTeams: () => Promise<void>;
 }
 
 export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
 
 const TeamsProvider = ({ children }: IProvider) => {
+  const [teamDashBoard, setTeamDashBoard] = useState();
+  const [teamProfile, setTeamProfile] = useState();
+
   const createTeam = (data: FieldValues) => {
     data.userId = localStorage.getItem('@id');
     data.requests = [];
     data.participantsId = [];
     const postApi = () => {
       const response = api.post('/teams', data).then((response) => {
-        console.log(response);
+        getTeams();
       });
       return response;
     };
@@ -80,8 +85,19 @@ const TeamsProvider = ({ children }: IProvider) => {
     });
   };
 
+  const getTeams = () => {
+    return api
+      .get('/teams')
+      .then((response) => {
+        setTeamDashBoard(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <TeamsContext.Provider value={{ createTeam, requestTeam }}>
+    <TeamsContext.Provider
+      value={{ createTeam, requestTeam, teamDashBoard, getTeams }}
+    >
       {children}
     </TeamsContext.Provider>
   );

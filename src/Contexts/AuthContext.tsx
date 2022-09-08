@@ -67,13 +67,10 @@ interface userContextData {
 
 const AuthProvider = ({ children }: IProvider) => {
   const localUser = localStorage.getItem('userObject');
-
   const [userLocalStorage, setUserLocalStorage] = useState(
     JSON.parse(localUser!)
   );
   const [user, setUser] = useState<IUserData>();
-  const [teamDashBoard, setTeamDashBoard] = useState();
-  const [teamProfile, setTeamProfile] = useState();
   const [userImg, setUserImg] = useState<string>();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isModalCreateYourTeam, setIsModalCreateYourTeam] = useState(false);
