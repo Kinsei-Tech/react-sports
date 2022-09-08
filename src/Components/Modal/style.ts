@@ -18,7 +18,7 @@ const ModalStyle = styled.div<IModalStyle>`
 
   .Modal {
     min-height: auto;
-    margin: 18vh auto;
+    margin: 5vh auto;
 
     max-width: 400px;
 
@@ -107,6 +107,7 @@ export const Container = styled.section`
   ul {
     overflow: auto;
     max-height: 120px;
+  }
   @media (min-width: 930px) {
     section + section {
       margin-left: 30px;
