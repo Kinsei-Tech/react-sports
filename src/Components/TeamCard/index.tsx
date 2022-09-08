@@ -3,7 +3,7 @@ import { SectionImagem, TeamCard } from './style';
 import Button from '../../Components/Button';
 import { useState } from 'react';
 import DropRequestDashboard from '../DropRequestDashboard';
-import { FaEnvelope } from 'react-icons/fa';
+
 export interface IElementsProps {
   name: string;
   placeName: string;
@@ -22,7 +22,6 @@ export interface IElementsProps {
 }
 
 interface ICard {
-  // openModalTeamDetails?: () => void;
   elem: IElementsProps;
   type?: string;
 }
@@ -54,11 +53,7 @@ function Card({ elem, type }: ICard) {
       </div>
       {type === 'profile' ? (
         <div className='btnContainer'>
-          <Button
-            color='#000000'
-            backGround='#93C335'
-            // onClick={openModalTeamDetails}
-          >
+          <Button color='#000000' backGround='#93C335'>
             Editar
           </Button>
           <Button
@@ -71,11 +66,7 @@ function Card({ elem, type }: ICard) {
         </div>
       ) : (
         <div className='btnContainer'>
-          <Button
-            color='#000000'
-            backGround='#93C335'
-            // onClick={openModalTeamDetails}
-          >
+          <Button color='#000000' backGround='#93C335'>
             Detalhes
           </Button>
           <Button
