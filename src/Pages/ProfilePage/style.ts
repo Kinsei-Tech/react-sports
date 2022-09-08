@@ -78,6 +78,7 @@ export const ContactsBox = styled.div`
         font-size: 28px;
       }
     }
+
     span {
       position: absolute;
       z-index: 4;
@@ -88,12 +89,14 @@ export const ContactsBox = styled.div`
       text-align: center;
       color: var(--error);
       @media (min-width: 600px) {
-        border: 2px solid var(--error);
-        border-radius: 50%;
         width: 18px;
         height: 18px;
         bottom: -10px;
         right: -10px;
+      }
+      svg.svg-exclamation-style {
+        width: inherit;
+        height: inherit;
       }
     }
   }

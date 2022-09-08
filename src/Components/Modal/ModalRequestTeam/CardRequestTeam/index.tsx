@@ -28,6 +28,7 @@ const CardRequestTeam = ({
           color='var(--gray-2)'
           backGround='var(--color-yellow-primary)'
           onClick={() => accRequestTeam(teamsName, idUserRequest, 'accepted')}
+          colorHover={'var(--color-yellow-primary-hover)'}
         >
           Aceitar
         </Button>
@@ -35,6 +36,7 @@ const CardRequestTeam = ({
           color='var(--gray-0)'
           backGround='var(--error)'
           onClick={() => accRequestTeam(teamsName, idUserRequest, 'denied')}
+          colorHover={'#540101'}
         >
           Recusar
         </Button>

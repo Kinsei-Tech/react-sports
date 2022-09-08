@@ -68,7 +68,7 @@ const ModalRequestList = ({ teams2 }: ITeams2Props) => {
         </LiStyle>
       ));
     } else {
-      return <li>Tem nada aqui pai!!</li>;
+      return <li className='mssagm'>{team.name} não possui requisições</li>;
     }
   };
 
@@ -84,7 +84,7 @@ const ModalRequestList = ({ teams2 }: ITeams2Props) => {
           {teams2.length > 0 ? (
             teams2.map((team) => conditionalRender(team))
           ) : (
-            <p>tu é um sedentario sem time</p>
+            <li className='mssagm'>Tu não possue time cadastrado!!</li>
           )}
         </ul>
 

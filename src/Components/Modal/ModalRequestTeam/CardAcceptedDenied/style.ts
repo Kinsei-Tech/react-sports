@@ -47,6 +47,7 @@ export const LiStyle = styled.li`
   svg {
     color: var(--success);
     font-size: 22px;
+    margin-right: 8px;
     @media (min-width: 600px) {
       font-size: 26px;
     }

@@ -105,12 +105,35 @@ export const Container = styled.section`
   }
 
   ul {
+    width: 100%;
     overflow: auto;
     max-height: 120px;
-  }
-  @media (min-width: 930px) {
-    section + section {
-      margin-left: 30px;
+    @media (min-width: 930px) {
+      section + section {
+        margin-left: 30px;
+      }
     }
+    li.mssagm {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 89px;
+      width: inherit;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gray-2);
+
+      &::after {
+        content: '';
+        align-self: center;
+        height: 2.5px;
+        width: 256px;
+        background-color: var(--color-yellow-second);
+        margin-top: 10px;
+      }
   }
+ }
+ 
+
 `;

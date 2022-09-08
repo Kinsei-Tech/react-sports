@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Main = styled.main`
   background-color: #d9d9d9;
@@ -45,18 +45,17 @@ export const Main = styled.main`
       flex-direction: row;
       justify-content: space-between;
     }
-    
-    .btn{
+
+    .btn {
       width: auto;
-      display: flex;      
+      display: flex;
     }
 
-    .hoverClass{
+    .hoverClass {
       display: flex;
       flex-direction: row;
-      
-      &:hover{
 
+      &:hover {
         .onHoverInfo {
           background-color: white;
           width: fit-content;
@@ -69,15 +68,14 @@ export const Main = styled.main`
           border: 0;
         }
 
-        .onHoverInfo{
+        .onHoverInfo {
           display: flex;
           background-color: white;
         }
 
-        .createTeam{
+        .createTeam {
           border-radius: 8px 0 0 8px;
         }
-
       }
     }
 
@@ -108,6 +106,5 @@ export const Main = styled.main`
       flex-direction: column;
       align-items: center;
     }
-
   }
 `;
