@@ -28,6 +28,8 @@ import EditProfile from '../../Components/EditProfile';
 import { EditProfileContext } from '../../Contexts/EditProfileContext';
 import api from '../../services/api';
 import { motion } from 'framer-motion';
+import { AiFillExclamationCircle } from 'react-icons/ai';
+import Footer from '../../Components/Footer';
 
 const ProfilePage = () => {
   const { isOpenModal, setIsOpenModal, user, setUserImg, userImg } =
@@ -137,7 +139,9 @@ const ProfilePage = () => {
                       className='svg-envelope-style'
                       onClick={openModalRequestList}
                     />
-                    <span>2</span>
+                    <span>
+                      <AiFillExclamationCircle className='svg-exclamation-style' />
+                    </span>
                   </div>
                 </div>
                 <div className='user-contacts'>
