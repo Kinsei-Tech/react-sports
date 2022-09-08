@@ -88,7 +88,9 @@ export default ModalStyle;
 export const Container = styled.section`
   background-color: var(--gray-0);
   border-radius: 0 0 16px 16px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   padding: 15px;
 
   h2 {
@@ -107,7 +109,21 @@ export const Container = styled.section`
   ul {
     width: 100%;
     overflow: auto;
-    max-height: 120px;
+    max-height: 100px;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: var(--color-yellow-second);
+      /*       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
+    }
     @media (min-width: 930px) {
       section + section {
         margin-left: 30px;
@@ -132,8 +148,6 @@ export const Container = styled.section`
         background-color: var(--color-yellow-second);
         margin-top: 10px;
       }
+    }
   }
- }
- 
-
 `;

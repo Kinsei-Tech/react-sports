@@ -22,7 +22,6 @@ export const TeamsContext = createContext<ITeamsContext>({} as ITeamsContext);
 
 const TeamsProvider = ({ children }: IProvider) => {
   const [teamDashBoard, setTeamDashBoard] = useState();
-  const [teamProfile, setTeamProfile] = useState();
 
   const createTeam = (data: FieldValues) => {
     data.userId = localStorage.getItem('@id');
@@ -54,14 +53,11 @@ const TeamsProvider = ({ children }: IProvider) => {
         { name: userRequest, id: id, position: position },
       ],
     };
-    console.log(data);
     const postApi = () => {
       const response = api
         .patch(`/teams/${elemId}`, data)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => console.log(error));
+        .then((response) => response.data)
+        .catch((error) => console.error(error));
       return response;
     };
     toast.promise(postApi(), {
@@ -77,7 +73,7 @@ const TeamsProvider = ({ children }: IProvider) => {
       .then((response) => {
         setTeamDashBoard(response.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
   const accRequestTeam = (
     name: string,
@@ -94,14 +90,11 @@ const TeamsProvider = ({ children }: IProvider) => {
         teamsRequestDenied: [{ name: name, id: idUserRequest }],
       };
     }
-    console.log(data);
     const patchApi = () => {
       const response = api
         .patch(`/users/${idUserRequest}`, data)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => console.log(error));
+        .then((response) => response.data)
+        .catch((error) => console.error(error));
       return response;
     };
     toast.promise(patchApi(), {
@@ -112,7 +105,15 @@ const TeamsProvider = ({ children }: IProvider) => {
   };
 
   return (
-    <TeamsContext.Provider value={{ createTeam, requestTeam, accRequestTeam, teamDashBoard, getTeams }}>
+    <TeamsContext.Provider
+      value={{
+        createTeam,
+        requestTeam,
+        accRequestTeam,
+        teamDashBoard,
+        getTeams,
+      }}
+    >
       {children}
     </TeamsContext.Provider>
   );

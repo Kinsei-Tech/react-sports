@@ -10,14 +10,12 @@ import Button from '../../Button';
 import FormStyle from '../../Forms/style';
 import { Container } from '../style';
 import FieldSet from '../../Fieldset';
-import { TeamsContext } from '../../../Contexts/TeamsContext';
 import { schemaEditYourTeam } from '../../../Validations/validationEditYourTeam';
 import { AddressContext } from '../../../Contexts/AddressContext';
 import ErrorMessage from '../../InputErrorMessage';
 
 const ModalEditYourTeam = () => {
   const { setIsOpenModal } = useContext(AuthContext);
-  const {} = useContext(TeamsContext);
   const { getAddress, city, state, cep, setCep } = useContext(AddressContext);
 
   const handleChange = (event: BaseSyntheticEvent) => {
@@ -38,12 +36,12 @@ const ModalEditYourTeam = () => {
     { label: 'Ala Direita', name: 'positionsSearchedFor', value: 'right wing' },
   ];
   const editTeam = (data: FieldValues) => {
-    console.log(data);
-    setIsOpenModal(false)
+    setIsOpenModal(false);
   };
 
   useEffect(() => {
     cep.length === 8 && getAddress(cep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cep]);
 
   return (

@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import Modal from '..';
 import { v4 as uuid } from 'uuid';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { Container } from '../style';
 import { FaEnvelope } from 'react-icons/fa';
-import api from '../../../services/api';
 import CardRequestTeam from './CardRequestTeam';
 import CardAcceptedDenied from './CardAcceptedDenied';
 import { HeaderModal } from './style';
@@ -39,21 +38,6 @@ interface ITeams2Props {
 const ModalRequestList = ({ teams2 }: ITeams2Props) => {
   const { user } = useContext(AuthContext);
   const { setIsOpenModal } = useContext(AuthContext);
-  //const [teams, setTeams] = useState<ITeam[]>([]);
-  //const { v4: uuidv4 } = require('uuid');
-  const userId = localStorage.getItem('@id');
-  console.log(teams2);
-  //useEffect(() => {
-  // const gettTeams = async () => {
-  //   if (userId) {
-  //     const { data } = await api.get<ITeam[]>(`teams?userId=${userId}`);
-  //     setTeams(data);
-  //   }
-  // };
-
-  // }, []);
-
-  //console.log(teams);
 
   const conditionalRender = (team: ITeam) => {
     if (team.requests.length > 0) {
@@ -64,11 +48,16 @@ const ModalRequestList = ({ teams2 }: ITeams2Props) => {
             userName={request.name}
             teamsName={team.name}
             userPosition={request.position}
+            key={uuid()}
           />
         </LiStyle>
       ));
     } else {
-      return <li className='mssagm'>{team.name} não possui requisições</li>;
+      return (
+        <li className='mssagm' key={uuid()}>
+          {team.name} não possui requisições
+        </li>
+      );
     }
   };
 

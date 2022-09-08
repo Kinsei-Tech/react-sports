@@ -32,8 +32,14 @@ import { AiFillExclamationCircle } from 'react-icons/ai';
 import { Navigate } from 'react-router-dom';
 
 const ProfilePage = () => {
-  const { isOpenModal, setIsOpenModal, user, setUserImg, userImg, userLocalStorage } =
-    useContext(AuthContext);
+  const {
+    isOpenModal,
+    setIsOpenModal,
+    user,
+    setUserImg,
+    userImg,
+    userLocalStorage,
+  } = useContext(AuthContext);
   const { getProfileInfo } = useContext(EditProfileContext);
   const [isModalAddNetwork, setIsModalAddNetwork] = useState(false);
   const [isModalEditProfile, setIsModalEditProfile] = useState(false);
@@ -76,15 +82,6 @@ const ProfilePage = () => {
     setIsModalAddNetwork(true);
   };
 
-  const openModalTeamDetails = () => {
-    setIsModalEditProfile(false);
-    setIsModalAddNetwork(false);
-    setIsModalRequestList(false);
-
-    setIsOpenModal(true);
-    setIsModalTeamDetails(true);
-  };
-
   const openModalRequestList = () => {
     setIsModalEditProfile(false);
     setIsModalAddNetwork(false);
@@ -123,7 +120,7 @@ const ProfilePage = () => {
         {isModalAddNetwork && isOpenModal && <ModalAddNetwork />}
         {isModalTeamDetails && isOpenModal && <ModalTeamDetails />}
         {isModalRequestList && isOpenModal && (
-          <ModalRequestList teams2={teams2} />
+          <ModalRequestList teams2={teams2} key={uuidv4()} />
         )}
         <Header />
         <MainStyled>
